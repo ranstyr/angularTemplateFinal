@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<html ng-app="project">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css">
+    <script src='http://codepen.io/assets/editor/live/css_live_reload_init.js'></script>
+    <title>Project</title>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="states/pre-login/login/login.css">
+
+
+    <!-- build:css css/app.css -->
+
+    <!-- endbuild -->
+
+    <!-- Vendor -->
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/foundation-sites/dist/foundation.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../node_modules/ngstorage/ngStorage.js"></script>
+    <script src="../node_modules/lodash/index.js"></script>
+    <script src="js/modernizr.js"></script>
+
+    <!-- build:js js/app.js -->
+    <!------ App assets ------>
+    <script src="app.js"></script>
+
+    <!-- Components -->
+
+    <!-- Models -->
+
+
+    <!-- States -->
+    <script src="states/pre-login/login/login.controller.js"></script>
+    <script src="states/pre-login/login/login.js"></script>
+
+
+    <!-- Common -->
+    <script src="common/services/utils.service.js"></script>
+    <script src="common/config/constant.js"></script>
+    <script src="common/config/config.js"></script>
+    <script src="common/services/interceptor.service.js"></script>
+    <script src="states/app/layout.js"></script>
+    <!-- endbuild -->
+
+</head>
+<body>
+
+    <div ui-view class="full-height"></div>
+
+</body>
+</html>
