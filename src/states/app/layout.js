@@ -3,7 +3,7 @@
  */
 (function (app) {
 
-    app.config(['$stateProvider', '$urlRouterProvider', appRoutes]);
+   /* app.config(['$stateProvider', '$urlRouterProvider', appRoutes]);
 
     function appRoutes($stateProvider, $urlRouterProvider) {
 
@@ -14,9 +14,8 @@
                 resolve: {
                     init: []
                 }
-            });
-
-        $urlRouterProvider.otherwise('/login');
-    }
+        })
+        $urlRouterProvider.otherwise('/account');
+    }*/
 
 })(angular.module('project'));

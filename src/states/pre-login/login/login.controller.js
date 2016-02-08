@@ -3,14 +3,16 @@
  */
 (function (app) {
 
-    app.controller('LoginController', ['$state', '$log', LoginController]);
+    app.controller('LoginController', ['$state', '$log', '$scope', LoginController]);
 
-    function LoginController($state, $log) {
+    function LoginController($state, $log ,$scope ) {
 
         var vm = this;
         vm.credentials = {};
 
         activate();
+
+
 
         function activate() {
 

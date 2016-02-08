@@ -1,0 +1,128 @@
+<div id="content">
+    <div class="note-holder">
+        <span class="note js-note">Fill out the questions to find the best-suited investment plan for your portfolio</span>
+    </div>
+    <div class="info-module step-content" data-id="step-content-1">
+        <div class="text">
+            <h1><i class="icon-bag"></i> My Investment Fund</h1>
+            <p>This section will outline your goal and the possible time to get there</p>
+        </div>
+        <div class="risk-box step-content" data-id="step-content-2">
+            <div class="risk-meter">
+                <img src="assets/images/ico-meter.png" alt="image description">
+                <div class="frame">
+                    <em>Risk Level <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span></em>
+                    <span><strong>7</strong> - Very High</span>
+                </div>
+            </div>
+            <div class="ui-slider">
+                <div class="slider slider alt" data-disabled="true" data-min="0" data-max="100" data-value="70" data-step="10">
+                    <div class="bar"></div>
+                    <div class="handler ui-slider-handle"></div>
+                    <div class="left">Low</div>
+                    <div class="right">High</div>
+                    <div class="label" style="left:20%;">4 - Advised</div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="cell">
+                <em>Deposits</em>
+                <span>Initial: <span id="money-field-1">$15,000</span></span>
+                <span>Monthly: <span id="money-field-2">$1,200</span></span>
+            </div>
+        </div>
+    </div>
+    <div class="tab-module js-tab-module step-content disabled" data-id="step-content-2">
+        <ul class="tabset">
+            <li><a href="#tab-1" class="active"><i class="icon-details"></i> Portfolio Details</a></li>
+            <li><a href="#tab-2"><i class="icon-projection"></i> Projection</a></li>
+            <li><a href="#tab-3"><i class="icon-performance"></i> Past Performance</a></li>
+        </ul>
+        <div class="tab" id="tab-1">
+            <span class="title">Your portfolio will balance your assets according to risk appetite</span>
+            <div class="round-graph">
+                <div class="visual">
+                    <pie-chart></pie-chart>
+                </div>
+                <div class="frame">
+                    <div class="table-holder">
+                        <table class="legend">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Ticker</th>
+                                <th>Weight</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="color" style="background:#9577a4;"></span></td>
+                                <td>UBS ETRACS 2xMonthly Lvg S&amp;P MLP ETN</td>
+                                <td>MLPV</td>
+                                <td>12.78%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#9577a4;"></span></td>
+                                <td>Direxion Daily Russia Bull 3X ETF</td>
+                                <td>RUSL</td>
+                                <td>12.10% </td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#7e678b;"></span></td>
+                                <td>VelocityShares 3x Long Natural Gas ETN</td>
+                                <td>UGAZ</td>
+                                <td>11.42%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#675371;"></span></td>
+                                <td>First Trust ISE-Revere Natural Gas ETF</td>
+                                <td>FCG</td>
+                                <td>11.22% </td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#86a33f;"></span></td>
+                                <td>ProShares Ultra Bloomberg Crude Oil</td>
+                                <td>UCO</td>
+                                <td>9.31%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#86a33f;"></span></td>
+                                <td>ProShares Ultra Oil &amp; Gas</td>
+                                <td>DIG</td>
+                                <td>8.71% </td>
+                            </tr>
+                            <tr>
+                                <td><span class="color" style="background:#758938;"></span></td>
+                                <td>ProShares Ultra Oil &amp; Gas</td>
+                                <td>DIG</td>
+                                <td>8%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div class="tab" id="tab-2">
+            <span class="title">According to the asset allocation, you may assume this behaviour over time</span>
+            <p>The projection is based on previous market behavior with this portfolio to conclude probable outcomes. <br>Note that past performance is not a sure indication of future revenue so it does not guarantee returns.</p>
+            <div class="graph">
+                <line-chart></line-chart>
+            </div>
+        </div>
+        <div class="tab" id="tab-3">
+            <span class="title">Your asset allocation can be tested to show past behaviour</span>
+            <p>This is not indicative of future results and is based on simulated date over the past 20 years</p>
+            <div class="graph">
+                <bar-chart></bar-chart>
+            </div>
+        </div>
+    </div>
+    <afterrender-drc></afterrender-drc>
+</div>
+
+
+
+
