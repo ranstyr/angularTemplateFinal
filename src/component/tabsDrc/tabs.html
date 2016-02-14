@@ -7,21 +7,28 @@
             <h1><i class="icon-bag"></i> My Investment Fund</h1>
             <p>This section will outline your goal and the possible time to get there</p>
         </div>
-        <div class="risk-box step-content" data-id="step-content-2">
+        <div class="risk-box step-content" id="result-box">
             <div class="risk-meter">
                 <img src="assets/images/ico-meter.png" alt="image description">
                 <div class="frame">
                     <em>Risk Level <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span></em>
-                    <span><strong>7</strong> - Very High</span>
+                    <span id="field"><strong>7</strong> - Very High</span>
                 </div>
             </div>
             <div class="ui-slider">
-                <div class="slider slider alt" data-disabled="true" data-min="0" data-max="100" data-value="70" data-step="10">
+                <div class="slider slider alt"
+                     data-min="1"
+                     data-max="10"
+                     data-value="4"
+                     data-step="1"
+                     data-field="#field"
+                     data-change="true"
+                     data-values="1 - Very low, 2 - Low, 3- Conservative, 4 - Moderate, 5 - Medium, 6 - Mid-High, 7 - High, 8 - Very high, 9 - Very high, 10 - Very high">
                     <div class="bar"></div>
                     <div class="handler ui-slider-handle"></div>
+                    <div class="label" style="left:-18px;"></div>
                     <div class="left">Low</div>
                     <div class="right">High</div>
-                    <div class="label" style="left:20%;">4 - Advised</div>
                 </div>
             </div>
         </div>
@@ -29,11 +36,12 @@
             <div class="cell">
                 <em>Deposits</em>
                 <span>Initial: <span id="money-field-1">$15,000</span></span>
-                <span>Monthly: <span id="money-field-2">$1,200</span></span>
+                <span class="field-value">Monthly: <span id="money-field-2">$1,200</span></span>
             </div>
         </div>
     </div>
-    <div class="tab-module js-tab-module step-content disabled" data-id="step-content-2">
+    <!-- box -->
+    <div class="tab-module js-tab-module step-content disabled" data-id="step-content-3">
         <ul class="tabset">
             <li><a href="#tab-1" class="active"><i class="icon-details"></i> Portfolio Details</a></li>
             <li><a href="#tab-2"><i class="icon-projection"></i> Projection</a></li>
@@ -41,75 +49,72 @@
         </ul>
         <div class="tab" id="tab-1">
             <span class="title">Your portfolio will balance your assets according to risk appetite</span>
-            <div class="round-graph">
-                <div class="visual">
-                    <pie-chart></pie-chart>
+            <div class="step-3-graph">
+                <div class="round-graph">
+                    <div class="visual">
+                        <pie-chart></pie-chart>
+                    </div>
+                    <div class="frame">
+                        <div class="table-holder">
+                            <table class="legend">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Ticker</th>
+                                    <th>Weight</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="tableRow in vm.data4">
+                                    <td><span class="color" ng-style=vm.set_background(tableRow)></span></td>
+                                    <td>{{tableRow.Name}}</td>
+                                    <td>{{tableRow.Ticker}}</td>
+                                    <td>{{tableRow.Percentage}}</td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="frame">
-                    <div class="table-holder">
-                        <table class="legend">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Ticker</th>
-                                <th>Weight</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><span class="color" style="background:#9577a4;"></span></td>
-                                <td>UBS ETRACS 2xMonthly Lvg S&amp;P MLP ETN</td>
-                                <td>MLPV</td>
-                                <td>12.78%</td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#9577a4;"></span></td>
-                                <td>Direxion Daily Russia Bull 3X ETF</td>
-                                <td>RUSL</td>
-                                <td>12.10% </td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#7e678b;"></span></td>
-                                <td>VelocityShares 3x Long Natural Gas ETN</td>
-                                <td>UGAZ</td>
-                                <td>11.42%</td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#675371;"></span></td>
-                                <td>First Trust ISE-Revere Natural Gas ETF</td>
-                                <td>FCG</td>
-                                <td>11.22% </td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#86a33f;"></span></td>
-                                <td>ProShares Ultra Bloomberg Crude Oil</td>
-                                <td>UCO</td>
-                                <td>9.31%</td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#86a33f;"></span></td>
-                                <td>ProShares Ultra Oil &amp; Gas</td>
-                                <td>DIG</td>
-                                <td>8.71% </td>
-                            </tr>
-                            <tr>
-                                <td><span class="color" style="background:#758938;"></span></td>
-                                <td>ProShares Ultra Oil &amp; Gas</td>
-                                <td>DIG</td>
-                                <td>8%</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <div class="save-block">
+                    <a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="step-4-graph">
+                <div class="round-graph">
+                    <div class="visual">
+                        <piechart3-drc></piechart3-drc>
+                    </div>
+                    <div class="frame">
+                        <div class="table-holder">
+                            <table class="legend">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Weight</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="tableRow in vm.data3">
+                                    <td><span class="color" ng-style=vm.set_background(tableRow)></span></td>
+                                    <td>{{tableRow.Name}}</td>
+                                    <td>{{tableRow.Percentage}}</td>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
         <div class="tab" id="tab-2">
             <span class="title">According to the asset allocation, you may assume this behaviour over time</span>
             <p>The projection is based on previous market behavior with this portfolio to conclude probable outcomes. <br>Note that past performance is not a sure indication of future revenue so it does not guarantee returns.</p>
             <div class="graph">
                 <line-chart></line-chart>
+            </div>
+            <div class="save-block">
+                <a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
             </div>
         </div>
         <div class="tab" id="tab-3">
@@ -118,11 +123,10 @@
             <div class="graph">
                 <bar-chart></bar-chart>
             </div>
+            <div class="save-block">
+                <a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
+            </div>
         </div>
     </div>
     <afterrender-drc></afterrender-drc>
 </div>
-
-
-
-

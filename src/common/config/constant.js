@@ -1,15 +1,19 @@
 /**
- * Created by Ran Styr
+ * Created by ran.styr on 07-Feb-16.
  */
-(function (app) {
 
-    app.constant('constants', {
+(function () {
 
-        DEV: {
+        // dataservice factory
+        angular
+            .module('project')
+            .constant('constants', {
 
-        },
-        PROD: {}
+                DEV: {
+                    getPortfolio4: 'dataJSON/Portfolio',
+                    getPortfolio3: 'dataJSON3/Portfolio'
+                },
+                PROD: {}
+            })
 
-    });
-
-})(angular.module('project'));
+    })();

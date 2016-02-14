@@ -11,56 +11,56 @@
   font-size: 1.142857em;
   line-height: 1.1875em;
   color: #414141; }
+.info-module .text {
+  float: left;
+  max-width: 22.5em; }
+@media (max-width: 1279px) {
   .info-module .text {
-    float: left;
-    max-width: 22.5em; }
-    @media (max-width: 1279px) {
-      .info-module .text {
-        float: none;
-        max-width: none; } }
-  .info-module h1 {
-    font-size: 1.125em;
-    line-height: 1.444444em;
-    font-weight: normal;
-    margin: 0.611111em 0 0.5em;
-    color: #3f3f3f; }
-    .info-module h1 i {
-      display: inline-block;
-      vertical-align: top;
-      font-size: 1.277777em;
-      color: #4a5668;
-      margin-right: 0.086956em; }
-  .info-module p {
-    margin: 0 0 1.1875em;
-    font-weight: 300; }
+    float: none;
+    max-width: none; } }
+.info-module h1 {
+  font-size: 1.125em;
+  line-height: 1.444444em;
+  font-weight: normal;
+  margin: 0.611111em 0 0.5em;
+  color: #3f3f3f; }
+.info-module h1 i {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.277777em;
+  color: #4a5668;
+  margin-right: 0.086956em; }
+.info-module p {
+  margin: 0 0 1.1875em;
+  font-weight: 300; }
+.info-module .box {
+  border: 1px solid #e6e3e3;
+  float: right;
+  width: 12.75em;
+  line-height: 1.5625em;
+  color: #3f3f3f;
+  height: 7.0625em;
+  display: table; }
+@media (max-width: 1279px) {
   .info-module .box {
-    border: 1px solid #e6e3e3;
-    float: right;
-    width: 12.75em;
-    line-height: 1.5625em;
-    color: #3f3f3f;
-    height: 7.0625em;
-    display: table; }
-    @media (max-width: 1279px) {
-      .info-module .box {
-        width: 49%; } }
-    @media (max-width: 639px) {
-      .info-module .box {
-        float: none;
-        width: 100%;
-        margin: 0; } }
-    .info-module .box .cell {
-      display: table-cell;
-      vertical-align: middle;
-      padding: 0.875em; }
-    .info-module .box > span {
-      display: block; }
-    .info-module .box em {
-      color: #4d4d4d;
-      display: block;
-      font-size: 0.75em;
-      line-height: 1.166666em;
-      font-style: normal; }
+    width: 49%; } }
+@media (max-width: 639px) {
+  .info-module .box {
+    float: none;
+    width: 100%;
+    margin: 0; } }
+.info-module .box .cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.875em; }
+.info-module .box .cell > span {
+  display: block; }
+.info-module .box em {
+  color: #4d4d4d;
+  display: block;
+  font-size: 0.75em;
+  line-height: 1.166666em;
+  font-style: normal; }
 
 .risk-box {
   float: right;
@@ -70,52 +70,56 @@
   border: 1px solid #e6e3e3;
   border-radius: 0.125em;
   padding: 0.9375em; }
-  @media (max-width: 1279px) {
-    .risk-box {
-      width: 50%;
-      margin: 0 0 0 1%; } }
-  @media (max-width: 639px) {
-    .risk-box {
-      float: none;
-      width: auto;
-      margin: 0 0 0.625em; } }
-  .risk-box .slider {
+@media (max-width: 1279px) {
+  .risk-box {
+    width: 50%;
+    margin: 0 0 0 1%; } }
+@media (max-width: 639px) {
+  .risk-box {
     float: none;
-    margin: 0 auto;
-    width: 11.3em;
-    padding: 0 0.4375em;
-    font-size: 0.875em; }
+    width: auto;
+    margin: 0 0 0.625em; } }
+.risk-box .slider {
+  float: none;
+  margin: 0 auto;
+  width: 11.3em;
+  padding: 0 0.4375em;
+  font-size: 0.875em; }
 
 .risk-meter {
   text-align: center;
   margin: 0 0 1.125em;
   padding: 0 1.25em 0 0; }
-  .risk-meter img {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0.25em 0 0; }
-  .risk-meter .frame {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: left; }
-  .risk-meter em {
-    font-style: normal;
-    font-size: 0.75em;
-    line-height: 1.166666em;
-    margin: 0 0 0.166666em;
-    display: block;
-    color: #4d4d4d; }
-  .risk-meter > span {
-    display: block;
-    color: #3f3f3f;
-    font-size: 1em;
-    line-height: 1.25em; }
-  .risk-meter .tooltip {
-    margin-top: 0; }
-  .risk-meter .tooltip .t-slide {
-    left: auto;
-    right: 100%;
-    margin-right: 0.2em; }
+.risk-meter img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.25em 0 0; }
+.risk-meter .frame {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left; }
+.risk-meter .frame #field {
+  width: 50px;
+  white-space: nowrap;
+  display: block; }
+.risk-meter em {
+  font-style: normal;
+  font-size: 0.75em;
+  line-height: 1.166666em;
+  margin: 0 0 0.166666em;
+  display: block;
+  color: #4d4d4d; }
+.risk-meter > span {
+  display: block;
+  color: #3f3f3f;
+  font-size: 1em;
+  line-height: 1.25em; }
+.risk-meter .tooltip {
+  margin-top: 0; }
+.risk-meter .tooltip .t-slide {
+  left: auto;
+  right: 100%;
+  margin-right: 0.2em; }
 
 .step-content {
   position: relative;

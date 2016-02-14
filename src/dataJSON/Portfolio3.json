@@ -1,0 +1,63 @@
+{
+  "projectionData":
+
+      [{"year":3016,"minValue":15000,"median":15300,"maxValue":16000},
+        {"year":3017,"minValue":16500,"median":16800,"maxValue":16500},
+        {"year":3018,"minValue":18000,"median":18300,"maxValue":18000},
+        {"year":3019,"minValue":19500,"median":19800,"maxValue":19500},
+        {"year":3020,"minValue":21000,"median":22800,"maxValue":21000},
+        {"year":3021,"minValue":22500,"median":24500,"maxValue":22500},
+        {"year":3022,"minValue":24000,"median":26200,"maxValue":24000},
+        {"year":3023,"minValue":25500,"median":27700,"maxValue":25500},
+        {"year":3024,"minValue":27000,"median":29300,"maxValue":27000},
+        {"year":3025,"minValue":28500,"median":31355.55556,"maxValue":28500},
+        {"year":3026,"minValue":30000,"median":33168.88889,"maxValue":29800},
+        {"year":3027,"minValue":31500,"median":34982.22222,"maxValue":31245.45455},
+        {"year":3028,"minValue":33000,"median":36795.55556,"maxValue":32690.90909},
+        {"year":3029,"minValue":34500,"median":38608.88889,"maxValue":34136.36364},
+        {"year":3030,"minValue":36000,"median":40422.22222,"maxValue":35581.81818}]
+    ,
+  "performanceData":
+    [{"year":3001,"revenues":3},
+      {"year":3002,"revenues":19.7},
+      {"year":3004,"revenues":17.2},
+      {"year":3005,"revenues":16.9},
+      {"year":3006,"revenues":-4.3},
+      {"year":3007,"revenues":-9.8},
+      {"year":3008,"revenues":-15.1},
+      {"year":3009,"revenues":13.2},
+      {"year":3010,"revenues":8.7},
+      {"year":3011,"revenues":13.9},
+      {"year":3012,"revenues":7.5},
+      {"year":3013,"revenues":5},
+      {"year":3014,"revenues":-16.9},
+      {"year":3015,"revenues":14.1},
+      {"year":3016,"revenues":11.8},
+      {"year":3017,"revenues":2.6},
+      {"year":3018,"revenues":9.6},
+      {"year":3019,"revenues":10.3},
+      {"year":3020,"revenues":7.9},
+      {"year":3021,"revenues":4}
+    ],
+  "InvestmentData":
+    [
+      {"Ticker":"3VUKE","Name":"Vanguard FTSE 100","Percentage":"30%" , "color": "#675371" },
+      {"Ticker":"3VUSA","Name":"Vanguard S&P 500","Percentage":"10%" , "color": "#9577a4"},
+      {"Ticker":"3UC60","Name":"UBS MSCI EMU 100% hedged to GBP UCITS","Percentage":"10%" , "color": "#758938"},
+      {"Ticker":"3VGOV","Name":"Vanguard UK Gilt","Percentage":"5%", "color": "#7e678b"},
+      {"Ticker":"3UC62","Name":"UBS ETF MSCI Japan 100% hedged to GBP UCITS ETF","Percentage":"5%" , "color": "#758938"},
+      {"Ticker":"3SUKC","Name":"SPDR Barclays 0-5 Year Sterling Corporate Bond","Percentage":"1%" , "color": "#9577a4"},
+      {"Ticker":"3UC07","Name":"UBS ETF MSCI USA VALUE","Percentage":"4%" , "color": "#9577a4"},
+      {"Ticker":"3VMID","Name":"Vanguard FTSE 250","Percentage":"5%" , "color": "#675371"},
+      {"Ticker":"3CASH","Name":"CASH","Percentage":"15%" , "color": "#758938"},
+      {"Ticker":"3VJPN","Name":"Vanguard FTSE Japan UCITS","Percentage":"15%" , "color": "#9577a4"}
+    ],
+  "assetBreakdownData":
+    [
+      {"name":"3developed equities","y":77,"color":"#9577a4","sliced":false},
+      {"name":"3governement bonds, developed market","y":11,"color":"#758938","sliced":true},
+      {"name":"3corporate bonds","y":7,"color":"#86a33f","sliced":true},
+      {"name":"3other","y":3,"color":"#675371","sliced":false},
+      {"name":"3emerging market equties","y":2,"color":"#7e678b","sliced":false}
+    ]
+}

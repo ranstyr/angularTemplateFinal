@@ -1,0 +1,64 @@
+{
+  "projectionData":
+
+      [{"year":6016,"minValue":15000,"median":15300,"maxValue":16000},
+        {"year":6017,"minValue":16500,"median":16800,"maxValue":16500},
+        {"year":62018,"minValue":18000,"median":18300,"maxValue":18000},
+        {"year":6019,"minValue":19500,"median":19800,"maxValue":19500},
+        {"year":6020,"minValue":21000,"median":22800,"maxValue":21000},
+        {"year":6021,"minValue":22500,"median":24500,"maxValue":22500},
+        {"year":6022,"minValue":24000,"median":26200,"maxValue":24000},
+        {"year":6023,"minValue":25500,"median":27700,"maxValue":25500},
+        {"year":6024,"minValue":27000,"median":29200,"maxValue":27000},
+        {"year":6025,"minValue":28500,"median":31355.55556,"maxValue":28500},
+        {"year":6026,"minValue":30000,"median":33168.88889,"maxValue":29800},
+        {"year":6027,"minValue":31500,"median":34982.22222,"maxValue":31245.45455},
+        {"year":6028,"minValue":33000,"median":36795.55556,"maxValue":32690.90909},
+        {"year":6029,"minValue":34500,"median":38608.88889,"maxValue":34136.36364},
+        {"year":6030,"minValue":36000,"median":40422.22222,"maxValue":35581.81818}]
+    ,
+  "performanceData":
+  [{"year":6001,"revenues":6},
+    {"year":6002,"revenues":19.7},
+    {"year":6004,"revenues":17.2},
+    {"year":6005,"revenues":16.9},
+    {"year":6006,"revenues":-4.3},
+    {"year":6007,"revenues":-9.8},
+    {"year":6008,"revenues":-15.1},
+    {"year":6009,"revenues":13.2},
+    {"year":6010,"revenues":8.7},
+    {"year":6011,"revenues":13.9},
+    {"year":6012,"revenues":7.5},
+    {"year":6013,"revenues":5},
+    {"year":6014,"revenues":-16.9},
+    {"year":6015,"revenues":14.1},
+    {"year":6016,"revenues":11.8},
+    {"year":6017,"revenues":2.6},
+    {"year":6018,"revenues":9.6},
+    {"year":6019,"revenues":10.3},
+    {"year":6020,"revenues":7.9},
+    {"year":6021,"revenues":4}
+  ],
+  "InvestmentData":
+    [
+      {"Ticker":"6VUKE","Name":"Vanguard FTSE 100","Percentage":"30%" , "color": "#675371" },
+      {"Ticker":"6VUSA","Name":"Vanguard S&P 500","Percentage":"10%" , "color": "#9577a4"},
+      {"Ticker":"6UC60","Name":"UBS MSCI EMU 100% hedged to GBP UCITS","Percentage":"10%" , "color": "#758938"},
+      {"Ticker":"6VGOV","Name":"Vanguard UK Gilt","Percentage":"5%", "color": "#7e678b"},
+      {"Ticker":"6UC62","Name":"UBS ETF MSCI Japan 100% hedged to GBP UCITS ETF","Percentage":"5%" , "color": "#758938"},
+      {"Ticker":"6SUKC","Name":"SPDR Barclays 0-5 Year Sterling Corporate Bond","Percentage":"1%" , "color": "#9577a4"},
+      {"Ticker":"6UC07","Name":"UBS ETF MSCI USA VALUE","Percentage":"4%" , "color": "#9577a4"},
+      {"Ticker":"6VMID","Name":"Vanguard FTSE 250","Percentage":"5%" , "color": "#675371"},
+      {"Ticker":"6CASH","Name":"CASH","Percentage":"15%" , "color": "#758938"},
+      {"Ticker":"6VJPN","Name":"Vanguard FTSE Japan UCITS","Percentage":"15%" , "color": "#9577a4"}
+
+    ],
+  "assetBreakdownData":
+    [
+      {"name":"6developed equities","y":77,"color":"#9577a4","sliced":false},
+      {"name":"6governement bonds, developed market","y":11,"color":"#758938","sliced":true},
+      {"name":"6corporate bonds","y":7,"color":"#86a33f","sliced":true},
+      {"name":"6other","y":3,"color":"#675371","sliced":false},
+      {"name":"6emerging market equties","y":2,"color":"#7e678b","sliced":false}
+    ]
+}

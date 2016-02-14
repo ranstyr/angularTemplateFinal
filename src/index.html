@@ -12,18 +12,13 @@
     <link media="all" rel="stylesheet" href="component/pieChartDrc/pie-chart.css">
     <link media="all" rel="stylesheet" href="component/barChartDrc/bar-chart.css">
     <link media="all" rel="stylesheet" href="component/lineChartDrc/line-chart.css">
-
+    <link media="all" rel="stylesheet" href="component/tableDrc/table.css">
 
 
     <!-- Vendor -->
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../node_modules/ngstorage/ngStorage.js"></script>
-
-
-
-
-
 
 
     <!-- build:js js/app.js -->
@@ -33,6 +28,9 @@
     <!-- Components -->
     <script src="component/pieChartDrc/pie-chart.controller.js"></script>
     <script src="component/pieChartDrc/pie-chart.directive.js"></script>
+
+    <script src="component/pieChart3Drc/pie-chart3.controller.js"></script>
+    <script src="component/pieChart3Drc/pie-chart3.directive.js"></script>
 
     <script src="component/barChartDrc/bar-chart.controller.js"></script>
     <script src="component/barChartDrc/bar-chart.directive.js"></script>
@@ -46,13 +44,18 @@
     <script src="component/sidebarDrc/sidebar.controller.js"></script>
     <script src="component/tabsDrc/tabs.directive.js"></script>
     <script src="component/tabsDrc/tabs.controller.js"></script>
+    <script src="component/tableDrc/table.directive.js"></script>
+    <script src="component/tableDrc/table.controller.js"></script>
+    <script src="component/tabsDrc/tabs.controller.js"></script>
     <script src="component/afterRenderDrc/after.render.directive.js"></script>
     <script src="common/services/data.service.js"></script>
 
 
 
 
-    <!-- Models -->
+    <!-- common -->
+    <script src="common/config/constant.js"></script>
+
 
 
     <!-- States -->
@@ -68,6 +71,7 @@
 <body>
 
     <div ui-view></div>
+
     <script type="text/javascript">window.jQuery || document.write('<script src="../node_modules/jquery-1.11.2.min.js" defer><\/script>')</script>
     <script type="text/javascript" src="js/jquery.main.js" defer></script>
     <script src="http://code.highcharts.com/highcharts.src.js"></script>

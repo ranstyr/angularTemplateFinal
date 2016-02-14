@@ -5,12 +5,12 @@
 
     angular
         .module('project')
-        .controller('PieChartController', pieChart);
+        .controller('PieChart3Controller', pieChart3);
 
-    pieChart.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
+    pieChart3.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
 
 
-    function pieChart( $http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
+    function pieChart3( $http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
         $scope.dataservice = dataservice;
         $scope.chartSeries = dataservice.getChartPieLevel4Data().assetBreakdownData;
 
@@ -85,7 +85,7 @@
         $('#tab-3').on('tabChage3' , function(event , chartWidth){
             $scope.$apply(function() {
 
-                $scope.chartConfig.series = $scope.dataservice.getChartPieLevel4Data().assetBreakdownData;
+                $scope.chartConfig.series = $scope.dataservice.getChartPieLevel3Data().assetBreakdownData;
 
             });
         });
@@ -98,7 +98,7 @@
              $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
              $scope.chartConfig.yAxis.min = min + min*0.2;
              });*/
-            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel4Data().assetBreakdownData;
+            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel3Data().assetBreakdownData;
 
         })
 
@@ -110,10 +110,9 @@
              $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
              $scope.chartConfig.yAxis.min = min + min*0.2;
              });*/
-            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel4Data().assetBreakdownData;
+            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel3Data().assetBreakdownData;
 
         })
-
 
         $rootScope.$on('angularDataChanged', function () {
             //todo should i perform apply?
@@ -123,12 +122,9 @@
              $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
              $scope.chartConfig.yAxis.min = min + min*0.2;
              });*/
-            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel4Data().assetBreakdownData;
+            $scope.chartConfig.series = $scope.dataservice.getChartPieLevel3Data().assetBreakdownData;
 
         })
-
-
-
 
     }
 

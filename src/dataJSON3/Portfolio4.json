@@ -1,0 +1,52 @@
+{
+  "projectionData":
+
+      [{"year":1016,"minValue":15000,"median":15300,"maxValue":16000},
+        {"year":1017,"minValue":16500,"median":16800,"maxValue":16500},
+        {"year":1018,"minValue":18000,"median":18300,"maxValue":18000},
+        {"year":1019,"minValue":19500,"median":19800,"maxValue":19500},
+        {"year":1020,"minValue":21000,"median":22800,"maxValue":21000},
+        {"year":1021,"minValue":22500,"median":24500,"maxValue":22500},
+        {"year":1022,"minValue":24000,"median":26100,"maxValue":24000},
+        {"year":1023,"minValue":25500,"median":27700,"maxValue":25500},
+        {"year":1024,"minValue":27000,"median":29200,"maxValue":27000},
+        {"year":1025,"minValue":28500,"median":31355.55556,"maxValue":28500},
+        {"year":1026,"minValue":30000,"median":33168.88889,"maxValue":29800},
+        {"year":1027,"minValue":31500,"median":34982.22222,"maxValue":31245.45455},
+        {"year":1028,"minValue":33000,"median":36795.55556,"maxValue":32690.90909},
+        {"year":1029,"minValue":34500,"median":38608.88889,"maxValue":34136.36364},
+        {"year":1030,"minValue":36000,"median":40422.22222,"maxValue":35581.81818}]
+    ,
+  "performanceData":
+    [{"year":1916,"revenues":1},
+      {"year":1917,"revenues":19.7},
+      {"year":1918,"revenues":17.2},
+      {"year":1919,"revenues":16.9},
+      {"year":1920,"revenues":-4.3},
+      {"year":1921,"revenues":-9.8},
+      {"year":1922,"revenues":-15.1},
+      {"year":1923,"revenues":13.2},
+      {"year":1924,"revenues":8.7},
+      {"year":1925,"revenues":13.9},
+      {"year":1926,"revenues":7.5},
+      {"year":1927,"revenues":5},
+      {"year":1928,"revenues":-16.9},
+      {"year":1929,"revenues":14.1},
+      {"year":1930,"revenues":11.8},
+      {"year":1931,"revenues":2.6},
+      {"year":1932,"revenues":9.6},
+      {"year":1933,"revenues":10.3},
+      {"year":1934,"revenues":7.9},
+      {"year":1935,"revenues":4}
+    ],
+  "InvestmentData":
+    [
+      {"Name":"4Stocks","Percentage":"72%" , "color": "#675371" },
+      {"Name":"4Bonds","Percentage":"28%" , "color": "#9577a4"}
+    ],
+  "assetBreakdownData":
+    [
+      {"name":"1Stocks","y":77,"color":"#9577a4","sliced":false},
+      {"name":"1Bonds","y":11,"color":"#758938","sliced":true}
+    ]
+}

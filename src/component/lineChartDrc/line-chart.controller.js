@@ -5,34 +5,40 @@
 
     angular
         .module('project')
-        .controller('LineChartController', ['$scope', '$state', lineChart]);
+        .controller('LineChartController', lineChart);
 
-    function lineChart($scope , $element) {
+
+    lineChart.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
+
+
+    function lineChart($http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
+        $scope.dataservice = dataservice;
         $scope.chartSeries = [
                 {
-                    name: 'My First dataset',
-                    data: [15000, 16500, 18000, 19500, 21000, 22500, 24000, 25500, 27000, 28500],
+                    name: 'minValue',
+                    data: dataservice.getLineChartMinData(),
                     color: "rgba(220,220,220,0.2)"
                 },
                 {
-                    name: "My Second dataset",
-                    data: [15300, 16800, 18300, 19800, 21300, 22800, 24500, 26200, 27700, 29200],
+                    name: "median",
+                    data: dataservice.getLineChartMedianData(),
                     color: "rgba(151,187,205,0.2)"
                 },
                 {
-                    name: "My third dataset",
-                    data: [16000, 17500, 19000, 20500, 22000, 23500, 25400, 27000, 28500, 30000],
+                    name: "maxValue",
+                    data: dataservice.getChartLineMaxData(),
                     color: "rgba(151,187,205,0.2)"
                 },
                 {
                     name: "white",
-                    data: [15000, 16500, 18000, 19500, 21000, 22500, 24000, 25500, 27000, 28500],
+                    data: dataservice.getLineChartMinData(),
                     color: "white"
                 }];
 
         $scope.chartConfig = {
             size : {
-                width : 0
+                width : 0,
+                height : 500
             },
             options: {
                 chart: {
@@ -82,8 +88,7 @@
             },
             series: $scope.chartSeries,
             xAxis: {
-                categories: ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023",
-                    "2024"],
+                categories: $scope.dataservice.getChartLineYearData(),
                 title: {
                     enabled: false
                 },
@@ -93,7 +98,7 @@
                 startOnTick: false,
                 endOnTick: false,
                 // 9 = categories.length
-                max: 9-1.5
+                max: 9 -1.5
             },
             yAxis: {
                 title: {
@@ -138,13 +143,109 @@
              data: rnd
              })*/
         };
+        //todo probaly we can delete it once we will have chart container width after next step
 
-        $('#tab-2').on('tabChage2' , function(event , chartWidth){
+        $('#tab-2').on('tabChage2' , function(event , chartWidth , chartH){
             $scope.$apply(function() {
-                $scope.chartConfig.size.width = (chartWidth -2);
+                $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+               // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
+                $scope.chartConfig.chartSeries = [
+                    {
+                        name: 'minValue',
+                        data: dataservice.getLineChartMinData(),
+                        color: "rgba(220,220,220,0.2)"
+                    },
+                    {
+                        name: "median",
+                        data: dataservice.getLineChartMedianData(),
+                        color: "rgba(151,187,205,0.2)"
+                    },
+                    {
+                        name: "maxValue",
+                        data: dataservice.getChartLineMaxData(),
+                        color: "rgba(151,187,205,0.2)"
+                    },
+                    {
+                        name: "white",
+                        data: dataservice.getLineChartMinData(),
+                        color: "white"
+                    }];
             });
         });
 
+
+
+        $rootScope.$on('angularSliderTextChnage', function () {
+            //todo should i perform apply?
+            /*            $scope.$apply(function() {
+             var min = $scope.dataservice.getMinValue();
+             $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+             $scope.chartConfig.yAxis.min = min + min*0.2;
+             });*/
+
+            $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+            //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
+            $scope.chartConfig.chartSeries = [
+                {
+                    name: 'minValue',
+                    data: dataservice.getLineChartMinData(),
+                    color: "rgba(220,220,220,0.2)"
+                },
+                {
+                    name: "median",
+                    data: dataservice.getLineChartMedianData(),
+                    color: "rgba(151,187,205,0.2)"
+                },
+                {
+                    name: "maxValue",
+                    data: dataservice.getChartLineMaxData(),
+                    color: "rgba(151,187,205,0.2)"
+                },
+                {
+                    name: "white",
+                    data: dataservice.getLineChartMinData(),
+                    color: "white"
+                }];
+
+
+        })
+
+        $rootScope.$on('angularSideBarNextStep', function () {
+            //todo should i perform apply?
+            /*            $scope.$apply(function() {
+             var min = $scope.dataservice.getMinValue();
+             $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+             $scope.chartConfig.yAxis.min = min + min*0.2;
+             });*/
+
+            $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+            //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
+            $scope.chartConfig.chartSeries = [
+                {
+                    name: 'minValue',
+                    data: dataservice.getLineChartMinData(),
+                    color: "rgba(220,220,220,0.2)"
+                },
+                {
+                    name: "median",
+                    data: dataservice.getLineChartMedianData(),
+                    color: "rgba(151,187,205,0.2)"
+                },
+                {
+                    name: "maxValue",
+                    data: dataservice.getChartLineMaxData(),
+                    color: "rgba(151,187,205,0.2)"
+                },
+                {
+                    name: "white",
+                    data: dataservice.getLineChartMinData(),
+                    color: "white"
+                }];
+
+
+        })
 
     }
 

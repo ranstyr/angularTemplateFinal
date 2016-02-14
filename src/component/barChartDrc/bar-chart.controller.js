@@ -5,30 +5,63 @@
 
     angular
         .module('project')
-        .controller('BarChartController', ['$scope', '$state', barChart]);
+        .controller('BarChartController', barChart);
 
-    function barChart( $scope) {
+    barChart.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
 
-        $scope.chartSeries = [{
-            data: [9.2, 3.4, 5.2, 0.2, -1.1, {
-                y: -2.4,
-                color: 'red'
-            }, 6.7, 5.4, 2.8, 1.5, 12.1, 4.1, {
-                y: 14.5,
-                color: 'green'
-            }, 13.2 , 11.9 , 3.4 , 9.3 ,8 , 6.7],
-            color : 'rgb(74, 86, 104)',
-            showInLegend: false
-        }];
-
+    function barChart( $http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
+        $scope.dataservice = dataservice;
         $scope.chartConfig = {
             size : {
-                width : 0
+                width : 0,
+                height : 500
             },
+            series: [{
+                /*            data: [9.2, 3.4, 5.2, 0.2, -1.1, {
+                 y: -2.4,
+                 color: 'red'
+                 }, 6.7, 5.4, 2.8, 1.5, 12.1, 4.1, {
+                 y: 14.5,
+                 color: 'green'
+                 }, 13.2 , 11.9 , 3.4 , 9.3 ,8 , 6.7],*/
+                data: $scope.dataservice.getBarChartRevenuesData(),
+                //data: [8.9,{"y":19.7,"color":"green"},17.2,16.9,-4.3,-9.8,-15.1,13.2,8.7,13.9,7.5,5,{"y":-16.9,"color":"red"},14.1,11.8,2.6,9.6,10.3,7.9,4],
+                color : 'rgb(74, 86, 104)',
+                showInLegend: false
+            }],
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: $scope.dataservice.getBarChartYearData(),
+                lineWidth: 0,
+                minorTickLength: 0,
+                tickLength: 0,
+                minorGridLineWidth: 0,
+            },
+            yAxis: {
+                visible: false,
+                gridLineColor: 'transparent',
+                min: $scope.dataservice.getMinValue(),
+                title: {
+                    style: {
+                        display: 'none'
+                    },
+                    text: ''
+                }
+            },
+            loading: false,
             options: {
                 chart: {
                     type: 'column',
-                    margin: 60
+                    marginLeft: 0,
+                    marginRight: 0
+                },
+                tooltip : {
+                    enabled: true
+                },
+                subtitle: {
+                    text: ''
                 },
                 plotOptions: {
                     column: {
@@ -42,47 +75,8 @@
                     }
                 }
             },
-            series: $scope.chartSeries,
-            title: {
-                text: ''
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: ["1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004",
-                    "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"],
-                lineWidth: 0,
-                minorTickLength: 0,
-                tickLength: 0,
-                minorGridLineWidth: 0,
-            },
-            yAxis: {
-                visible: false,
-                gridLineColor: 'transparent',
-                min: -2.4,
-
-                title: {
-                    style: {
-                        display: 'none'
-                    },
-                    text: ''
-                }
-            },
-            Series:{
-                visible: true
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            loading: false,
-
         };
+
         $scope.reflow = function () {
             $scope.$broadcast('highchartsng.reflow');
         };
@@ -115,11 +109,50 @@
              })*/
         }
 
+        //todo probaly we can delete it once we will have chart container width after next step
         $('#tab-3').on('tabChage3' , function(event , chartWidth){
             $scope.$apply(function() {
-                $scope.chartConfig.size.width = (chartWidth -2);
+                var min = $scope.dataservice.getMinValue();
+                $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+                //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
+                $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+                $scope.chartConfig.yAxis.min = min + min*0.2;
             });
         });
+
+        $rootScope.$on('angularSliderTextChnage', function () {
+            //todo should i perform apply?
+            /*            $scope.$apply(function() {
+             var min = $scope.dataservice.getMinValue();
+             $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+             $scope.chartConfig.yAxis.min = min + min*0.2;
+             });*/
+
+            var min = $scope.dataservice.getMinValue();
+            $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+            //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
+            $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+            $scope.chartConfig.yAxis.min = min + min*0.2;
+        })
+
+        $rootScope.$on('angularSideBarNextStep', function () {
+            //todo should i perform apply?
+            /*            $scope.$apply(function() {
+                            var min = $scope.dataservice.getMinValue();
+                            $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+                            $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+                            $scope.chartConfig.yAxis.min = min + min*0.2;
+                        });*/
+
+            var min = $scope.dataservice.getMinValue();
+            $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+            //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
+            $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
+            $scope.chartConfig.yAxis.min = min + min*0.2;
+
+        })
+
 
     }
 

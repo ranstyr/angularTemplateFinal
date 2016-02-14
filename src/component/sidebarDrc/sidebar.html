@@ -1,35 +1,35 @@
 <aside id="sidebar">
     <strong class="title">Let’s get started:</strong>
-    <div class="tabset">
+    <div class="tabset steps-accordion">
         <div class="item active" data-content="step-content-1">
             <a href="#" class="opener">Account Goal</a>
             <a href="#" class="edit"><i class="icon-edit"></i></a>
             <div class="slide">
                 <div class="holder">
                     <form action="#" class="info-form">
-                        <div class="form-item">
-                            <label id="Age">Age
+                        <div class="form-item validate-row">
+                            <label>Age
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor. Lorem ipsum dolor.</span></span>
                             </label>
                             <div class="row ui-slider">
-                                <div class="slider" data-min="0" data-max="100" data-value="34" data-step="1">
+                                <div class="slider" data-min="18" data-max="70" data-value="0" data-step="1">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
-                                <input type="text" class="value" value="34" disabled="disabled">
+                                <input type="text" class="value" value="0" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-item">
+                        <div class="form-item validate-row">
                             <label>Target Time
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                             </label>
                             <div class="row ui-slider">
-                                <div class="slider" data-min="0" data-max="10" data-value="4" data-step="1">
+                                <div class="slider" data-min="1" data-max="62" data-value="0" data-step="1">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
                                 <label class="years">
-                                    <input type="text" class="value" value="4" disabled="disabled">
+                                    <input type="text" class="value" value="0" disabled="disabled">
                                     <span>years</span>
                                 </label>
                             </div>
@@ -45,28 +45,28 @@
             <div class="slide">
                 <div class="holder">
                     <form action="#" class="info-form">
-                        <div class="form-item">
+                        <div class="form-item validate-row">
                             <label>Initial Deposit
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                             </label>
                             <div class="row ui-slider">
-                                <div class="slider money-slider" data-min="0" data-max="50000" data-value="15000" data-step="100" data-text="$" data-result="#money-field-1">
+                                <div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$" data-result="#money-field-1">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
-                                <input type="text" class="value" value="$15,000" disabled="disabled">
+                                <input type="text" class="value" value="0" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-item">
-                            <label><input type="checkbox"><span class="fake-checkbox"><i class="icon-check"></i></span>Monthly Deposit
+                        <div class="form-item check-holder">
+                            <label><input type="checkbox" class="value-checkbox"><span class="fake-checkbox"><i class="icon-check"></i></span>Monthly Deposit
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                             </label>
-                            <div class="row ui-slider">
-                                <div class="slider money-slider" data-min="0" data-max="3000" data-value="1200" data-step="100" data-text="$" data-result="#money-field-2">
+                            <div class="row ui-slider validate-field">
+                                <div class="slider money-slider" data-disabled="true" data-min="500" data-max="5000" data-value="0" data-step="100" data-text="$" data-result="#money-field-2">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
-                                <input type="text" class="value" value="$1,200" disabled="disabled">
+                                <input type="text" class="value" value="0" disabled="disabled">
                             </div>
                         </div>
                     </form>
@@ -79,50 +79,50 @@
             <a href="#" class="edit"><i class="icon-edit"></i></a>
             <div class="slide">
                 <div class="holder">
-                    <form action="#" class="info-form">
-                        <div class="form-item">
+                    <form action="#" class="info-form" data-content="step-content-3" data-result="#result-box">
+                        <div class="form-item validate-row">
                             <label>What is your annual income?
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                             </label>
                             <div class="row ui-slider">
-                                <div class="slider money-slider" data-min="0" data-max="50000" data-value="15000" data-step="100" data-text="$">
+                                <div class="slider money-slider" data-min="15000" data-max="500000" data-value="0" data-step="1000" data-text="$">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
-                                <input type="text" class="value" value="$15,000" disabled="disabled">
+                                <input type="text" class="value" value="0" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-item">
+                        <div class="form-item validate-row">
                             <label>What is your liquid assets net worth?
                                 <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                             </label>
                             <div class="row ui-slider">
-                                <div class="slider money-slider" data-min="0" data-max="100000" data-value="45000" data-step="100" data-text="$">
+                                <div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$">
                                     <div class="bar"></div>
                                     <div class="handler ui-slider-handle"></div>
                                 </div>
-                                <input type="text" class="value" value="$45,000" disabled="disabled">
+                                <input type="text" class="value" value="0" disabled="disabled">
                             </div>
                         </div>
                         <div class="form-item">
-                            <label>What is your liquid assets net worth?</label>
-                            <div class="radio-group">
+                            <label>What would describe you?</label>
+                            <div class="radio-group validate-row required-radio">
                                 <label class="radio">
-                                    <input type="radio" name="name-1" checked="checked">
+                                    <input type="radio" id="maximizingGains" name="name-1">
 												<span class="custom-radio">
 													<i class="icon-gain"></i>
 													<span><em>Maximizing Gains</em></span>
 												</span>
                                 </label>
                                 <label class="radio">
-                                    <input type="radio" name="name-1">
+                                    <input type="radio" id="minimizingLoss"  name="name-1">
 												<span class="custom-radio">
 													<i class="icon-flower"></i>
 													<span><em>Minimizing Loss</em></span>
 												</span>
                                 </label>
                                 <label class="radio">
-                                    <input type="radio" name="name-1">
+                                    <input type="radio" id="bothEqually" name="name-1">
 												<span class="custom-radio">
 													<i class="icon-libra"></i>
 													<span><em>Both Equally</em></span>
@@ -144,7 +144,7 @@
                         <span class="text">You may choose to follow the advisor’s settings or select up to 3 sectors you find the most promising. You can change this at any time.</span>
                         <div class="js-open-close">
                             <div class="form-item">
-                                <label><input type="checkbox"><span class="fake-checkbox"><i class="icon-check"></i></span>Use advisor’s picks
+                                <label><input type="checkbox" checked="checked"><span class="fake-checkbox"><i class="icon-check"></i></span>Use advisor’s picks
                                     <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
                                 </label>
                             </div>
@@ -220,4 +220,3 @@
         </div>
     </div>
 </aside>
-

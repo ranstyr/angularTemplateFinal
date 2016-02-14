@@ -22,7 +22,7 @@
             templateUrl: 'component/tabsDrc/tabs.html',
             scope: {},
             controller: 'TabsController',
-            controllerAs: 'TabsController',
+            controllerAs: 'vm',
             link: linkFn
         };
 
