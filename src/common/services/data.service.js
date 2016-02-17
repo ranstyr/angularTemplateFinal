@@ -61,6 +61,10 @@
         var chartPieLevel4Data = [];
         var chartPieLevel3Data = [];
 
+        $('#main').on('riskSliderUserChange', function (event, value) {
+            alert (event + data);
+        });
+
 
         var service = {
             getPortfolio: getPortfolio,
@@ -94,6 +98,14 @@
 */
 
 
+
+
+
+
+
+
+
+
         function getPortfolio(queryParams) {
             var calculatePortfolioRisk;
             var url;
@@ -102,21 +114,29 @@
 
             //todo check if we need it as $http.get retrun promise
             var deferred = $q.defer();
-
+            //todo modify from .length to the specific attributes
             if (Object.keys(queryParams).length > 3) {
                 calculatePortfolioRisk = calculatePortfolioRisk(queryParams);
-/*                return $http.get('/api/maa')
-                    .then(getPortfolioComplete)
-                    .catch(getPortfolioFailed);*/
+
 
                 if (calculatePortfolioRisk >0 && calculatePortfolioRisk<11 ){
-                    if (queryParams["stepTo"] === 4){
+
+                    //broadcast event to change riskwidget label data
+
+                    //jQuery('.risk-box').find('.ui-slider').data('values' , calculatePortfolioRisk + ' - Advised');
+                    $rootScope.$apply(function() {
+                        jQuery('.risk-box .slider').slider({ /////// name of the slider
+                            value: calculatePortfolioRisk /////// the value you need to set
+                        }).trigger('slidechange');
+                    });
+
+
+
+
                         url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
                         $http.get(url).then(success , failed );
-                    }else if(queryParams["stepTo"] === 3){
-                        url = constants.DEV.getPortfolio3  + calculatePortfolioRisk + '.json';
-                        $http.get(url).then(success , failed );
-                    }
+
+
 
                 }
 
@@ -451,11 +471,11 @@
                 assetBreakdownDataObject.colorByPoint = true;
                 assetBreakdownDataObject.size = '50%';
                 assetBreakdownDataObject.innerSize = '40%';
-                assetBreakdownDataObject.data = BEData.assetBreakdownData;
+                assetBreakdownDataObject.data = BEData.assetBreakdownData3;
                 assetBreakdownData[0] = assetBreakdownDataObject;
 
                 chartPieLevel3Data.assetBreakdownData = assetBreakdownData;
-                chartPieLevel3Data.InvestmentData = BEData.InvestmentData;
+                chartPieLevel3Data.InvestmentData = BEData.InvestmentData3;
 
             }
 

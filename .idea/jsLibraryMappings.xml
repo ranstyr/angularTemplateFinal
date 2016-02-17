@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{newSIsalesDemo2 node_modules}" />
+    <file url="file://$PROJECT_DIR$" libraries="{newSI_Final_version node_modules}" />
+    <file url="file://$PROJECT_DIR$/../newSI_onlyMainOnLoad _ before PSD2HTML2" libraries="{newSIsalesDemo2 node_modules}" />
     <excludedPredefinedLibrary name="HTML5 / EcmaScript 5" />
   </component>
 </project>

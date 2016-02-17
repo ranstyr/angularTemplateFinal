@@ -38,15 +38,5 @@
       {"year":1933,"revenues":10.3},
       {"year":1934,"revenues":7.9},
       {"year":1935,"revenues":4}
-    ],
-  "InvestmentData":
-    [
-      {"Name":"9Stocks","Percentage":"72%" , "color": "#675371" },
-      {"Name":"9Bonds","Percentage":"28%" , "color": "#9577a4"}
-    ],
-  "assetBreakdownData":
-    [
-      {"name":"1Stocks","y":77,"color":"#9577a4","sliced":false},
-      {"name":"1Bonds","y":11,"color":"#758938","sliced":true}
     ]
 }

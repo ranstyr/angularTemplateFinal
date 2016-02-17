@@ -8,6 +8,9 @@
         .directive('tabsDrc', ['$state', tabsDrc]);
 
     function linkFn(scope, element, attrs, ctrl) {
+        jQuery('.risk-box .slider').slider({
+            value: 9
+        }).trigger('slidechange');
 
     }
 

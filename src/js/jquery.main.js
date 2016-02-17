@@ -101,6 +101,7 @@ function initUiSlider() {
 		var values = slider.data('values');
 		var sliderText = slider.data('text');
 		var tooltip = slider.find('.label');
+		var riskLevelLabel = tooltip;
 		var dataField = slider.data('field');
 		var resultField = jQuery(slider.data('result'));
 		var valuesArr = [];
@@ -114,13 +115,15 @@ function initUiSlider() {
 			disabled: slider.data('disabled') || false,
 			slide: function(event, ui) {
 				sliderValue = ui.value;
-				refreshText();
+				/*jQuery(window).trigger("riskSliderUserChange" , [sliderValue]);*/
+				refreshText(null , 'risk');
+
 			},
 			change: function(event, ui) {
 				var labelName;
-				sliderValue = ui.value;
-				refreshText();
-
+				//sliderValue = ui.value;
+				//refreshText(null , jQuery(event.target).data("origin"));
+				refreshText(null , null ,event.bubbles );
 				labelName = jQuery(ui.handle).parent().parent().parent().find( 'label:first' )[0];
 
 				if (labelName){
@@ -142,7 +145,7 @@ function initUiSlider() {
 			}
 		});
 
-		function refreshText(flag) {
+		function refreshText(flag , origin , bubbles) {
 			if (flag) {
 				sliderValue = 0;
 			}
@@ -158,9 +161,13 @@ function initUiSlider() {
 				valueField.val(sliderValue + (sliderText ? (' ' + sliderText) : ''));
 			}
 
+
 			if (tooltip.length && values) {
 				valuesArr = values.split(', ');
-				tooltip.text(valuesArr[sliderValue - 1]);
+				if (origin != 'risk' && !bubbles){
+					tooltip.text(sliderValue + ' - Advised');
+				}
+
 
 				if (dataField) {
 					var index = valuesArr[sliderValue - 1].indexOf('-');
@@ -168,6 +175,7 @@ function initUiSlider() {
 
 					if (index !== -1) {
 						text = valuesArr[sliderValue - 1].slice(index);
+						//jQuery(window).trigger("riskSliderUserChange" , [sliderValue]);
 					}
 
 					jQuery(dataField).html('<strong>' + sliderValue + '</strong>' + ' ' + text);

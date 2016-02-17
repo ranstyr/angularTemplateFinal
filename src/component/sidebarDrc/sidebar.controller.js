@@ -17,7 +17,6 @@
 
         bindJqUI();
 
-
         function bindJqUI() {
             $('#main').on('sliderTextChnage', function (event, value, AttName) {
                 if (AttName) {
@@ -72,11 +71,20 @@
 
 
         function dataChange(data) {
-            //if we are on step 3
-            //
-            //if we are on step 4
+/*            if (ismMandatoryQueryParamsReady()){
+                var dat = dataservice.getPortfolio(vm.queryParams);
+            }*/
+
             var dat = dataservice.getPortfolio(vm.queryParams);
         }
+
+        function ismMandatoryQueryParamsReady(){
+            //check mandatory
+            if (queryParams.describe && queryParams.Whatisyourliquidassetsnetworth && queryParams.Whatisyourannualincome && queryParams.TargetTime && queryParams.InitialDeposit && queryParams.Age ){
+                return true;
+            }
+        }
+
 
 
     }

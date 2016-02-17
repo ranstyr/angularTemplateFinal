@@ -14,7 +14,6 @@
         $scope.chartConfig = {
             size : {
                 width : 0,
-                height : 500
             },
             series: [{
                 /*            data: [9.2, 3.4, 5.2, 0.2, -1.1, {
@@ -113,7 +112,7 @@
         $('#tab-3').on('tabChage3' , function(event , chartWidth){
             $scope.$apply(function() {
                 var min = $scope.dataservice.getMinValue();
-                $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+                $scope.chartConfig.size.width = ($rootScope.tab3width -5);
                 //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
                 $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
                 $scope.chartConfig.yAxis.min = min + min*0.2;
@@ -130,7 +129,7 @@
              });*/
 
             var min = $scope.dataservice.getMinValue();
-            $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+            $scope.chartConfig.size.width = ($rootScope.tab3width -5);
             //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
             $scope.chartConfig.yAxis.min = min + min*0.2;
@@ -146,7 +145,7 @@
                         });*/
 
             var min = $scope.dataservice.getMinValue();
-            $scope.chartConfig.size.width = ($rootScope.tab3width -2);
+            $scope.chartConfig.size.width = ($rootScope.tab3width -5);
             //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
             $scope.chartConfig.yAxis.min = min + min*0.2;

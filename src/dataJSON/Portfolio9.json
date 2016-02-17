@@ -59,5 +59,15 @@
       {"name":"9corporate bonds","y":7,"color":"#86a33f","sliced":true},
       {"name":"9other","y":3,"color":"#675371","sliced":false},
       {"name":"9emerging market equties","y":2,"color":"#7e678b","sliced":false}
-    ]
+    ],
+  "InvestmentData3":
+  [
+    {"Name":"9Stocks","Percentage":"72%" , "color": "#675371" },
+    {"Name":"9Bonds","Percentage":"28%" , "color": "#9577a4"}
+  ],
+  "assetBreakdownData3":
+  [
+    {"name":"1Stocks","y":77,"color":"#9577a4","sliced":false},
+    {"name":"1Bonds","y":11,"color":"#758938","sliced":true}
+  ]
 }

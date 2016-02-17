@@ -38,7 +38,6 @@
         $scope.chartConfig = {
             size : {
                 width : 0,
-                height : 500
             },
             options: {
                 chart: {
@@ -147,7 +146,7 @@
 
         $('#tab-2').on('tabChage2' , function(event , chartWidth , chartH){
             $scope.$apply(function() {
-                $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+                $scope.chartConfig.size.width = ($rootScope.tab2width -5);
                // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
                 $scope.chartConfig.chartSeries = [
                     {
@@ -184,7 +183,7 @@
              $scope.chartConfig.yAxis.min = min + min*0.2;
              });*/
 
-            $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+            $scope.chartConfig.size.width = ($rootScope.tab2width -5);
             //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
             $scope.chartConfig.chartSeries = [
                 {
@@ -220,7 +219,7 @@
              $scope.chartConfig.yAxis.min = min + min*0.2;
              });*/
 
-            $scope.chartConfig.size.width = ($rootScope.tab2width -2);
+            $scope.chartConfig.size.width = ($rootScope.tab2width -5);
             //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
             $scope.chartConfig.chartSeries = [
                 {
