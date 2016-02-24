@@ -1,16 +1,16 @@
 /**
  * Created by ran.styr
  */
-(function() {
+(function () {
 
     angular
         .module('project')
         .controller('PieChart3Controller', pieChart3);
 
-    pieChart3.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
+    pieChart3.$inject = ['$http', '$q', '$localStorage', 'constants', '$scope', '$state', 'dataservice', '$rootScope'];
 
 
-    function pieChart3( $http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
+    function pieChart3($http, $q, $localStorage, constants, $scope, $state, dataservice, $rootScope) {
         $scope.dataservice = dataservice;
         $scope.chartSeries = dataservice.getChartPieLevel4Data().assetBreakdownData;
 
@@ -20,7 +20,15 @@
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie'
+                    type: 'pie',
+                    style: {
+                        fontFamily: 'sans-serif',
+                        fontSize: '14px',
+                        fontStyle: 'normal',
+                        fontVariant: 'normal',
+                        fontWeight: 'normal',
+                        fontStretch: 'normal'
+                    }
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <br>{point.percentage:.1f}%</br>'
@@ -37,11 +45,11 @@
                             enabled: true,
                             format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
                             style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                                width: '100px'
+                                color: '#666666',
+                                width: '100px',
                             },
                             color: '#000000',
-                            maxStaggerLines:1,
+                            maxStaggerLines: 1,
                         }
                     },
                     series: {
@@ -82,8 +90,8 @@
             alert("addSeries");
         }
 
-        $('#tab-3').on('tabChage3' , function(event , chartWidth){
-            $scope.$apply(function() {
+        $('#tab-3').on('tabChage3', function (event, chartWidth) {
+            $scope.$apply(function () {
 
                 $scope.chartConfig.series = $scope.dataservice.getChartPieLevel3Data().assetBreakdownData;
 

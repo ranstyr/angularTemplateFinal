@@ -20,7 +20,15 @@
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie'
+                    type: 'pie',
+                    style: {
+                        fontFamily: 'sans-serif',
+                        fontSize: '14px',
+                        fontStyle: 'normal',
+                        fontVariant: 'normal',
+                        fontWeight: 'normal',
+                        fontStretch: 'normal'
+                    }
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <br>{point.percentage:.1f}%</br>'
@@ -37,8 +45,8 @@
                             enabled: true,
                             format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
                             style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                                width: '100px'
+                                color: '#666666',
+                                width: '100px',
                             },
                             color: '#000000',
                             maxStaggerLines:1,

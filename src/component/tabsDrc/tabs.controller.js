@@ -63,7 +63,6 @@
                 vm.data4 = dataservice.getChartPieLevel4Data().InvestmentData;
                 vm.data3 = dataservice.getChartPieLevel3Data().InvestmentData;
 
-
             });
         });
 

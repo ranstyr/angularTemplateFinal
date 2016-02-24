@@ -1,73 +1,71 @@
 {
-  "projectionData":
+  "projectionData": {
+    "data" : [
+      {"year":2017,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2018,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2019,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2020,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2021,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2022,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2023,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2024,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2025,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2026,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2027,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2028,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2029,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2030,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null}],
+    "averageSTD" : 10.19275,
+    "averageYearlyPerformance" : 4.217105706
+  },
+  "performanceData": [{"year":2005,"revenues":5.2,"STD":10.7},
+    {"year":2006,"revenues":4.2,"STD":10.7},
+    {"year":2007,"revenues":3.9,"STD":10.7},
+    {"year":2008,"revenues":-18.0,"STD":10.7},
+    {"year":2009,"revenues":15.6,"STD":10.7},
+    {"year":2010,"revenues":9.5,"STD":10.7},
+    {"year":2011,"revenues":-0.4,"STD":10.7},
+    {"year":2012,"revenues":10.6,"STD":10.7},
+    {"year":2013,"revenues":11.2,"STD":10.7},
+    {"year":2014,"revenues":6.1,"STD":10.7},
+    {"year":2015,"revenues":0.4,"STD":10.7}],
 
-      [{"year":10016,"minValue":15000,"median":15300,"maxValue":16000},
-        {"year":10017,"minValue":16500,"median":16800,"maxValue":16500},
-        {"year":10018,"minValue":18000,"median":18300,"maxValue":18000},
-        {"year":10019,"minValue":19500,"median":19800,"maxValue":19500},
-        {"year":10020,"minValue":21000,"median":22800,"maxValue":21000},
-        {"year":10021,"minValue":22500,"median":24500,"maxValue":22500},
-        {"year":10022,"minValue":24000,"median":26200,"maxValue":24000},
-        {"year":10023,"minValue":25500,"median":27700,"maxValue":25500},
-        {"year":10024,"minValue":27000,"median":29200,"maxValue":27000},
-        {"year":10025,"minValue":28500,"median":31355.55556,"maxValue":28500},
-        {"year":10026,"minValue":30000,"median":33168.88889,"maxValue":29800},
-        {"year":10027,"minValue":31500,"median":34982.22222,"maxValue":31245.45455},
-        {"year":10028,"minValue":33000,"median":36795.55556,"maxValue":32690.90909},
-        {"year":10029,"minValue":34500,"median":38608.88889,"maxValue":34136.36364},
-        {"year":10030,"minValue":36000,"median":40422.22222,"maxValue":35581.81818}]
-    ,
-  "performanceData":
-  [{"year":10001,"revenues":10},
-    {"year":10002,"revenues":19.7},
-    {"year":10004,"revenues":17.2},
-    {"year":10005,"revenues":16.9},
-    {"year":10006,"revenues":-4.3},
-    {"year":10007,"revenues":-9.8},
-    {"year":10008,"revenues":-15.1},
-    {"year":10009,"revenues":13.2},
-    {"year":10010,"revenues":8.7},
-    {"year":10011,"revenues":13.9},
-    {"year":10012,"revenues":7.5},
-    {"year":10013,"revenues":5},
-    {"year":10014,"revenues":-16.9},
-    {"year":10015,"revenues":14.1},
-    {"year":10016,"revenues":11.8},
-    {"year":10017,"revenues":2.6},
-    {"year":10018,"revenues":9.6},
-    {"year":10019,"revenues":10.3},
-    {"year":10020,"revenues":7.9},
-    {"year":10021,"revenues":4}
-  ],
-  "InvestmentData":
-    [
-      {"Ticker":"10VUKE","Name":"Vanguard FTSE 100","Percentage":"30%" , "color": "#675371" },
-      {"Ticker":"10VUSA","Name":"Vanguard S&P 500","Percentage":"10%" , "color": "#9577a4"},
-      {"Ticker":"10UC60","Name":"UBS MSCI EMU 100% hedged to GBP UCITS","Percentage":"10%" , "color": "#758938"},
-      {"Ticker":"10VGOV","Name":"Vanguard UK Gilt","Percentage":"5%", "color": "#7e678b"},
-      {"Ticker":"10UC62","Name":"UBS ETF MSCI Japan 100% hedged to GBP UCITS ETF","Percentage":"5%" , "color": "#758938"},
-      {"Ticker":"10SUKC","Name":"SPDR Barclays 0-5 Year Sterling Corporate Bond","Percentage":"1%" , "color": "#9577a4"},
-      {"Ticker":"10UC07","Name":"UBS ETF MSCI USA VALUE","Percentage":"4%" , "color": "#9577a4"},
-      {"Ticker":"10VMID","Name":"Vanguard FTSE 250","Percentage":"5%" , "color": "#675371"},
-      {"Ticker":"10CASH","Name":"CASH","Percentage":"15%" , "color": "#758938"},
-      {"Ticker":"10VJPN","Name":"Vanguard FTSE Japan UCITS","Percentage":"15%" , "color": "#9577a4"}
-    ],
-  "assetBreakdownData":
-    [
-      {"name":"10developed equities","y":77,"color":"#9577a4","sliced":false},
-      {"name":"10governement bonds, developed market","y":11,"color":"#758938","sliced":true},
-      {"name":"10corporate bonds","y":7,"color":"#86a33f","sliced":true},
-      {"name":"10other","y":3,"color":"#675371","sliced":false},
-      {"name":"10emerging market equties","y":2,"color":"#7e678b","sliced":false}
-    ],
+  "InvestmentData": [{"Ticker":"IAU","Name":"Gold Trust ETF iShares","Percentage":"5.0%","color":"#251d29"},
+    {"Ticker":"VNQ","Name":"REIT Vanguard ETF","Percentage":"2.5%","color":"#4A3B52"},
+    {"Ticker":"RWX","Name":"Dow Jones Intl. Real Estate ETF SPDR","Percentage":"2.5%","color":"#4A3B52"},
+    {"Ticker":"BNDX","Name":"Total International Bond Index Vanguard","Percentage":"5.0%","color":"#758938"},
+    {"Ticker":"BSV","Name":"Short-Term Bond ETF Vanguard","Percentage":"5.0%","color":"#758938"},
+    {"Ticker":"LQD","Name":"Corporate Bond Index ETF iShares","Percentage":"15.0%","color":"#495623"},
+    {"Ticker":"VWOB","Name":"Emerging Markets Gvt Bond Index Vanguard","Percentage":"5.0%","color":"#758938"},
+    {"Ticker":"EWJ","Name":"Japan MSCI ETF iShares","Percentage":"10.0%","color":"#7e678b"},
+    {"Ticker":"VEA","Name":"FTSE Developed Market Index ETF Vanguard","Percentage":"8.6%","color":"#7e678b"},
+    {"Ticker":"VYM","Name":"High Dividend Yield ETF Vanguard","Percentage":"5.0%","color":"#7e678b"},
+    {"Ticker":"VTI","Name":"U.S. Total Stock Market Index Vanguard","Percentage":"4.4%","color":"#7e678b"},
+    {"Ticker":"KXI","Name":"Global Consumer Staples iShares","Percentage":"4.0%","color":"#7e678b"},
+    {"Ticker":"IXJ","Name":"Global Healthcare iShares","Percentage":"4.0%","color":"#7e678b"},
+    {"Ticker":"IXN","Name":"Global Tech iShares","Percentage":"4.0%","color":"#7e678b"},
+    {"Ticker":"IEMG","Name":"Core MSCI Emerging Markets iShares","Percentage":"5.0%","color":"#675371"},
+    {"Ticker":"VUG","Name":"Growth ETF Vanguard","Percentage":"5.0%","color":"#675371"},
+    {"Ticker":"ACWX","Name":"MSCI ACWI ex US Index iShares","Percentage":"5.0%","color":"#675371"},
+    {"Ticker":"VONG","Name":"Russell 1000 Growth Vanguard ETF","Percentage":"5.0%","color":"#675372"}],
+
+  "assetBreakdownData": [{"name":"Developed Stocks","y":40,"color":"#7e678b","sliced":false},
+    {"name":"Emerging Markets& Growth Stocks","y":20,"color":"#675371","sliced":false},
+    {"name":"Governement bonds","y":15,"color":"#758938","sliced":true},
+    {"name":"Corporate bonds","y":15,"color":"#495623","sliced":true},
+    {"name":"RIET","y":5,"color":"#4A3B52","sliced":true},
+    {"name":"Gold","y":5,"color":"#251d29","sliced":true}],
+
   "InvestmentData3":
-  [
-    {"Name":"10Stocks","Percentage":"72%" , "color": "#675371" },
-    {"Name":"10Bonds","Percentage":"28%" , "color": "#9577a4"}
-  ],
-  "assetBreakdownData3":
-  [
-    {"name":"1Stocks","y":77,"color":"#9577a4","sliced":false},
-    {"name":"1Bonds","y":11,"color":"#758938","sliced":true}
-  ]
+  [{"Name":"Stocks","Percentage":"70%","color":"#7e678b"},
+    {"Name":"Bonds","Percentage":"30%","color":"#758938"}],
+
+  "assetBreakdownData3": [{"name":"Stocks","y":70,"color":"#7e678b","sliced":"false"},
+    {"name":"Bonds","y":30,"color":"#758938","sliced":"true"}]
 }
+
+
+
+
+
+

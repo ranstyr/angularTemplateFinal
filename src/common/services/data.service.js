@@ -15,8 +15,9 @@
     function dataservice($http , $q , $localStorage , constants , $rootScope ) {
     //todo logger
     //todo private method vs public
-        var maxColor = 'green';
-        var minColor = 'red';
+        var queryParametres = {};
+        var maxColor = 'rgb(136, 192, 87)';
+        var minColor = 'rgb(237, 114, 97)';
         var portfolioData;
         var age;
         var CalculatedAge;
@@ -54,15 +55,19 @@
         var barChartRevenuesData = [];
         var min;
         var chartlineData = [];
-        var chartLineMinData = [];
-        var chartLineMedianData = [];
-        var chartLineMaxData = [];
+        var chartLinesSd2MinusData = [];
+        var chartLinesSd1MinusData = [];
+        var chartLineSd1PlusData = [];
+        var chartLineSd2PlusData = [];
         var chartLineYearData = [];
         var chartPieLevel4Data = [];
         var chartPieLevel3Data = [];
+        var barChartColorArray = [];
 
-        $('#main').on('riskSliderUserChange', function (event, value) {
-            alert (event + data);
+        $(window).on('riskSliderUserChange', function (event , risk) {
+            console.log ("value / label" + risk);
+            getPortfoliofromRisk(risk)
+
         });
 
 
@@ -71,12 +76,15 @@
             getBarChartYearData : getBarChartYearData,
             getMinValue : getMinValue,
             getBarChartRevenuesData : getBarChartRevenuesData,
-            getLineChartMinData : getLineChartMinData,
-            getLineChartMedianData: getLineChartMedianData,
-            getChartLineMaxData : getChartLineMaxData,
+            getChartLineSd2MinusData : getChartLineSd2MinusData,
+            getChartLineSd1MinusData: getChartLineSd1MinusData,
+            getChartLineSd1PlusData : getChartLineSd1PlusData,
+            getChartLineSd2PlusData : getChartLineSd2PlusData,
             getChartLineYearData : getChartLineYearData,
             getChartPieLevel3Data : getChartPieLevel3Data,
-            getChartPieLevel4Data : getChartPieLevel4Data
+            getChartPieLevel4Data : getChartPieLevel4Data,
+            getInitialDeposit : getInitialDeposit,
+            getBarChartColorsArray : getBarChartColorsArray
 
         };
         return service;
@@ -98,15 +106,55 @@
 */
 
 
+        function getPortfoliofromRisk(risk) {
+
+            var url;
+            //todo add deffer object
+            //we can go to server only if the first 4 questions are filled
+
+            //todo check if we need it as $http.get retrun promise
+            var deferred = $q.defer();
+            //todo modify from .length to the specific attributes
+
+                url = constants.DEV.getPortfolio4  + risk + '.json';
+                $http.get(url).then(success , failed );
 
 
+                function success(response) {
+
+                    var data = {};
+                        data = response.data;
+
+                    if (data) {
+                        $localStorage.attributes = data;
+
+                        BEData = data;
+                        calculateBarData();
+                        calculateLineData();
+                        calculateLevel3Pie();
+                        calculateLevel4Pie();
+                        deferred.resolve(data);
+
+                        $rootScope.$broadcast('angularDataChanged', queryParametres);
+                    }
+                    else {
+                        deferred.reject();
+                    }
+                }
+
+                function failed(response) {
+                    deferred.reject(response);
+                }
+
+                return deferred.promise;
 
 
-
-
+        }
 
 
         function getPortfolio(queryParams) {
+
+            queryParametres = queryParams;
             var calculatePortfolioRisk;
             var url;
             //todo add deffer object
@@ -121,19 +169,28 @@
 
                 if (calculatePortfolioRisk >0 && calculatePortfolioRisk<11 ){
 
-                    //broadcast event to change riskwidget label data
-
-                    //jQuery('.risk-box').find('.ui-slider').data('values' , calculatePortfolioRisk + ' - Advised');
+                    //update risk widget
+                    //update risk widget value
                     $rootScope.$apply(function() {
                         jQuery('.risk-box .slider').slider({ /////// name of the slider
                             value: calculatePortfolioRisk /////// the value you need to set
                         }).trigger('slidechange');
                     });
 
+                    //update risk widget label value
+                    jQuery('.risk-box .tooltip-slider .label').text(calculatePortfolioRisk + ' - Advised')
+
+                    //update risk widget position
+
+                    jQuery('.risk-box .tooltip-slider').slider({
+                        value: calculatePortfolioRisk
+                    }).trigger('slidechange');
 
 
 
-                        url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
+
+
+                    url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
                         $http.get(url).then(success , failed );
 
 
@@ -331,7 +388,7 @@
             }
 
             function calculateMatrixFirstParams() {
-                if (portfolioExposure <= 10) {
+                if (portfolioExposure <= 11) {
                     matrixFirstParams = 0;
                 } else if (portfolioExposure > 10 && portfolioExposure <= 20) {
                     matrixFirstParams = 1;
@@ -349,133 +406,13 @@
                     matrixFirstParams = 7;
                 } else if (portfolioExposure > 80 && portfolioExposure <= 90) {
                     matrixFirstParams = 8;
-                } else if (portfolioExposure > 90 && portfolioExposure <= 100) {
+                } else if (portfolioExposure > 90) {
                     matrixFirstParams = 9;
                 } else {
                     CalculatedAge = 9;
                     console.log("!!!!!!!!!!!!!!!!error at calculateMatrixFirstParams!!!!!!!!!!!");
                 };
                 console.log('matrixFirstParams = ' + matrixFirstParams);
-
-            }
-
-            function getPortfolioComplete(response) {
-                return response.data.results;
-            }
-
-            function getPortfolioFailed(error) {
-                logger.error('XHR Failed for getPortfolio.' + error.data);
-            }
-
-            function calculateBarData(){
-
-                chartBarData = BEData.performanceData;
-
-                chartBarData.forEach(function(object , index , array){
-                    barChartRevenuesData[index] = object.revenues;
-                    barChartYearData[index] = object.year;
-
-                });
-
-                barChartRevenuesData = setMinMaxValueDataset ();
-
-
-                function setMinMaxValueDataset () {
-                    //only one value for every year
-                    var valueArray = [];
-                    chartBarData.forEach(function (currentValue, index, array) {
-                        valueArray.push(currentValue.revenues);
-                    })
-
-                    console.log("valueArray =  " + valueArray);
-
-                    valueArray.sort(function (a, b) {
-                        return a - b;
-                    })
-
-                    var max = valueArray[valueArray.length - 1];
-                    min = valueArray[0];
-                    var setMax = false;
-                    var setMin = false;
-                    valueArray = [];
-
-                    chartBarData.forEach(function (currentValue, index, array) {
-                        valueArray[index] = currentValue.revenues;
-                        //set min and max values
-                        if (chartBarData[index].revenues === max) {
-                            valueArray[index] = {
-                                y: currentValue.revenues,
-                                color: maxColor
-                            };
-                            setMax = true;
-                        }
-                        if (chartBarData[index].revenues === min) {
-                            valueArray[index] = {
-                                y: currentValue.revenues,
-                                color: minColor
-                            };
-                            setMin = true;
-                        }
-                    })
-                    if (!(setMax && setMin)) {
-                        console.log("bug at setMinMaxValueDataset, no min value or no max value")
-                    }
-                    $localStorage.barChartRevenuesData = valueArray;
-                    barChartRevenuesData = valueArray;
-                    console.log("barChartRevenuesData = " , valueArray);
-                    return valueArray;
-                }
-
-            }
-
-            function calculateLineData(){
-
-                chartlineData = BEData.projectionData;
-
-                chartlineData.forEach(function(object , index , array){
-
-                    chartLineMinData[index] = object.minValue;
-                    chartLineMedianData[index] = object.median;
-                    chartLineMaxData[index] = object.maxValue;
-                    chartLineYearData[index] = object.year;
-
-                });
-
-
-
-            }
-
-            function calculateLevel4Pie(){
-                var assetBreakdownData = [];
-                var assetBreakdownDataObject = {};
-                //chartPieLevel4Data = BEData.performanceData;
-
-                assetBreakdownDataObject.name = 'Brands';
-                assetBreakdownDataObject.colorByPoint = true;
-                assetBreakdownDataObject.size = '50%';
-                assetBreakdownDataObject.innerSize = '40%';
-                assetBreakdownDataObject.data = BEData.assetBreakdownData;
-                assetBreakdownData[0] = assetBreakdownDataObject;
-
-                chartPieLevel4Data.assetBreakdownData = assetBreakdownData;
-                chartPieLevel4Data.InvestmentData = BEData.InvestmentData;
-
-            }
-
-            function calculateLevel3Pie(){
-                var assetBreakdownData = [];
-                var assetBreakdownDataObject = {};
-                //chartPieLevel4Data = BEData.performanceData;
-
-                assetBreakdownDataObject.name = 'Brands';
-                assetBreakdownDataObject.colorByPoint = true;
-                assetBreakdownDataObject.size = '50%';
-                assetBreakdownDataObject.innerSize = '40%';
-                assetBreakdownDataObject.data = BEData.assetBreakdownData3;
-                assetBreakdownData[0] = assetBreakdownDataObject;
-
-                chartPieLevel3Data.assetBreakdownData = assetBreakdownData;
-                chartPieLevel3Data.InvestmentData = BEData.InvestmentData3;
 
             }
 
@@ -494,16 +431,20 @@
             return min
         }
 
-        function getLineChartMinData(){
-            return chartLineMinData;
+        function getChartLineSd2MinusData(){
+            return chartLinesSd2MinusData;
         }
 
-        function getLineChartMedianData(){
-            return chartLineMedianData;
+        function getChartLineSd1MinusData(){
+            return chartLinesSd1MinusData;
         }
 
-        function getChartLineMaxData(){
-            return chartLineMaxData;
+        function getChartLineSd1PlusData(){
+            return chartLineSd1PlusData;
+        }
+
+        function getChartLineSd2PlusData(){
+            return chartLineSd2PlusData;
         }
 
         function getChartLineYearData(){
@@ -516,6 +457,202 @@
 
         function getChartPieLevel3Data(){
             return chartPieLevel3Data;
+        }
+
+        function getPortfolioComplete(response) {
+            return response.data.results;
+        }
+
+        function getPortfolioFailed(error) {
+            logger.error('XHR Failed for getPortfolio.' + error.data);
+        }
+
+        function getInitialDeposit() {
+            return initialDeposit;
+        }
+
+
+        function getBarChartColorsArray(){
+            return barChartColorArray;
+        }
+
+
+
+        function calculateBarData(){
+            barChartRevenuesData = {};
+            barChartYearData={};
+            chartBarData = {};
+            chartBarData = BEData.performanceData;
+
+            chartBarData.forEach(function(object , index , array){
+                barChartRevenuesData[index] = object.revenues;
+                barChartYearData[index] = object.year;
+
+            });
+
+            barChartRevenuesData = setMinMaxValueDataset ();
+
+
+            function setMinMaxValueDataset () {
+                 barChartColorArray = [
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)',
+                    'rgb(74, 86, 104)'
+                ]
+                //only one value for every year
+                var valueArray = [];
+                chartBarData.forEach(function (currentValue, index, array) {
+                    valueArray.push(currentValue.revenues);
+                })
+
+                console.log("valueArray =  " + valueArray);
+
+                valueArray.sort(function (a, b) {
+                    return a - b;
+                })
+
+                var max = valueArray[valueArray.length - 1];
+                min = valueArray[0];
+                var setMax = false;
+                var setMin = false;
+                valueArray = [];
+
+                chartBarData.forEach(function (currentValue, index, array) {
+                    valueArray[index] = currentValue.revenues;
+                    //set min and max values
+                    if (chartBarData[index].revenues === max) {
+/*                        valueArray[index] = {
+                            y: currentValue.revenues,
+                            color: maxColor
+                        };*/
+                        barChartColorArray[index] = maxColor;
+                        setMax = true;
+                    }
+                    if (chartBarData[index].revenues === min) {
+                       /* valueArray[index] = {
+                            y: currentValue.revenues,
+                            color: minColor
+                        };*/
+                        barChartColorArray[index] = minColor;
+                        setMin = true;
+                    }
+                })
+                if (!(setMax && setMin)) {
+                    console.log("bug at setMinMaxValueDataset, no min value or no max value")
+                }
+                $localStorage.barChartRevenuesData = valueArray;
+                barChartRevenuesData = valueArray;
+                console.log("barChartRevenuesData = " , valueArray);
+                return valueArray;
+            }
+
+        }
+
+        function calculateLineData(){
+
+            var SD1 = BEData.projectionData.averageSTD/100;
+            var SD2 = SD1*2;
+            var averageYearlyPerformance = BEData.projectionData.averageYearlyPerformance/100;
+            var mDeposit = +monthlyDeposit || 0;
+
+            chartlineData = BEData.projectionData.data;
+
+
+            for (var index = 0 ; chartlineData && index<chartlineData.length ; index++){
+               //only the first yesr
+                if (index === 0){
+                    chartlineData[index]["sd2minus"] = initialDeposit;
+                    chartlineData[index]["sd1minus"] = initialDeposit;
+                    chartlineData[index]["Median"]  = initialDeposit;
+                    chartlineData[index]["sd1plus"] = initialDeposit;
+                    chartlineData[index]["sd2plus"] = initialDeposit;
+                }
+                //calculation for the rest of the years
+                else{
+                    chartlineData[index]["Median"] = chartlineData[index-1]["Median"]*(1+averageYearlyPerformance) + mDeposit*12;
+
+                    chartlineData[index]["sd2minus"] = chartlineData[index]["Median"] - (chartlineData[index]["Median"]*SD2);
+                    chartlineData[index]["sd1minus"] = chartlineData[index]["Median"] - (chartlineData[index]["Median"]*SD1);
+                    chartlineData[index]["sd1plus"] = chartlineData[index]["Median"] + (chartlineData[index]["Median"]*SD1);
+                    chartlineData[index]["sd2plus"] = chartlineData[index]["Median"] + (chartlineData[index]["Median"]*SD2);
+
+                }
+
+                chartLinesSd2MinusData[index] =  chartlineData[index].sd2minus;
+                chartLinesSd1MinusData[index] =  chartlineData[index].sd1minus;
+                chartLineSd1PlusData[index] =  chartlineData[index].sd1plus;
+                chartLineSd2PlusData[index] =  chartlineData[index].sd2plus;
+                chartLineYearData[index] =  chartlineData[index].year;
+
+            }
+
+            /*chartlineData.forEach(function(object , index , array){
+                //first year
+                if (index === 0){
+                    array[index]["sd2minus"] = initialDeposit;
+                    array[index]["sd1minus"] = initialDeposit;
+                    array[index]["Median"]  = initialDeposit;
+                    array[index]["sd1plus"] = initialDeposit;
+                    array[index]["sd2plus"] = initialDeposit;
+                }
+
+
+                array[index]["Median"] = array[index-1]["Median"]*(1+averageYearlyPerformance) + monthlyDeposit*12;
+
+
+
+                chartLinesSd2MinusData[index] = object.sd2minus;
+                chartLinesSd1MinusData[index] = object.sd1minus;
+                chartLineSd1PlusData[index] = object.sd1plus;
+                chartLineSd2PlusData[index] = object.sd2plus;
+                chartLineYearData[index] = object.year;
+
+            });*/
+
+
+
+        }
+
+        function calculateLevel4Pie(){
+            var assetBreakdownData = [];
+            var assetBreakdownDataObject = {};
+            //chartPieLevel4Data = BEData.performanceData;
+
+            assetBreakdownDataObject.name = 'Brands';
+            assetBreakdownDataObject.colorByPoint = true;
+            assetBreakdownDataObject.size = '50%';
+            assetBreakdownDataObject.innerSize = '40%';
+            assetBreakdownDataObject.data = BEData.assetBreakdownData;
+            assetBreakdownData[0] = assetBreakdownDataObject;
+
+            chartPieLevel4Data.assetBreakdownData = assetBreakdownData;
+            chartPieLevel4Data.InvestmentData = BEData.InvestmentData;
+
+        }
+
+        function calculateLevel3Pie(){
+            var assetBreakdownData = [];
+            var assetBreakdownDataObject = {};
+            //chartPieLevel4Data = BEData.performanceData;
+
+            assetBreakdownDataObject.name = 'Brands';
+            assetBreakdownDataObject.colorByPoint = true;
+            assetBreakdownDataObject.size = '50%';
+            assetBreakdownDataObject.innerSize = '40%';
+            assetBreakdownDataObject.data = BEData.assetBreakdownData3;
+            assetBreakdownData[0] = assetBreakdownDataObject;
+
+            chartPieLevel3Data.assetBreakdownData = assetBreakdownData;
+            chartPieLevel3Data.InvestmentData = BEData.InvestmentData3;
+
         }
 
     }

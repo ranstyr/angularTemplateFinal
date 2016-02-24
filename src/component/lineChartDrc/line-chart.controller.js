@@ -8,41 +8,51 @@
         .controller('LineChartController', lineChart);
 
 
-    lineChart.$inject = ['$http' , '$q' , '$localStorage' , 'constants' ,'$scope', '$state' ,'dataservice' ,'$rootScope'];
+    lineChart.$inject = ['$http', '$q', '$localStorage', 'constants', '$scope', '$state', 'dataservice', '$rootScope'];
 
 
-    function lineChart($http , $q , $localStorage , constants ,$scope, $state ,dataservice , $rootScope) {
+    function lineChart($http, $q, $localStorage, constants, $scope, $state, dataservice, $rootScope) {
         $scope.dataservice = dataservice;
         $scope.chartSeries = [
-                {
-                    name: 'minValue',
-                    data: dataservice.getLineChartMinData(),
-                    color: "rgba(220,220,220,0.2)"
-                },
-                {
-                    name: "median",
-                    data: dataservice.getLineChartMedianData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "maxValue",
-                    data: dataservice.getChartLineMaxData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "white",
-                    data: dataservice.getLineChartMinData(),
-                    color: "white"
-                }];
+            {
+                name: "Sd2plusData",
+                data: dataservice.getChartLineSd2PlusData(),
+                color: 'rgb(216, 234, 240)'
+            },
+            {
+                name: "Sd1plusData",
+                data: dataservice.getChartLineSd1PlusData(),
+                color: 'rgb(197, 223, 232)'
+            },
+            {
+                name: "Sd1MinusData",
+                data: dataservice.getChartLineSd1MinusData(),
+                color: "rgb(187, 218, 228)"
+            },
+            {
+                name: 'Sd2MinusValue',
+                data: dataservice.getChartLineSd2MinusData(),
+                color: "rgb(255, 255, 255)",
+                fillOpacity : 1
+            }
+        ];
 
         $scope.chartConfig = {
-            size : {
-                width : 0,
+            size: {
+                width: 0,
             },
             options: {
                 chart: {
                     type: 'area',
-                    margin: 60
+                    margin: 80,
+                    style: {
+                        fontFamily: 'sans-serif',
+                        fontSize: '14px',
+                        fontStyle: 'normal',
+                        fontVariant: 'normal',
+                        fontWeight: 'normal',
+                        fontStretch: 'normal'
+                    }
                 },
                 legend: {
                     enabled: false
@@ -63,12 +73,12 @@
                     visible: true
                 },
                 tooltip: {
-                    enabled: false
+                    enabled: true
                 },
                 plotOptions: {
                     area: {
                         stacking: 'normal',
-                        lineColor: '#666666',
+                        lineColor: 'rgb(44, 99, 136)',
                         lineWidth: 1,
                         marker: {
                             enabled: false
@@ -93,11 +103,11 @@
                 },
                 tickLength: 0,
                 tickmarkPlacement: 'on',
-                min: 0.5,
+                min: 1,
                 startOnTick: false,
                 endOnTick: false,
                 // 9 = categories.length
-                max: 9 -1.5
+                max: 11 - 1.5
             },
             yAxis: {
                 title: {
@@ -105,9 +115,11 @@
                 },
                 labels: {
                     formatter: function () {
-                        return this.value ;
-                    }
-                }
+                        return Highcharts.numberFormat(this.value/4, 0, '', ',');
+                    },
+                },
+                startOnTick: false,
+                min: $scope.dataservice.getInitialDeposit()
             }
 
         };
@@ -134,115 +146,60 @@
         $scope.addSeries = function () {
             alert("addSeries");
 
-            /*            var rnd = []
-             for (var i = 0; i < 10; i++) {
-             rnd.push(Math.floor(Math.random() * 20) + 1)
-             }
-             $scope.chartConfig.series.push({
-             data: rnd
-             })*/
         };
+
+        $scope.updateChartData = function () {
+            //$scope.chartConfig.size.width = ($rootScope.tab2width - 5);
+            // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
+            $scope.chartConfig.chartSeries = [
+                {
+                    name: "Sd2plusData",
+                    data: dataservice.getChartLineSd2PlusData(),
+                    color: 'rgb(216, 234, 240)'
+                },
+                {
+                    name: "Sd1plusData",
+                    data: dataservice.getChartLineSd1PlusData(),
+                    color: 'rgb(197, 223, 232)'
+                },
+                {
+                    name: "Sd1MinusData",
+                    data: dataservice.getChartLineSd1MinusData(),
+                    color: "rgb(187, 218, 228)"
+                },
+                {
+                    name: 'Sd2MinusValue',
+                    data: dataservice.getChartLineSd2MinusData(),
+                    color: "rgb(255, 255, 255)"
+                }
+            ];
+            $scope.chartConfig.yAxis.min =  $scope.dataservice.getInitialDeposit()/4;
+            $scope.chartConfig.yAxis.startOnTick = false;
+            $scope.reflow()
+
+
+        }
         //todo probaly we can delete it once we will have chart container width after next step
 
-        $('#tab-2').on('tabChage2' , function(event , chartWidth , chartH){
-            $scope.$apply(function() {
-                $scope.chartConfig.size.width = ($rootScope.tab2width -5);
-               // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
-                $scope.chartConfig.chartSeries = [
-                    {
-                        name: 'minValue',
-                        data: dataservice.getLineChartMinData(),
-                        color: "rgba(220,220,220,0.2)"
-                    },
-                    {
-                        name: "median",
-                        data: dataservice.getLineChartMedianData(),
-                        color: "rgba(151,187,205,0.2)"
-                    },
-                    {
-                        name: "maxValue",
-                        data: dataservice.getChartLineMaxData(),
-                        color: "rgba(151,187,205,0.2)"
-                    },
-                    {
-                        name: "white",
-                        data: dataservice.getLineChartMinData(),
-                        color: "white"
-                    }];
+        $('#tab-2').on('tabChage2', function (event, chartWidth, chartH) {
+            $scope.$apply(function () {
+                $scope.updateChartData();
             });
         });
 
 
-
         $rootScope.$on('angularSliderTextChnage', function () {
             //todo should i perform apply?
-            /*            $scope.$apply(function() {
-             var min = $scope.dataservice.getMinValue();
-             $scope.chartConfig.size.width = ($rootScope.tab2width -2);
-             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
-             $scope.chartConfig.yAxis.min = min + min*0.2;
-             });*/
-
-            $scope.chartConfig.size.width = ($rootScope.tab2width -5);
-            //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
-            $scope.chartConfig.chartSeries = [
-                {
-                    name: 'minValue',
-                    data: dataservice.getLineChartMinData(),
-                    color: "rgba(220,220,220,0.2)"
-                },
-                {
-                    name: "median",
-                    data: dataservice.getLineChartMedianData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "maxValue",
-                    data: dataservice.getChartLineMaxData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "white",
-                    data: dataservice.getLineChartMinData(),
-                    color: "white"
-                }];
-
-
+            $scope.updateChartData();
         })
 
         $rootScope.$on('angularSideBarNextStep', function () {
             //todo should i perform apply?
-            /*            $scope.$apply(function() {
-             var min = $scope.dataservice.getMinValue();
-             $scope.chartConfig.size.width = ($rootScope.tab2width -2);
-             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
-             $scope.chartConfig.yAxis.min = min + min*0.2;
-             });*/
+            $scope.updateChartData();
+        })
 
-            $scope.chartConfig.size.width = ($rootScope.tab2width -5);
-            //$scope.chartConfig.size.height = ($rootScope.tab2height - 200);
-            $scope.chartConfig.chartSeries = [
-                {
-                    name: 'minValue',
-                    data: dataservice.getLineChartMinData(),
-                    color: "rgba(220,220,220,0.2)"
-                },
-                {
-                    name: "median",
-                    data: dataservice.getLineChartMedianData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "maxValue",
-                    data: dataservice.getChartLineMaxData(),
-                    color: "rgba(151,187,205,0.2)"
-                },
-                {
-                    name: "white",
-                    data: dataservice.getLineChartMinData(),
-                    color: "white"
-                }];
-
+        $rootScope.$on('angularDataChanged', function () {
+            $scope.updateChartData();
 
         })
 
