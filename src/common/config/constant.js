@@ -11,7 +11,8 @@
 
                 DEV: {
                     getPortfolio4: 'dataJSON/Portfolio',
-                    getPortfolio3: 'dataJSON3/Portfolio'
+                    getPortfolio3: 'dataJSON3/Portfolio',
+                    getPortfolioSector: 'dataJSONSector/portfoliofinancial',
                 },
                 PROD: {}
             })

@@ -63,12 +63,22 @@
         var chartPieLevel4Data = [];
         var chartPieLevel3Data = [];
         var barChartColorArray = [];
+        var sectorState = false;
 
         $(window).on('riskSliderUserChange', function (event , risk) {
             console.log ("value / label" + risk);
             getPortfoliofromRisk(risk)
 
         });
+
+/*        $(window).on('checkboxChnage', function (event , secState) {
+            console.log ("state" + secState);
+            if (sectorState===true && secState===false){
+                sectorState = secState
+                $rootScope.$broadcast('angularSliderTextChnage', queryParametres);
+            }
+            sectorState = secState
+        });*/
 
 
         var service = {
@@ -115,8 +125,15 @@
             //todo check if we need it as $http.get retrun promise
             var deferred = $q.defer();
             //todo modify from .length to the specific attributes
-
+            if ((!queryParametres.Technology)){
                 url = constants.DEV.getPortfolio4  + risk + '.json';
+            }else{
+                if( queryParametres.Technology===false){
+                    url = constants.DEV.getPortfolio4  + risk + '.json';
+                }else if(queryParametres.Technology===true){
+                    url = constants.DEV.getPortfolioSector  + risk + '.json';
+                }
+            }
                 $http.get(url).then(success , failed );
 
 
@@ -186,15 +203,17 @@
                         value: calculatePortfolioRisk
                     }).trigger('slidechange');
 
+                    if ((!queryParams.Technology)){
+                        url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
+                    }else{
+                        if( queryParams.Technology===false){
+                            url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
+                        }else if(queryParams.Technology===true){
+                            url = constants.DEV.getPortfolioSector  + calculatePortfolioRisk + '.json';
+                        }
+                    }
 
-
-
-
-                    url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
                         $http.get(url).then(success , failed );
-
-
-
                 }
 
 
@@ -557,6 +576,7 @@
         }
 
         function calculateLineData(){
+            chartlineData = [];
 
             var SD1 = BEData.projectionData.averageSTD/100;
             var SD2 = SD1*2;
@@ -565,6 +585,10 @@
 
             chartlineData = BEData.projectionData.data;
 
+/*
+            chartlineData.splice(0, 0, chartlineData[0]);
+            chartlineData[0].year = 2016;
+*/
 
             for (var index = 0 ; chartlineData && index<chartlineData.length ; index++){
                //only the first yesr

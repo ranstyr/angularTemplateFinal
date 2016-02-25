@@ -55,7 +55,11 @@
                 vm.queryParams["stepTo"] = value;
                 $rootScope.$broadcast('angularSideBarNextStep', vm.queryParams);
             });
-
+            $('#main').on('checkboxChnage', function (event, value, AttName) {
+                //value - next step
+                vm.queryParams[AttName] = value;
+                $rootScope.$broadcast('angularCheckboxChnagep', vm.queryParams);
+            });
         }
 
         //silderchage - need to go to petch data.
@@ -65,6 +69,11 @@
         })
 
         $rootScope.$on('angularSideBarNextStep', function (event, data) {
+            dataChange(data);
+
+        })
+
+        $rootScope.$on('angularCheckboxChnagep', function (event, data) {
             dataChange(data);
 
         })

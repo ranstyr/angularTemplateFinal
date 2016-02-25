@@ -151,7 +151,7 @@ function initUiSlider() {
                 }
 
                 //jQuery(ui.handle).trigger("sliderTextChnage", [sliderValue, labelName]);
-                holder.trigger("sliderTextChnage", [sliderValue, labelName]);
+                $('#main').trigger("sliderTextChnage", [sliderValue, labelName]);
                 holder.trigger('validateForm');
             }
         });
@@ -238,11 +238,12 @@ function initCustomOpenClose() {
 
         opener.on('change', function () {
             var checkbox = jQuery(this);
-
             if (checkbox.prop('checked') === false) {
                 slide.slideDown();
+                slide.trigger("checkboxChnage", [true]);
             } else {
                 slide.slideUp();
+                slide.trigger("checkboxChnage", [false]);
             }
         });
 
@@ -257,14 +258,18 @@ function initCustomOpenClose() {
 
             if (activeNum > 3) {
                 jQuery(this).prop('checked', false);
+            }else{
+               $('#main').trigger("sliderTextChnage", [jQuery(this).prop('checked'), jQuery(this).parent().find("em").html()]);
             }
+
+
         });
     });
     jQuery('.tabset').find('input[type=radio]').each(function () {
         var holder = jQuery(this);
         holder.on('change', function (e) {
             console.log(this.id);
-            holder.trigger("sliderTextChnage", [this.id, "describe"]);
+            $('#main').trigger("sliderTextChnage", [this.id, "describe"]);
         })
     })
 }

@@ -25,6 +25,9 @@
             },
             xAxis: {
                 categories: $scope.dataservice.getBarChartYearData(),
+                labels: {
+                    style: {fontSize: '20px'}
+                },
                 lineWidth: 0,
                 minorTickLength: 0,
                 tickLength: 0,

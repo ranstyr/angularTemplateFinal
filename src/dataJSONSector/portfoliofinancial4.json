@@ -1,0 +1,58 @@
+{
+  "projectionData": {
+    "data" : [
+      {"year":2017,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2018,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2019,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2020,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2021,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2022,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2023,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2024,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2025,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2026,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2027,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+	  {"year":2028,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+	  {"year":2029,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
+      {"year":2030,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null}],
+    "averageSTD" : 8.3728,
+    "averageYearlyPerformance" : 3.344996858
+  },
+  "performanceData": [{"year":2005,"revenues":4.6,"STD":8.4},
+    {"year":2006,"revenues":4.3,"STD":8.4},
+    {"year":2007,"revenues":2.8,"STD":8.4},
+    {"year":2008,"revenues":-14.7,"STD":8.4},
+    {"year":2009,"revenues":11.4,"STD":8.4},
+    {"year":2010,"revenues":6.5,"STD":8.4},
+    {"year":2011,"revenues":-2.1,"STD":8.4},
+    {"year":2012,"revenues":8.3,"STD":8.4},
+    {"year":2013,"revenues":10.7,"STD":8.4},
+    {"year":2014,"revenues":4.4,"STD":8.4},
+    {"year":2015,"revenues":0.4,"STD":8.4}],
+  "InvestmentData": [{"Ticker":"BNDX","Name":"Total International Bond Index Vanguard","Percentage":"15.0%","color":"#758938"},
+	{"Ticker":"BSV","Name":"Short-Term Bond ETF Vanguard","Percentage":"10.0%","color":"#758938"},
+	{"Ticker":"SHY","Name":"1-3 Year Treasury Bond iShares","Percentage":"10.0%","color":"#758938"},
+	{"Ticker":"BND","Name":"US Total Bond Market Index ETF Vanguard","Percentage":"5.0%","color":"#758938"},
+	{"Ticker":"LQD","Name":"Corporate Bond Index ETF iShares","Percentage":"10.0%","color":"#495623"},
+	{"Ticker":"VTI","Name":"U.S. Total Stock Market Index Vanguard","Percentage":"14.4%","color":"#7e678b"},
+	{"Ticker":"VEA","Name":"FTSE Developed Market Index ETF Vanguard","Percentage":"11.6%","color":"#7e678b"},
+	{"Ticker":"IXG","Name":"Global Financials Ishares","Percentage":"4.0%","color":"#7e678b"},
+	{"Ticker":"EWJ","Name":"Japan MSCI ETF iShares","Percentage":"10.0%","color":"#7e678b"},
+	{"Ticker":"IEMG","Name":"Core MSCI Emerging Markets iShares","Percentage":"5.0%","color":"#675371"},
+	{"Ticker":"VUG","Name":"Growth ETF Vanguard","Percentage":"5.0%","color":"#675371"}],
+  "assetBreakdownData": [
+	  {"name":"Governement bonds","y":40,"color":"#758938","sliced":false},
+      {"name":"Developed Stocks","y":40,"color":"#7e678b","sliced":true},
+      {"name":"Emerging Markets Stocks","y":10,"color":"#675371","sliced":true},
+	  {"name":"Corporate bonds","y":10,"color":"#495623","sliced":false}
+    ],
+  "InvestmentData3":
+  [{"Name":"Bonds","Percentage":"50%","color":"#758938"},
+    {"Name":"Stocks","Percentage":"50%","color":"#7e678b"}],
+  "assetBreakdownData3": [{"name":"Bonds","y":50,"color":"#758938","sliced":false},
+    {"name":"Stocks","y":50,"color":"#7e678b","sliced":true}]
+}
+
+
+
+
