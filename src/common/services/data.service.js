@@ -125,15 +125,14 @@
             //todo check if we need it as $http.get retrun promise
             var deferred = $q.defer();
             //todo modify from .length to the specific attributes
-            if ((!queryParametres.Technology)){
-                url = constants.DEV.getPortfolio4  + risk + '.json';
+
+
+            if(queryParametres.sectorCheckbox===true && queryParametres.Technology===true ){
+                url = constants.DEV.getPortfolioSector  + risk + '.json';
             }else{
-                if( queryParametres.Technology===false){
-                    url = constants.DEV.getPortfolio4  + risk + '.json';
-                }else if(queryParametres.Technology===true){
-                    url = constants.DEV.getPortfolioSector  + risk + '.json';
-                }
+                url = constants.DEV.getPortfolio4  + risk + '.json';
             }
+
                 $http.get(url).then(success , failed );
 
 
@@ -203,7 +202,7 @@
                         value: calculatePortfolioRisk
                     }).trigger('slidechange');
 
-                    if ((!queryParams.Technology)){
+                   /* if ((!queryParams.Technology)){
                         url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
                     }else{
                         if( queryParams.Technology===false){
@@ -211,6 +210,12 @@
                         }else if(queryParams.Technology===true){
                             url = constants.DEV.getPortfolioSector  + calculatePortfolioRisk + '.json';
                         }
+                    }*/
+
+                    if(queryParams.sectorCheckbox===true && queryParams.Technology===true ){
+                        url = constants.DEV.getPortfolioSector  + calculatePortfolioRisk + '.json';
+                    }else{
+                        url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
                     }
 
                         $http.get(url).then(success , failed );

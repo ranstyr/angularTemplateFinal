@@ -13,6 +13,9 @@
 
         var vm = this;
         vm.queryParams = {};
+        vm.queryParams.sectorCheckbox = false;
+        vm.queryParams.Technology = false;
+
 
 
         bindJqUI();

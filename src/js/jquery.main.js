@@ -240,10 +240,12 @@ function initCustomOpenClose() {
             var checkbox = jQuery(this);
             if (checkbox.prop('checked') === false) {
                 slide.slideDown();
-                slide.trigger("checkboxChnage", [true]);
+                slide.trigger("checkboxChnage", [true , "sectorCheckbox"]);
+                //$('#main').trigger("sliderTextChnage", [true , "sectorCheckbox"]);
             } else {
                 slide.slideUp();
-                slide.trigger("checkboxChnage", [false]);
+                slide.trigger("checkboxChnage", [false , "sectorCheckbox"]);
+                //$('#main').trigger("sliderTextChnage", [true , "sectorCheckbox"]);
             }
         });
 
