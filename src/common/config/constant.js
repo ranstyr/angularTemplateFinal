@@ -13,6 +13,7 @@
                     getPortfolio4: 'dataJSON/Portfolio',
                     getPortfolio3: 'dataJSON3/Portfolio',
                     getPortfolioSector: 'dataJSONSector/portfoliofinancial',
+                    sectorChoose : "Technology"
                 },
                 PROD: {}
             })

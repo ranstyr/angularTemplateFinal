@@ -31,7 +31,7 @@
                     }
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <br>{point.percentage:.1f}%</br>'
+                    pointFormat: '{series.name}: <br>{point.percentage:.0f}%</br>'
                 },
                 credits: {
                     enabled: true
@@ -43,7 +43,7 @@
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                            format: '<b>{point.name}</b><br><div style="font-size: 18px">{point.percentage:.0f} %<div>',
                             style: {
                                 color: '#666666',
                                 width: '100px',

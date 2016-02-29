@@ -41,7 +41,7 @@
         $stateProvider
             .state('layout', {
                 /*abstract : true,*/
-                templateUrl: "/newSIsalesDemo2/src/states/app/layout.html",
+                templateUrl: "states/app/layout.html",
                 url: "/layout"
             })
             .state('account', {
@@ -50,7 +50,7 @@
                  */
                 url: "/account",
                 replace: true,
-                templateUrl: "/newSIsalesDemo2/src/states/account/account.html"
+                templateUrl: "states/account/account.html"
             })
 
     });;

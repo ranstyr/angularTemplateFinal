@@ -1,7 +1,6 @@
 {
   "projectionData": {
     "data" : [
-      {"year":2015,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
       {"year":2016,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
       {"year":2017,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
       {"year":2018,"sd2minus":null,"sd1minus":null,"Median":null,"sd1plus":null,"sd2plus":null},
@@ -55,8 +54,8 @@
   "InvestmentData3":
   [{"Name":"Bonds","Percentage":"45%","color":"#758938"},
     {"Name":"Stocks","Percentage":"55%","color":"#7e678b"}],
-  "assetBreakdownData3": [{"name":"Bonds","y":45,"color":"#7e678b","sliced":false},
-    {"name":"Stocks","y":55,"color":"#758938","sliced":true}]
+  "assetBreakdownData3": [{"name":"Bonds","y":45,"color":"#758938","sliced":false},
+    {"name":"Stocks","y":55,"color":"#7e678b","sliced":true}]
 }
 
 

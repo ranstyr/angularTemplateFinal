@@ -14,7 +14,7 @@
         var vm = this;
         vm.queryParams = {};
         vm.queryParams.sectorCheckbox = false;
-        vm.queryParams.Technology = false;
+        vm.queryParams.FinancialServices = false;
 
 
 

@@ -55,8 +55,8 @@
   "InvestmentData3":
   [{"Name":"Bonds","Percentage":"45%","color":"#758938"},
     {"Name":"Stocks","Percentage":"55%","color":"#7e678b"}],
-  "assetBreakdownData3": [{"name":"Bonds","y":55,"color":"#758938","sliced":false},
-    {"name":"Stocks","y":45,"color":"#7e678b","sliced":true}]
+  "assetBreakdownData3": [{"name":"Bonds","y":45,"color":"#758938","sliced":false},
+    {"name":"Stocks","y":55,"color":"#7e678b","sliced":true}]
 }
 
 

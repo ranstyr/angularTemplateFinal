@@ -422,3 +422,11 @@ input[type=checkbox] + .fake-checkbox i {
 
 .ui-state-disabled + input[type=text] {
   color: #ccc; }
+
+#sidebar .ui-state-disabled, .ui-state-disabled + input[type="text"] {
+/*
+/ sidebar.css line 423 /
+*/
+opacity:0.4;
+}
+

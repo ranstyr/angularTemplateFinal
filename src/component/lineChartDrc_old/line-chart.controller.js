@@ -13,29 +13,31 @@
 
     function lineChart($http, $q, $localStorage, constants, $scope, $state, dataservice, $rootScope) {
         $scope.dataservice = dataservice;
-         $scope.chartSeries = [
-         {
-         name: "Sd2plusData",
-         data: dataservice.getChartLineSd2PlusData(),
-         color: 'rgb(216, 234, 240)'
-         },
-         {
-         name: "Sd1plusData",
-         data: dataservice.getChartLineSd1PlusData(),
-         color: 'rgb(89, 161, 186)'
-         },
-         {
-         name: "Sd1MinusData",
-         data: dataservice.getChartLineSd1MinusData(),
-         color: "rgb(180, 204, 212)"
-         },
-         {
-         name: 'Sd2MinusValue',
-         data: dataservice.getChartLineSd2MinusData(),
-         color: "rgb(255, 255, 255)",
-         fillOpacity : 1
-         }
-         ];
+/*
+        $scope.chartSeries = [
+            {
+                name: "Sd2plusData",
+                data: dataservice.getChartLineSd2PlusData(),
+                color: 'rgb(216, 234, 240)'
+            },
+            {
+                name: "Sd1plusData",
+                data: dataservice.getChartLineSd1PlusData(),
+                color: 'rgb(89, 161, 186)'
+            },
+            {
+                name: "Sd1MinusData",
+                data: dataservice.getChartLineSd1MinusData(),
+                color: "rgb(180, 204, 212)"
+            },
+            {
+                name: 'Sd2MinusValue',
+                data: dataservice.getChartLineSd2MinusData(),
+                color: "rgb(255, 255, 255)",
+                fillOpacity : 1
+            }
+        ];
+*/
 
         $scope.chartConfig = {
             size: {
@@ -166,43 +168,43 @@
             //$scope.chartConfig.size.width = ($rootScope.tab2width - 5);
             // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
             if (dataservice.getChartLineSd2PlusData().length>0){
-                 $scope.chartConfig.chartSeries = [
-                 {
-                 name: "Sd2plusData",
-                 data: dataservice.getChartLineSd2PlusData(),
-                 color: 'rgb(216, 234, 240)',
-                 animation: {
-                 duration: 5000
-                 }
-                 },
-                 {
-                 name: "Sd1plusData",
-                 data: dataservice.getChartLineSd1PlusData(),
-                 color: 'rgb(197, 223, 232)',
-                 animation: {
-                 duration: 5000
-                 }
-                 },
-                 {
-                 name: "Sd1MinusData",
-                 data: dataservice.getChartLineSd1MinusData(),
-                 color: "rgb(187, 218, 228)",
-                 animation: {
-                 duration: 5000
-                 }
-                 },
-                 {
-                 name: 'Sd2MinusValue',
-                 data: dataservice.getChartLineSd2MinusData(),
-                 color: "rgb(255, 255, 255)",
-                 animation: {
-                 duration: 5000
-                 }
-                 }
-                 ];
-                 var mindata = $scope.chartConfig.chartSeries[3].data[1];
-                 $scope.chartConfig.yAxis.min =  Math.min($scope.dataservice.getInitialDeposit(),mindata-(mindata*0.1));
-                 $scope.chartConfig.yAxis.startOnTick = false;
+               /* $scope.chartConfig.chartSeries = [
+                    {
+                        name: "Sd2plusData",
+                        data: dataservice.getChartLineSd2PlusData(),
+                        color: 'rgb(216, 234, 240)',
+                        animation: {
+                            duration: 5000
+                        }
+                    },
+                    {
+                        name: "Sd1plusData",
+                        data: dataservice.getChartLineSd1PlusData(),
+                        color: 'rgb(197, 223, 232)',
+                        animation: {
+                            duration: 5000
+                        }
+                    },
+                    {
+                        name: "Sd1MinusData",
+                        data: dataservice.getChartLineSd1MinusData(),
+                        color: "rgb(187, 218, 228)",
+                        animation: {
+                            duration: 5000
+                        }
+                    },
+                    {
+                        name: 'Sd2MinusValue',
+                        data: dataservice.getChartLineSd2MinusData(),
+                        color: "rgb(255, 255, 255)",
+                        animation: {
+                            duration: 5000
+                        }
+                    }
+                ];
+                var mindata = $scope.chartConfig.chartSeries[3].data[1];
+                $scope.chartConfig.yAxis.min =  Math.min($scope.dataservice.getInitialDeposit(),mindata-(mindata*0.1));
+                $scope.chartConfig.yAxis.startOnTick = false;*/
                 $scope.reflow();
                 //$scope.chartConfig.getHighcharts()
             }

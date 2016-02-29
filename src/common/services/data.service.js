@@ -127,7 +127,7 @@
             //todo modify from .length to the specific attributes
 
 
-            if(queryParametres.sectorCheckbox===true && queryParametres.Technology===true ){
+            if(queryParametres.sectorCheckbox===true && queryParametres.FinancialServices===true ){
                 url = constants.DEV.getPortfolioSector  + risk + '.json';
             }else{
                 url = constants.DEV.getPortfolio4  + risk + '.json';
@@ -212,7 +212,7 @@
                         }
                     }*/
 
-                    if(queryParams.sectorCheckbox===true && queryParams.Technology===true ){
+                    if(queryParams.sectorCheckbox===true && queryParams.FinancialServices===true ){
                         url = constants.DEV.getPortfolioSector  + calculatePortfolioRisk + '.json';
                     }else{
                         url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
