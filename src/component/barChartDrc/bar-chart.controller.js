@@ -120,7 +120,9 @@
             //$scope.chartConfig.size.height = ($rootScope.tab3height - 200);
             $scope.chartConfig.series[0].data = $scope.dataservice.getBarChartRevenuesData();
             $scope.chartConfig.xAxis.categories = $scope.dataservice.getBarChartYearData()
-            $scope.chartConfig.yAxis.min = min + min*0.2;
+            //$scope.chartConfig.yAxis.min = min + min*0.2;
+            $scope.chartConfig.yAxis.min = -20;
+            $scope.chartConfig.yAxis.max = 20;
             $scope.chartConfig.options.colors = $scope.dataservice.getBarChartColorsArray();
             $scope.reflow()
 

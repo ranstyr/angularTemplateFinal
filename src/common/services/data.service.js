@@ -64,6 +64,7 @@
         var chartPieLevel3Data = [];
         var barChartColorArray = [];
         var sectorState = false;
+        var calculatePortfolioRisk;
 
         $(window).on('riskSliderUserChange', function (event , risk) {
             console.log ("value / label" + risk);
@@ -94,7 +95,8 @@
             getChartPieLevel3Data : getChartPieLevel3Data,
             getChartPieLevel4Data : getChartPieLevel4Data,
             getInitialDeposit : getInitialDeposit,
-            getBarChartColorsArray : getBarChartColorsArray
+            getBarChartColorsArray : getBarChartColorsArray,
+            getPortfoliofFromSector : getPortfoliofFromSector
 
         };
         return service;
@@ -115,7 +117,6 @@
         }
 */
 
-
         function getPortfoliofromRisk(risk) {
 
             var url;
@@ -126,13 +127,14 @@
             var deferred = $q.defer();
             //todo modify from .length to the specific attributes
 
+            url = getUrl(queryParametres , risk);
 
-            if(queryParametres.sectorCheckbox===true && queryParametres.FinancialServices===true ){
+            /*if(queryParametres.sectorCheckbox===true && queryParametres.FinancialServices===true ){
                 url = constants.DEV.getPortfolioSector  + risk + '.json';
             }else{
                 url = constants.DEV.getPortfolio4  + risk + '.json';
             }
-
+*/
                 $http.get(url).then(success , failed );
 
 
@@ -167,11 +169,9 @@
 
         }
 
-
         function getPortfolio(queryParams) {
 
             queryParametres = queryParams;
-            var calculatePortfolioRisk;
             var url;
             //todo add deffer object
             //we can go to server only if the first 4 questions are filled
@@ -179,8 +179,8 @@
             //todo check if we need it as $http.get retrun promise
             var deferred = $q.defer();
             //todo modify from .length to the specific attributes
-            if (Object.keys(queryParams).length > 3) {
-                calculatePortfolioRisk = calculatePortfolioRisk(queryParams);
+            if (Object.keys(queryParams).length > 3 && queryParams.Age && queryParams.TargetTime && queryParams.InitialDeposit && queryParams.Whatisyourannualincome && queryParams.Whatisyourliquidassetsnetworth && queryParams.describe) {
+                calculatePortfolioRisk = calculatePortfolioRiskFun(queryParams);
 
 
                 if (calculatePortfolioRisk >0 && calculatePortfolioRisk<11 ){
@@ -212,11 +212,13 @@
                         }
                     }*/
 
-                    if(queryParams.sectorCheckbox===true && queryParams.FinancialServices===true ){
+                    url = getUrl(queryParams , calculatePortfolioRisk);
+
+                   /* if(queryParams.sectorCheckbox===true && queryParams.FinancialServices===true ){
                         url = constants.DEV.getPortfolioSector  + calculatePortfolioRisk + '.json';
                     }else{
                         url = constants.DEV.getPortfolio4  + calculatePortfolioRisk + '.json';
-                    }
+                    }*/
 
                         $http.get(url).then(success , failed );
                 }
@@ -224,6 +226,7 @@
 
                 function success(response) {
 
+                    var data = {};
                     var data = response.data;
 
                     if (data) {
@@ -251,195 +254,67 @@
 
             }
 
-            function calculatePortfolioRisk() {
-                age = +queryParams["Age"];
-                targetTime = +queryParams["TargetTime"];
-                calculateTimefactor();
-                //take " , " and parse to int
-/*                initialDeposit = parseInt(queryParams["InitialDeposit"].replace([","], ''));
-                monthlyDeposit = parseInt(queryParams["MonthlyDeposit"].replace([","], ''));*/
-                initialDeposit = parseInt(queryParams["InitialDeposit"]);
-                monthlyDeposit = parseInt(queryParams["MonthlyDeposit"]);
-                if (queryParams["Whatisyourannualincome"]) {
-                    monthlySalary = parseInt(queryParams["Whatisyourannualincome"]);
-/*
-                    monthlySalary = parseInt(queryParams["Whatisyourannualincome"].replace([","], ''));
-*/
-                }
-                if (queryParams["Whatisyourliquidassetsnetworth"]) {
-                    clientLiquidAssets = parseInt(queryParams["Whatisyourliquidassetsnetworth"]);
-                    //clientLiquidAssets = parseInt(queryParams["Whatisyourliquidassetsnetworth"].replace([","], ''));
-                }
 
-                if (queryParams["describe"]) {
-                    describe = parseInt(queryParams["describe"]);
-                }
 
-                T = targetTime / 2;
-                A = T * monthlyDeposit;
-                if (!A){
-                    A=0
-                };
-                B = T * monthlySalary;
-                C = ((initialDeposit + A) / (clientLiquidAssets + A)) * 100;
-                D = ((initialDeposit + A) / (clientLiquidAssets + (B * 0.5))) * 100;
-                portfolioExposure = (C + D) / 2;
-                if (portfolioExposure && describe && timeFactor) {
-                    calculateMatrixFirstParams();
-                    calculateMatrixSecondParams();
-                    return calculateFinalFactor();
+
+        }
+
+        function getPortfoliofFromSector(queryParams) {
+
+            var url;
+            var calculatePortfolioRisk = calculatePortfolioRiskFun(queryParams);
+            //todo add deffer object
+            //we can go to server only if the first 4 questions are filled
+
+            //todo check if we need it as $http.get retrun promise
+            var deferred = $q.defer();
+            //todo modify from .length to the specific attributes
+
+            url = getUrl(queryParametres , calculatePortfolioRisk);
+
+            $http.get(url).then(success , failed );
+
+
+            function success(response) {
+
+                var data = {};
+                data = response.data;
+
+                if (data) {
+                    $localStorage.attributes = data;
+
+                    BEData = data;
+                    calculateBarData();
+                    calculateLineData();
+                    calculateLevel3Pie();
+                    calculateLevel4Pie();
+                    deferred.resolve(data);
+
+                    $rootScope.$broadcast('angularDataChanged', queryParametres);
+                }
+                else {
+                    deferred.reject();
                 }
             }
 
-            function calculateFinalFactor() {
-                //return data factor according to matrix
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                console.log("final factor" , matrix[matrixFirstParams][matrixSecondParams]);
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-                return matrix[matrixFirstParams][matrixSecondParams];
+            function failed(response) {
+                deferred.reject(response);
             }
 
-            function calculateTimefactor() {
+            return deferred.promise;
 
-                if (age < 26) {
-                    CalculatedAge = 10;
-                } else if (age > 25 && age < 36) {
-                    CalculatedAge = 9;
-                } else if (age > 35 && age < 41) {
-                    CalculatedAge = 8;
-                } else if (age > 40 && age < 46) {
-                    CalculatedAge = 7;
-                } else if (age > 45) {
-                    CalculatedAge = 6;
-                } else {
-                    CalculatedAge = 6;
-                    console.log("!!!!!!!!!!!!!!!!error at calculateTimefactor CalculatedAge!!!!!!!!!!!");
-                }
-                ;
 
-                if (targetTime < 6) {
-                    CalculatedTargetTime = 5;
-                } else if (targetTime > 5 && targetTime < 11) {
-                    CalculatedTargetTime = 6;
-                } else if (targetTime > 10 && targetTime < 16) {
-                    CalculatedTargetTime = 7;
-                } else if (targetTime > 15 && targetTime < 21) {
-                    CalculatedTargetTime = 9;
-                } else if (targetTime > 20) {
-                    CalculatedTargetTime = 10;
-                } else {
-                    CalculatedTargetTime = 10;
-                    console.log("!!!!!!!!!!!!!!!!error at calculateTimefactor targetTime !!!!!!!!!!!");
-                }
+        }
 
-                timeFactor = Math.min(CalculatedAge, CalculatedTargetTime);
-                console.log('timeFactor = ' + timeFactor);
-
+        function getUrl(queryParams , risk){
+            var url;
+            if(queryParametres.sectorCheckbox===true && queryParametres.FinancialServices===true ){
+                url = constants.DEV.getPortfolioSector  + risk + '.json';
+            }else{
+                url = constants.DEV.getPortfolio4  + risk + '.json';
             }
 
-            function calculateMatrixSecondParams() {
-                if (describe === 1) {
-                    switch (timeFactor) {
-                        case 10:
-                            matrixSecondParams = 0;
-                            break;
-                        case 9:
-                            matrixSecondParams = 1;
-                            break;
-                        case 8:
-                            matrixSecondParams = 2;
-                            break;
-                        case 7:
-                            matrixSecondParams = 3;
-                            break;
-                        case 6:
-                            matrixSecondParams = 4;
-                            break;
-                        case 5:
-                            matrixSecondParams = 5;
-                            break;
-                    }
-                }
-                if (describe === 2) {
-                    switch (timeFactor) {
-                        case 10:
-                            matrixSecondParams = 6;
-                            break;
-                        case 9:
-                            matrixSecondParams = 7;
-                            break;
-                        case 8:
-                            matrixSecondParams = 8;
-                            break;
-                        case 7:
-                            matrixSecondParams = 9;
-                            break;
-                        case 6:
-                            matrixSecondParams = 10;
-                            break;
-                        case 5:
-                            matrixSecondParams = 11;
-                            break;
-                    }
-                }
-                if (describe === 3) {
-                    switch (timeFactor) {
-                        case 10:
-                            matrixSecondParams = 12;
-                            break;
-                        case 9:
-                            matrixSecondParams = 13;
-                            break;
-                        case 8:
-                            matrixSecondParams = 14;
-                            break;
-                        case 7:
-                            matrixSecondParams = 15;
-                            break;
-                        case 6:
-                            matrixSecondParams = 16;
-                            break;
-                        case 5:
-                            matrixSecondParams = 17;
-                            break;
-                    }
-                }
-                console.log('matrixSecondParams = ' + matrixSecondParams);
-            }
-
-            function calculateMatrixFirstParams() {
-                if (portfolioExposure <= 11) {
-                    matrixFirstParams = 0;
-                } else if (portfolioExposure > 10 && portfolioExposure <= 20) {
-                    matrixFirstParams = 1;
-                } else if (portfolioExposure > 20 && portfolioExposure <= 30) {
-                    matrixFirstParams = 2;
-                } else if (portfolioExposure > 30 && portfolioExposure <= 40) {
-                    matrixFirstParams = 3;
-                } else if (portfolioExposure > 40 && portfolioExposure <= 50) {
-                    matrixFirstParams = 4;
-                } else if (portfolioExposure > 50 && portfolioExposure <= 60) {
-                    matrixFirstParams = 5;
-                } else if (portfolioExposure > 60 && portfolioExposure <= 70) {
-                    matrixFirstParams = 6;
-                } else if (portfolioExposure > 70 && portfolioExposure <= 80) {
-                    matrixFirstParams = 7;
-                } else if (portfolioExposure > 80 && portfolioExposure <= 90) {
-                    matrixFirstParams = 8;
-                } else if (portfolioExposure > 90) {
-                    matrixFirstParams = 9;
-                } else {
-                    CalculatedAge = 9;
-                    console.log("!!!!!!!!!!!!!!!!error at calculateMatrixFirstParams!!!!!!!!!!!");
-                };
-                console.log('matrixFirstParams = ' + matrixFirstParams);
-
-            }
-
+            return url;
 
         }
 
@@ -495,12 +370,9 @@
             return initialDeposit;
         }
 
-
         function getBarChartColorsArray(){
             return barChartColorArray;
         }
-
-
 
         function calculateBarData(){
             barChartRevenuesData = {};
@@ -681,6 +553,195 @@
 
             chartPieLevel3Data.assetBreakdownData = assetBreakdownData;
             chartPieLevel3Data.InvestmentData = BEData.InvestmentData3;
+
+        }
+
+        function calculatePortfolioRiskFun(queryParams) {
+            age = +queryParams["Age"];
+            targetTime = +queryParams["TargetTime"];
+            calculateTimefactor();
+            //take " , " and parse to int
+            /*                initialDeposit = parseInt(queryParams["InitialDeposit"].replace([","], ''));
+             monthlyDeposit = parseInt(queryParams["MonthlyDeposit"].replace([","], ''));*/
+            initialDeposit = parseInt(queryParams["InitialDeposit"]);
+            monthlyDeposit = parseInt(queryParams["MonthlyDeposit"]);
+            if (queryParams["Whatisyourannualincome"]) {
+                monthlySalary = parseInt(queryParams["Whatisyourannualincome"]);
+                /*
+                 monthlySalary = parseInt(queryParams["Whatisyourannualincome"].replace([","], ''));
+                 */
+            }
+            if (queryParams["Whatisyourliquidassetsnetworth"]) {
+                clientLiquidAssets = parseInt(queryParams["Whatisyourliquidassetsnetworth"]);
+                //clientLiquidAssets = parseInt(queryParams["Whatisyourliquidassetsnetworth"].replace([","], ''));
+            }
+
+            if (queryParams["describe"]) {
+                describe = parseInt(queryParams["describe"]);
+            }
+
+            T = targetTime / 2;
+            A = T * monthlyDeposit;
+            if (!A){
+                A=0
+            };
+            B = T * monthlySalary;
+            C = ((initialDeposit + A) / (clientLiquidAssets + A)) * 100;
+            D = ((initialDeposit + A) / (clientLiquidAssets + (B * 0.5))) * 100;
+            portfolioExposure = (C + D) / 2;
+            if (portfolioExposure && describe && timeFactor) {
+                calculateMatrixFirstParams();
+                calculateMatrixSecondParams();
+                return calculateFinalFactor();
+            }
+        }
+
+        function calculateFinalFactor() {
+            //return data factor according to matrix
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("final factor" , matrix[matrixFirstParams][matrixSecondParams]);
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+            return matrix[matrixFirstParams][matrixSecondParams];
+        }
+
+        function calculateTimefactor() {
+
+            if (age < 26) {
+                CalculatedAge = 10;
+            } else if (age > 25 && age < 36) {
+                CalculatedAge = 9;
+            } else if (age > 35 && age < 41) {
+                CalculatedAge = 8;
+            } else if (age > 40 && age < 46) {
+                CalculatedAge = 7;
+            } else if (age > 45) {
+                CalculatedAge = 6;
+            } else {
+                CalculatedAge = 6;
+                console.log("!!!!!!!!!!!!!!!!error at calculateTimefactor CalculatedAge!!!!!!!!!!!");
+            }
+            ;
+
+            if (targetTime < 6) {
+                CalculatedTargetTime = 5;
+            } else if (targetTime > 5 && targetTime < 11) {
+                CalculatedTargetTime = 6;
+            } else if (targetTime > 10 && targetTime < 16) {
+                CalculatedTargetTime = 7;
+            } else if (targetTime > 15 && targetTime < 21) {
+                CalculatedTargetTime = 9;
+            } else if (targetTime > 20) {
+                CalculatedTargetTime = 10;
+            } else {
+                CalculatedTargetTime = 10;
+                console.log("!!!!!!!!!!!!!!!!error at calculateTimefactor targetTime !!!!!!!!!!!");
+            }
+
+            timeFactor = Math.min(CalculatedAge, CalculatedTargetTime);
+            console.log('timeFactor = ' + timeFactor);
+
+        }
+
+        function calculateMatrixSecondParams() {
+            if (describe === 1) {
+                switch (timeFactor) {
+                    case 10:
+                        matrixSecondParams = 0;
+                        break;
+                    case 9:
+                        matrixSecondParams = 1;
+                        break;
+                    case 8:
+                        matrixSecondParams = 2;
+                        break;
+                    case 7:
+                        matrixSecondParams = 3;
+                        break;
+                    case 6:
+                        matrixSecondParams = 4;
+                        break;
+                    case 5:
+                        matrixSecondParams = 5;
+                        break;
+                }
+            }
+            if (describe === 2) {
+                switch (timeFactor) {
+                    case 10:
+                        matrixSecondParams = 6;
+                        break;
+                    case 9:
+                        matrixSecondParams = 7;
+                        break;
+                    case 8:
+                        matrixSecondParams = 8;
+                        break;
+                    case 7:
+                        matrixSecondParams = 9;
+                        break;
+                    case 6:
+                        matrixSecondParams = 10;
+                        break;
+                    case 5:
+                        matrixSecondParams = 11;
+                        break;
+                }
+            }
+            if (describe === 3) {
+                switch (timeFactor) {
+                    case 10:
+                        matrixSecondParams = 12;
+                        break;
+                    case 9:
+                        matrixSecondParams = 13;
+                        break;
+                    case 8:
+                        matrixSecondParams = 14;
+                        break;
+                    case 7:
+                        matrixSecondParams = 15;
+                        break;
+                    case 6:
+                        matrixSecondParams = 16;
+                        break;
+                    case 5:
+                        matrixSecondParams = 17;
+                        break;
+                }
+            }
+            console.log('matrixSecondParams = ' + matrixSecondParams);
+        }
+
+        function calculateMatrixFirstParams() {
+            if (portfolioExposure <= 11) {
+                matrixFirstParams = 0;
+            } else if (portfolioExposure > 10 && portfolioExposure <= 20) {
+                matrixFirstParams = 1;
+            } else if (portfolioExposure > 20 && portfolioExposure <= 30) {
+                matrixFirstParams = 2;
+            } else if (portfolioExposure > 30 && portfolioExposure <= 40) {
+                matrixFirstParams = 3;
+            } else if (portfolioExposure > 40 && portfolioExposure <= 50) {
+                matrixFirstParams = 4;
+            } else if (portfolioExposure > 50 && portfolioExposure <= 60) {
+                matrixFirstParams = 5;
+            } else if (portfolioExposure > 60 && portfolioExposure <= 70) {
+                matrixFirstParams = 6;
+            } else if (portfolioExposure > 70 && portfolioExposure <= 80) {
+                matrixFirstParams = 7;
+            } else if (portfolioExposure > 80 && portfolioExposure <= 90) {
+                matrixFirstParams = 8;
+            } else if (portfolioExposure > 90) {
+                matrixFirstParams = 9;
+            } else {
+                CalculatedAge = 9;
+                console.log("!!!!!!!!!!!!!!!!error at calculateMatrixFirstParams!!!!!!!!!!!");
+            };
+            console.log('matrixFirstParams = ' + matrixFirstParams);
 
         }
 

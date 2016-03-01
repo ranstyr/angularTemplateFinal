@@ -13,7 +13,7 @@
 
     function lineChart($http, $q, $localStorage, constants, $scope, $state, dataservice, $rootScope) {
         $scope.dataservice = dataservice;
-/*
+
         $scope.chartSeries = [
             {
                 name: "Sd2plusData",
@@ -37,7 +37,6 @@
                 fillOpacity : 1
             }
         ];
-*/
 
         $scope.chartConfig = {
             size: {
@@ -168,7 +167,7 @@
             //$scope.chartConfig.size.width = ($rootScope.tab2width - 5);
             // $scope.chartConfig.size.height = ($rootScope.tab2height - 200);
             if (dataservice.getChartLineSd2PlusData().length>0){
-               /* $scope.chartConfig.chartSeries = [
+                $scope.chartConfig.chartSeries = [
                     {
                         name: "Sd2plusData",
                         data: dataservice.getChartLineSd2PlusData(),
@@ -204,7 +203,7 @@
                 ];
                 var mindata = $scope.chartConfig.chartSeries[3].data[1];
                 $scope.chartConfig.yAxis.min =  Math.min($scope.dataservice.getInitialDeposit(),mindata-(mindata*0.1));
-                $scope.chartConfig.yAxis.startOnTick = false;*/
+                $scope.chartConfig.yAxis.startOnTick = false;
                 $scope.reflow();
                 //$scope.chartConfig.getHighcharts()
             }

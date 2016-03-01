@@ -261,7 +261,7 @@ function initCustomOpenClose() {
             if (activeNum > 3) {
                 jQuery(this).prop('checked', false);
             }else{
-               $('#main').trigger("sliderTextChnage", [jQuery(this).prop('checked'), jQuery(this).parent().find("em").html()]);
+               $('#main').trigger("sectorcheckboxChange", [jQuery(this).prop('checked'), jQuery(this).parent().find("em").html()]);
             }
 
 

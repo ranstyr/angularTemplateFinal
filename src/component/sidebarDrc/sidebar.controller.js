@@ -24,8 +24,6 @@
             $('#main').on('sliderTextChnage', function (event, value, AttName) {
                 if (AttName) {
                     var name = AttName.replace(/[^a-zA-Z0-9]/g, '');
-                    console.log("value" + value);
-                    console.log("name" + name);
                     if (name === "describe") {
                         switch(value) {
                             //consertative
@@ -61,8 +59,21 @@
             $('#main').on('checkboxChnage', function (event, value, AttName) {
                 //value - next step
                 vm.queryParams[AttName] = value;
-                $rootScope.$broadcast('angularCheckboxChnagep', vm.queryParams);
+                $rootScope.$broadcast('angularSectorcheckboxChange', vm.queryParams);
             });
+
+            $('#main').on('sectorcheckboxChange', function (event, value, AttName) {
+                //value - next step
+
+                if (AttName) {
+                    var name = AttName.replace(/[^a-zA-Z0-9]/g, '');
+                    vm.queryParams[name] = value;
+                }
+                $rootScope.$broadcast('angularSectorcheckboxChange', vm.queryParams);
+            });
+
+
+
         }
 
         //silderchage - need to go to petch data.
@@ -81,13 +92,18 @@
 
         })
 
+        $rootScope.$on('angularSectorcheckboxChange', function (event, data) {
+            //check we have minimum query params to petch data
+            dataChangeFromSector(data);
+        })
+
 
         function dataChange(data) {
-/*            if (ismMandatoryQueryParamsReady()){
-                var dat = dataservice.getPortfolio(vm.queryParams);
-            }*/
-
             var dat = dataservice.getPortfolio(vm.queryParams);
+        }
+
+        function dataChangeFromSector(data) {
+            var dat = dataservice.getPortfoliofFromSector(vm.queryParams);
         }
 
         function ismMandatoryQueryParamsReady(){
