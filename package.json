@@ -1,6 +1,6 @@
 {
   "name": "newsisalesdemo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SI demo for sales",
   "main": "index.js",
   "scripts": {
