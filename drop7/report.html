@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8">
+	<title>DiffViewer</title>
+	<style>
+		/* basic styles */
+		body {
+			font: 14px Arial, Helvetica, sans-serif;
+			margin: 0;
+		}
+		h1 {
+			margin: 15px auto;
+			text-align: center;
+		}
+		.diff-list {
+			border: 1px solid #aaa;
+			border-radius: 15px;
+			list-style: none;
+			overflow: hidden;
+			margin: 20px auto;
+			width: 80%;
+			padding: 0;
+		}
+		.diff-list li:first-child {
+			border-top: none;
+		}
+		.diff-list li {
+			border-top: 1px solid #aaa;
+			overflow: hidden;
+		}
+		.diff-list li:hover {
+			background: #fafafa;
+		}
+		.diff-list strong {
+			cursor: pointer;
+			display: block;
+			color: #00a;
+			padding: 10px;
+		}
+		.diff-list strong:before {
+			vertical-align: middle;
+			display: inline-block;
+			border: 5px solid #f00;
+			border-color: transparent transparent transparent #00a;
+			width: 0px;
+			height: 0px;
+			content: '';
+		}
+		.diff-list .warning strong {
+			color: #700;
+		}
+		.diff-list .warning strong:before {
+			border-color: transparent transparent transparent #700;
+		}
+		.diff-list .active.warning strong:before {
+			border-color: #700 transparent transparent;
+		}
+		.diff-list .active strong:before {
+			border-color: #00a transparent transparent;
+			margin: 3px 3px 0 -3px;
+		}
+		.diff-list pre {
+			display: block;
+			background: #fff;
+			padding: 0;
+			margin: 0;
+		}
+
+		/* highlighter styles */
+		.scroll-wrapper {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			background: #fff;
+			overflow: auto;
+			padding: 10px;
+			width: 100%;
+		}
+		pre {
+			min-width: 100%;
+			float: left;
+		}
+		pre code.hljs {
+			min-width: 100%;
+			font-size: 14px;
+			line-height: 18px;
+			padding: 0;
+			margin: 0;
+			float: left;
+		}
+		.hljs .hljs-header,
+		.hljs .hljs-chunk,
+		.hljs .hljs-deletion,
+		.hljs .hljs-addition {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+		}
+
+		.hljs .hljs-header { background: #ff7; }
+		.hljs .hljs-chunk { color: #77f; }
+		.hljs .hljs-deletion { background: #fbb; }
+		.hljs .hljs-addition { background: #bfb; }
+	</style>
+	
+
+	<style type="text/css"></style>
+	<script>
+		function initCollapse() {
+			// create heading
+			if(!document.querySelector('h1')) {
+				var pageHeading = document.createElement('h1');
+				pageHeading.innerHTML = 'Changelog';
+				document.body.insertBefore(pageHeading, document.body.childNodes[0]);
+			}
+
+			// accordion handler
+			var items = document.querySelectorAll('ul.diff-list li');
+			var addClickEventHandler = function(container, opener, drop) {
+				drop.style.display = 'none';
+
+				opener.onclick = function(e) {
+					e.preventDefault();
+					if(container.classList.contains('active')) {
+						container.classList.remove('active');
+						drop.style.display = 'none';
+					} else {
+						container.classList.add('active');
+						drop.style.display = 'block';
+					}
+				};
+			};
+			for(var i = 0, item, opener, drop; i < items.length; i++) {
+				item = items[i];
+				addClickEventHandler(item, item.querySelector('strong'), item.querySelector('div.scroll-wrapper'));
+			}
+		}
+		
+		document.addEventListener('DOMContentLoaded', initCollapse, false);
+	</script>
+</head>
+<body><h1>Changelog</h1>
+	
+
+<ul class="diff-list"><li class=""><strong>index.html</strong><div class="scroll-wrapper" style="display: block;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -323,21 +323,30 @@</span>
+ 							&lt;/div&gt;
+ 						&lt;/div&gt;
+ 						&lt;div class="ui-slider"&gt;
+<span class="hljs-deletion">-							&lt;div class="slider slider alt"</span>
+<span class="hljs-addition">+							&lt;div class="slider risk-slider alt"</span>
+ 								data-min="1"
+ 								data-max="10"
+<span class="hljs-deletion">-								data-value="4"</span>
+<span class="hljs-addition">+								data-value="7"</span>
+ 								data-step="1"
+ 								data-field="#field"
+ 								data-change="true"
+ 								data-values="1 - Very low, 2 - Low, 3- Conservative, 4 - Moderate, 5 - Medium, 6 - Mid-High, 7 - High, 8 - Very high, 9 - Very high, 10 - Very high"&gt;
+ 								&lt;div class="bar"&gt;&lt;/div&gt;
+ 								&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+<span class="hljs-deletion">-								&lt;div class="label" style="left:-18px;"&gt;4 - Advanced&lt;/div&gt;</span>
+ 								&lt;div class="left"&gt;Low&lt;/div&gt;
+ 								&lt;div class="right"&gt;High&lt;/div&gt;
+ 							&lt;/div&gt;
+ 						&lt;/div&gt;
+<span class="hljs-addition">+						&lt;div class="ui-slider"&gt;</span>
+<span class="hljs-addition">+							&lt;div class="slider tooltip-slider"</span>
+<span class="hljs-addition">+							 	data-disabled="true"</span>
+<span class="hljs-addition">+								data-min="1"</span>
+<span class="hljs-addition">+								data-max="10"</span>
+<span class="hljs-addition">+								data-value="10"</span>
+<span class="hljs-addition">+								data-step="1"&gt;</span>
+<span class="hljs-addition">+								&lt;div class="handler ui-slider-handle"&gt;&lt;div class="label" style="left:-18px;"&gt;4 - Advised&lt;/div&gt;&lt;/div&gt;</span>
+<span class="hljs-addition">+							&lt;/div&gt;</span>
+<span class="hljs-addition">+						&lt;/div&gt;</span>
+ 					&lt;/div&gt;
+ 					&lt;div class="box"&gt;
+ 						&lt;div class="cell"&gt;</code></pre></div></li><li class=""><strong>scss/sidebar.scss</strong><div class="scroll-wrapper" style="display: block;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -123,10 +123,10 @@</span>
+ 		}
+ 	}
+ 	.next-active{
+<span class="hljs-deletion">-		cursor: pointer;</span>
+<span class="hljs-deletion">-		pointer-events: auto;</span>
+ 		.btn-next{
+ 			background: $brand-primary;
+<span class="hljs-addition">+			cursor: pointer;</span>
+<span class="hljs-addition">+			pointer-events: auto;</span>
+ 			&amp;:hover{
+ 				background: lighten(saturate(adjust-hue($brand-primary, -0.1780), 21.2405), 6.6667);
+ 			}
+<span class="hljs-chunk">@@ -253,7 +253,7 @@</span>
+ 		background: lighten(saturate(adjust-hue($base-text-color, 0.0000), 0.0000), 55.2941);
+ 	}
+ 	.handler{
+<span class="hljs-deletion">-		z-index: 2;</span>
+<span class="hljs-addition">+		z-index: 4;</span>
+ 		position: absolute;
+ 		top: -0.642857em;
+ 		width: 0.785714em;
+<span class="hljs-chunk">@@ -309,6 +309,26 @@</span>
+ 		}
+ 	}
+ }
+<span class="hljs-addition">+.ui-slider{</span>
+<span class="hljs-addition">+	&amp;+.ui-slider{</span>
+<span class="hljs-addition">+		.slider{</span>
+<span class="hljs-addition">+			padding: 0;</span>
+<span class="hljs-addition">+			&amp;:before,</span>
+<span class="hljs-addition">+			&amp;:after{</span>
+<span class="hljs-addition">+				display: none !important;</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+			.handler{</span>
+<span class="hljs-addition">+				z-index: 1 !important;</span>
+<span class="hljs-addition">+				background: none;</span>
+<span class="hljs-addition">+				border: none;</span>
+<span class="hljs-addition">+				height: auto;</span>
+<span class="hljs-addition">+				width: auto;</span>
+<span class="hljs-addition">+				padding: 9px 0 0;</span>
+<span class="hljs-addition">+				margin: 0;</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+		}</span>
+<span class="hljs-addition">+	}</span>
+<span class="hljs-addition">+}</span>
+ 
+ .tooltip{
+ 	margin: 0 0 0 0.2em;</code></pre></div></li></ul><div class="button-holder"></div></body></html>

@@ -8,7 +8,7 @@
         .directive('sidebarDrc', ['$state', sidebarDrc]);
 
     function linkFn(scope, element, attrs, ctrl) {
-        console.log("sidebar");
+        //console.log("sidebar");
 
     }
 

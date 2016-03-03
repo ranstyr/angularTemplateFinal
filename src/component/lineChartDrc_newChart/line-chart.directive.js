@@ -8,7 +8,7 @@
         .directive('lineChart', ['$state', lineChart]);
 
     function linkFn(scope, element, attrs, ctrl) {
-        console.log("lineChart link");
+        //console.log("lineChart link");
     }
 
     function lineChart($state) {

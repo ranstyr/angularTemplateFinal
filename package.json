@@ -1,0 +1,44 @@
+{
+  "name": "newsisalesdemo",
+  "version": "1.0.2",
+  "description": "SI demo for sales",
+  "main": "index.js",
+  "scripts": {
+    "start": "grunt"
+  },
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-animate": "1.4.3",
+    "angular-ui-router": "0.2.15",
+    "font-awesome": "4.4.0",
+    "jquery": "2.1.4",
+    "lodash": "^3.10.1",
+    "motion-ui": "^1.1.1",
+    "ngstorage": "^0.3.10",
+    "npm-font-open-sans": "0.0.3"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-htmlmin": "^0.4.0",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-filerev": "^2.3.1",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-usemin": "^3.0.0",
+    "gulp": "^3.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranstyr/newSIsalesDemo3.git"
+  },
+  "author": "Ran Styr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranstyr/newSIsalesDemo3/issues"
+  },
+  "homepage": "https://github.com/ranstyr/newSIsalesDemo3#readme"
+}

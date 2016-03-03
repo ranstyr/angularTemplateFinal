@@ -123,7 +123,7 @@ function initUiSlider() {
                 sliderValue = ui.value;
 
                 if (jQuery(ui.handle).parent().parent().parent()[0].id === "result-box"){
-                    console.log("result-box" + sliderValue);
+                    //console.log("result-box" + sliderValue);
                     jQuery(ui.handle).trigger("riskSliderUserChange", [sliderValue]);
                 }
                 refreshText();
@@ -270,7 +270,7 @@ function initCustomOpenClose() {
     jQuery('.tabset').find('input[type=radio]').each(function () {
         var holder = jQuery(this);
         holder.on('change', function (e) {
-            console.log(this.id);
+            //console.log(this.id);
             $('#main').trigger("sliderTextChnage", [this.id, "describe"]);
         })
     })

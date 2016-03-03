@@ -44,7 +44,7 @@
 
                     if (!(jQuery.isEmptyObject(vm.queryParams))) {
                         //printlog
-                        console.log(angular.copy(vm.queryParams));
+                        //console.log(angular.copy(vm.queryParams));
                         $rootScope.$broadcast('angularSliderTextChnage', vm.queryParams);
                     }
 

@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8">
+	<title>DiffViewer</title>
+	<style>
+		/* basic styles */
+		body {
+			font: 14px Arial, Helvetica, sans-serif;
+			margin: 0;
+		}
+		h1 {
+			margin: 15px auto;
+			text-align: center;
+		}
+		.diff-list {
+			border: 1px solid #aaa;
+			border-radius: 15px;
+			list-style: none;
+			overflow: hidden;
+			margin: 20px auto;
+			width: 80%;
+			padding: 0;
+		}
+		.diff-list li:first-child {
+			border-top: none;
+		}
+		.diff-list li {
+			border-top: 1px solid #aaa;
+			overflow: hidden;
+		}
+		.diff-list li:hover {
+			background: #fafafa;
+		}
+		.diff-list strong {
+			cursor: pointer;
+			display: block;
+			color: #00a;
+			padding: 10px;
+		}
+		.diff-list strong:before {
+			vertical-align: middle;
+			display: inline-block;
+			border: 5px solid #f00;
+			border-color: transparent transparent transparent #00a;
+			width: 0px;
+			height: 0px;
+			content: '';
+		}
+		.diff-list .warning strong {
+			color: #700;
+		}
+		.diff-list .warning strong:before {
+			border-color: transparent transparent transparent #700;
+		}
+		.diff-list .active.warning strong:before {
+			border-color: #700 transparent transparent;
+		}
+		.diff-list .active strong:before {
+			border-color: #00a transparent transparent;
+			margin: 3px 3px 0 -3px;
+		}
+		.diff-list pre {
+			display: block;
+			background: #fff;
+			padding: 0;
+			margin: 0;
+		}
+
+		/* highlighter styles */
+		.scroll-wrapper {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			background: #fff;
+			overflow: auto;
+			padding: 10px;
+			width: 100%;
+		}
+		pre {
+			min-width: 100%;
+			float: left;
+		}
+		pre code.hljs {
+			min-width: 100%;
+			font-size: 14px;
+			line-height: 18px;
+			padding: 0;
+			margin: 0;
+			float: left;
+		}
+		.hljs .hljs-header,
+		.hljs .hljs-chunk,
+		.hljs .hljs-deletion,
+		.hljs .hljs-addition {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+		}
+
+		.hljs .hljs-header { background: #ff7; }
+		.hljs .hljs-chunk { color: #77f; }
+		.hljs .hljs-deletion { background: #fbb; }
+		.hljs .hljs-addition { background: #bfb; }
+	</style>
+	
+
+	
+	<script>
+		function initCollapse() {
+			// create heading
+			if(!document.querySelector('h1')) {
+				var pageHeading = document.createElement('h1');
+				pageHeading.innerHTML = 'Changelog';
+				document.body.insertBefore(pageHeading, document.body.childNodes[0]);
+			}
+
+			// accordion handler
+			var items = document.querySelectorAll('ul.diff-list li');
+			var addClickEventHandler = function(container, opener, drop) {
+				drop.style.display = 'none';
+
+				opener.onclick = function(e) {
+					e.preventDefault();
+					if(container.classList.contains('active')) {
+						container.classList.remove('active');
+						drop.style.display = 'none';
+					} else {
+						container.classList.add('active');
+						drop.style.display = 'block';
+					}
+				};
+			};
+			for(var i = 0, item, opener, drop; i < items.length; i++) {
+				item = items[i];
+				addClickEventHandler(item, item.querySelector('strong'), item.querySelector('div.scroll-wrapper'));
+			}
+		}
+		
+		document.addEventListener('DOMContentLoaded', initCollapse, false);
+	</script>
+<style type="text/css"></style></head>
+<body><h1>Changelog</h1>
+	
+
+<ul class="diff-list"><li><strong>css/sidebar.css</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -130,7 +130,7 @@</span>
+     height: 2.5em;
+     font-size: 1em;
+     line-height: 1.642857em;
+<span class="hljs-deletion">-    padding: 0.357142em 0.714285em;</span>
+<span class="hljs-addition">+    padding: 0.357142em 0.35em;</span>
+     text-align: right;
+     background: #fff !important; }
+     @media (max-width: 639px) {
+<span class="hljs-chunk">@@ -272,13 +272,13 @@</span>
+   position: relative;
+   display: table-cell;
+   vertical-align: top;
+<span class="hljs-deletion">-  padding: 1.071428em 1.0714285em 5.714285em 1.071428em;</span>
+<span class="hljs-addition">+  padding: 1.071428em 1.0714285em 0 1.071428em;</span>
+   height: calc(100vh - 3.642857em);
+   min-height: 200px; }
+   @media (max-width: 959px) {
+     #content {
+       display: block;
+<span class="hljs-deletion">-      padding: 1.071428em;</span>
+<span class="hljs-addition">+      padding: 1.071428em 1.071428em 0;</span>
+       height: auto; } }
+ 
+ input[type=checkbox] {
+<span class="hljs-chunk">@@ -387,3 +387,16 @@</span>
+     .note {
+       width: 21em;
+       font-size: 1em; } }
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+.tabset .item .opener {</span>
+<span class="hljs-addition">+  pointer-events: none; }</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+.tabset .item.complete .opener {</span>
+<span class="hljs-addition">+  pointer-events: inherit;</span>
+<span class="hljs-addition">+  color: #000; }</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+.ui-state-disabled:before, .ui-state-disabled:after {</span>
+<span class="hljs-addition">+  background: #ccc; }</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+.ui-state-disabled + input[type=text] {</span>
+<span class="hljs-addition">+  color: #ccc; }</span></code></pre></div></li><li><strong>css/tab-module.css</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -89,9 +89,10 @@</span>
+ 
+ .tab-module .tab {
+   border: 1px solid #cccccc;
+<span class="hljs-addition">+  border-width: 1px 1px 0;</span>
+   border-radius: 0 0.166666em 0.166666em 0.166666em;
+   background: #fff;
+<span class="hljs-deletion">-  padding: 1.166666em 1.25em 2.083333em;</span>
+<span class="hljs-addition">+  padding: 1.166666em 1.25em 6em;</span>
+   font-size: 0.857142em;
+   line-height: 1.416666em; }
+   .tab-module .tab .title {</code></pre></div></li><li><strong>index.html</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -85,31 +85,31 @@</span>
+ 		&lt;main id="main"&gt;
+ 			&lt;aside id="sidebar"&gt;
+ 				&lt;strong class="title"&gt;Let’s get started:&lt;/strong&gt;
+<span class="hljs-deletion">-				&lt;div class="tabset"&gt;</span>
+<span class="hljs-addition">+				&lt;div class="tabset steps-accordion"&gt;</span>
+ 					&lt;div class="item active" data-content="step-content-1"&gt;
+ 						&lt;a href="#" class="opener"&gt;Account Goal&lt;/a&gt;
+ 						&lt;a href="#" class="edit"&gt;&lt;i class="icon-edit"&gt;&lt;/i&gt;&lt;/a&gt;
+ 						&lt;div class="slide"&gt;
+ 							&lt;div class="holder"&gt;
+ 								&lt;form action="#" class="info-form"&gt;
+<span class="hljs-deletion">-									&lt;div class="form-item"&gt;</span>
+<span class="hljs-addition">+									&lt;div class="form-item validate-row"&gt;</span>
+ 										&lt;label&gt;Age
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor. Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+ 										&lt;div class="row ui-slider"&gt;
+<span class="hljs-deletion">-											&lt;div class="slider" data-min="0" data-max="100" data-value="0" data-step="1"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider" data-min="18" data-max="70" data-value="0" data-step="1"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+ 											&lt;input type="text" class="value" value="0" disabled="disabled"&gt;
+ 										&lt;/div&gt;
+ 									&lt;/div&gt;
+<span class="hljs-deletion">-									&lt;div class="form-item"&gt;</span>
+<span class="hljs-addition">+									&lt;div class="form-item validate-row"&gt;</span>
+ 										&lt;label&gt;Target Time
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+ 										&lt;div class="row ui-slider"&gt;
+<span class="hljs-deletion">-											&lt;div class="slider" data-min="0" data-max="10" data-value="0" data-step="1"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider" data-min="1" data-max="62" data-value="0" data-step="1"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+<span class="hljs-chunk">@@ -130,12 +130,12 @@</span>
+ 						&lt;div class="slide"&gt;
+ 							&lt;div class="holder"&gt;
+ 								&lt;form action="#" class="info-form"&gt;
+<span class="hljs-deletion">-									&lt;div class="form-item"&gt;</span>
+<span class="hljs-addition">+									&lt;div class="form-item validate-row"&gt;</span>
+ 										&lt;label&gt;Initial Deposit
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+ 										&lt;div class="row ui-slider"&gt;
+<span class="hljs-deletion">-											&lt;div class="slider money-slider" data-min="0" data-max="50000" data-value="0" data-step="100" data-text="$" data-result="#money-field-1"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$" data-result="#money-field-1"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+<span class="hljs-chunk">@@ -146,8 +146,8 @@</span>
+ 										&lt;label&gt;&lt;input type="checkbox" class="value-checkbox"&gt;&lt;span class="fake-checkbox"&gt;&lt;i class="icon-check"&gt;&lt;/i&gt;&lt;/span&gt;Monthly Deposit
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+<span class="hljs-deletion">-										&lt;div class="row ui-slider"&gt;</span>
+<span class="hljs-deletion">-											&lt;div class="slider money-slider" data-disabled="true" data-min="0" data-max="3000" data-value="0" data-step="100" data-text="$" data-result="#money-field-2"&gt;</span>
+<span class="hljs-addition">+										&lt;div class="row ui-slider validate-field"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider money-slider" data-disabled="true" data-min="500" data-max="5000" data-value="0" data-step="100" data-text="$" data-result="#money-field-2"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+<span class="hljs-chunk">@@ -164,25 +164,25 @@</span>
+ 						&lt;a href="#" class="edit"&gt;&lt;i class="icon-edit"&gt;&lt;/i&gt;&lt;/a&gt;
+ 						&lt;div class="slide"&gt;
+ 							&lt;div class="holder"&gt;
+<span class="hljs-deletion">-								&lt;form action="#" class="info-form validate" data-content="step-content-3" data-result="#result-box"&gt;</span>
+<span class="hljs-deletion">-									&lt;div class="form-item"&gt;</span>
+<span class="hljs-addition">+								&lt;form action="#" class="info-form" data-content="step-content-3" data-result="#result-box"&gt;</span>
+<span class="hljs-addition">+									&lt;div class="form-item validate-row"&gt;</span>
+ 										&lt;label&gt;What is your annual income?
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+ 										&lt;div class="row ui-slider"&gt;
+<span class="hljs-deletion">-											&lt;div class="slider money-slider" data-min="0" data-max="50000" data-value="0" data-step="100" data-text="$"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider money-slider" data-min="15000" data-max="500000" data-value="0" data-step="1000" data-text="$"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+ 											&lt;input type="text" class="value" value="0" disabled="disabled"&gt;
+ 										&lt;/div&gt;
+ 									&lt;/div&gt;
+<span class="hljs-deletion">-									&lt;div class="form-item"&gt;</span>
+<span class="hljs-addition">+									&lt;div class="form-item validate-row"&gt;</span>
+ 										&lt;label&gt;What is your liquid assets net worth?
+ 											&lt;span class="tooltip"&gt;&lt;i class="icon-info"&gt;&lt;/i&gt;&lt;span class="t-slide"&gt;Lorem ipsum dolor.&lt;/span&gt;&lt;/span&gt;
+ 										&lt;/label&gt;
+ 										&lt;div class="row ui-slider"&gt;
+<span class="hljs-deletion">-											&lt;div class="slider money-slider" data-min="0" data-max="100000" data-value="0" data-step="100" data-text="$"&gt;</span>
+<span class="hljs-addition">+											&lt;div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$"&gt;</span>
+ 												&lt;div class="bar"&gt;&lt;/div&gt;
+ 												&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+ 											&lt;/div&gt;
+<span class="hljs-chunk">@@ -191,23 +191,23 @@</span>
+ 									&lt;/div&gt;
+ 									&lt;div class="form-item"&gt;
+ 										&lt;label&gt;What is your liquid assets net worth?&lt;/label&gt;
+<span class="hljs-deletion">-										&lt;div class="radio-group validate-row"&gt;</span>
+<span class="hljs-addition">+										&lt;div class="radio-group validate-row required-radio"&gt;</span>
+ 											&lt;label class="radio"&gt;
+<span class="hljs-deletion">-												&lt;input class="required" type="radio" name="name-1"&gt;</span>
+<span class="hljs-addition">+												&lt;input type="radio" name="name-1"&gt;</span>
+ 												&lt;span class="custom-radio"&gt;
+ 													&lt;i class="icon-gain"&gt;&lt;/i&gt;
+ 													&lt;span&gt;&lt;em&gt;Maximizing Gains&lt;/em&gt;&lt;/span&gt;
+ 												&lt;/span&gt;
+ 											&lt;/label&gt;
+ 											&lt;label class="radio"&gt;
+<span class="hljs-deletion">-												&lt;input class="required" type="radio" name="name-1"&gt;</span>
+<span class="hljs-addition">+												&lt;input type="radio" name="name-1"&gt;</span>
+ 												&lt;span class="custom-radio"&gt;
+ 													&lt;i class="icon-flower"&gt;&lt;/i&gt;
+ 													&lt;span&gt;&lt;em&gt;Minimizing Loss&lt;/em&gt;&lt;/span&gt;
+ 												&lt;/span&gt;
+ 											&lt;/label&gt;
+ 											&lt;label class="radio"&gt;
+<span class="hljs-deletion">-												&lt;input class="required" type="radio" name="name-1"&gt;</span>
+<span class="hljs-addition">+												&lt;input type="radio" name="name-1"&gt;</span>
+ 												&lt;span class="custom-radio"&gt;
+ 													&lt;i class="icon-libra"&gt;&lt;/i&gt;
+ 													&lt;span&gt;&lt;em&gt;Both Equally&lt;/em&gt;&lt;/span&gt;
+<span class="hljs-chunk">@@ -329,6 +329,7 @@</span>
+ 								data-value="4"
+ 								data-step="1"
+ 								data-field="#field"
+<span class="hljs-addition">+								data-change="true"</span>
+ 								data-values="1 - Very low, 2 - Low, 3- Conservative, 4 - Moderate, 5 - Medium, 6 - Mid-High, 7 - High, 8 - Very high, 9 - Very high, 10 - Very high"&gt;
+ 								&lt;div class="bar"&gt;&lt;/div&gt;
+ 								&lt;div class="handler ui-slider-handle"&gt;&lt;/div&gt;
+<span class="hljs-chunk">@@ -462,6 +463,9 @@</span>
+ 						&lt;div class="graph"&gt;
+ 							&lt;img src="images/placeholder-3.jpg" alt="image description"&gt;
+ 						&lt;/div&gt;
+<span class="hljs-addition">+						&lt;div class="save-block"&gt;</span>
+<span class="hljs-addition">+							&lt;a href="#"&gt;Save for Later&lt;/a&gt; or &lt;a href="#" class="btn"&gt;Use Suggested Portfolio &lt;i class="icon-arrow-right"&gt;&lt;/i&gt;&lt;/a&gt;</span>
+<span class="hljs-addition">+						&lt;/div&gt;</span>
+ 					&lt;/div&gt;
+ 					&lt;div class="tab" id="tab-3"&gt;
+ 						&lt;span class="title"&gt;Your asset allocation can be tested to show past behaviour&lt;/span&gt;
+<span class="hljs-chunk">@@ -469,6 +473,9 @@</span>
+ 						&lt;div class="graph"&gt;
+ 							&lt;img src="images/placeholder-2.jpg" alt="image description"&gt;
+ 						&lt;/div&gt;
+<span class="hljs-addition">+						&lt;div class="save-block"&gt;</span>
+<span class="hljs-addition">+							&lt;a href="#"&gt;Save for Later&lt;/a&gt; or &lt;a href="#" class="btn"&gt;Use Suggested Portfolio &lt;i class="icon-arrow-right"&gt;&lt;/i&gt;&lt;/a&gt;</span>
+<span class="hljs-addition">+						&lt;/div&gt;</span>
+ 					&lt;/div&gt;
+ 				&lt;/div&gt;
+ 			&lt;/div&gt;</code></pre></div></li><li><strong>scss/sidebar.scss</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -174,7 +174,7 @@</span>
+ 		height: 2.5em;
+ 		font-size: 1em;
+ 		line-height: 1.642857em;
+<span class="hljs-deletion">-		padding: 0.357142em 0.714285em;</span>
+<span class="hljs-addition">+		padding: 0.357142em 0.35em;</span>
+ 		text-align: right;
+ 		background: $white !important;
+ 		@include media('&lt;tablet'){
+<span class="hljs-chunk">@@ -340,12 +340,12 @@</span>
+ 	position: relative;
+ 	display: table-cell;
+ 	vertical-align: top;
+<span class="hljs-deletion">-	padding: 1.071428em 1.0714285em 5.714285em 1.071428em;</span>
+<span class="hljs-addition">+	padding: 1.071428em 1.0714285em 0 1.071428em;</span>
+ 	height: calc(100vh - 3.642857em);
+ 	min-height: 200px;
+ 	@include media('&lt;desktop'){
+ 		display: block;
+<span class="hljs-deletion">-		padding: 1.071428em;</span>
+<span class="hljs-addition">+		padding: 1.071428em 1.071428em 0;</span>
+ 		height: auto;
+ 	}
+ }
+<span class="hljs-chunk">@@ -465,4 +465,20 @@</span>
+ 		width: 21em;
+ 		font-size: 1em;
+ 	}
+<span class="hljs-deletion">-} </span>
+\ No newline at end of file
+<span class="hljs-addition">+}</span>
+<span class="hljs-addition">+.tabset .item .opener {</span>
+<span class="hljs-addition">+	pointer-events: none;</span>
+<span class="hljs-addition">+}</span>
+<span class="hljs-addition">+.tabset .item.complete .opener {</span>
+<span class="hljs-addition">+	pointer-events: inherit;</span>
+<span class="hljs-addition">+	color: #000;</span>
+<span class="hljs-addition">+}</span>
+<span class="hljs-addition">+.ui-state-disabled {</span>
+<span class="hljs-addition">+	&amp;:before,</span>
+<span class="hljs-addition">+	&amp;:after {</span>
+<span class="hljs-addition">+		background: #ccc;</span>
+<span class="hljs-addition">+	}</span>
+<span class="hljs-addition">+	+ input[type=text] {</span>
+<span class="hljs-addition">+		color: #ccc;</span>
+<span class="hljs-addition">+	}</span>
+<span class="hljs-addition">+}</span>
+\ No newline at end of file</code></pre></div></li><li><strong>scss/tab-module.scss</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -120,9 +120,10 @@</span>
+ 	}
+ 	.tab{
+ 		border: 1px solid lighten(saturate(adjust-hue($base-text-color, 0.0000), 0.0000), 55.2941);
+<span class="hljs-addition">+		border-width: 1px 1px 0;</span>
+ 		border-radius: 0 0.166666em 0.166666em 0.166666em;
+ 		background: $white;
+<span class="hljs-deletion">-		padding: 1.166666em 1.25em 2.083333em;</span>
+<span class="hljs-addition">+		padding: 1.166666em 1.25em 6em;</span>
+ 		font-size: 0.857142em;
+ 		line-height: 1.416666em;
+ 		.title{</code></pre></div></li><li><strong>js/jquery.main.js</strong><div class="scroll-wrapper" style="display: none;"><pre><code class="diff hljs"><span class="hljs-chunk">@@ -4,9 +4,10 @@</span>
+ 	initCustomForms();
+ 	initTouchNav();
+ 	initUiSlider();
+<span class="hljs-deletion">-	initAccordion();</span>
+ 	initCustomOpenClose();
+ 	initTooltipFix();
+<span class="hljs-addition">+	initSteps();</span>
+<span class="hljs-addition">+	initSetHeight();</span>
+ });
+ 
+ // initialize custom form elements
+<span class="hljs-chunk">@@ -60,85 +61,31 @@</span>
+ 	});
+ }
+ 
+<span class="hljs-deletion">-// accordion menu init</span>
+<span class="hljs-deletion">-function initAccordion() {</span>
+<span class="hljs-deletion">-	var tabModule = jQuery('.js-tab-module');</span>
+<span class="hljs-deletion">-	var filledClass = 'filled';</span>
+<span class="hljs-deletion">-	var disabledClass = 'disabled';</span>
+<span class="hljs-deletion">-	var noteBox = jQuery('.js-note');</span>
+<span class="hljs-addition">+// set height init</span>
+<span class="hljs-addition">+function initSetHeight() {</span>
+<span class="hljs-addition">+	var win = jQuery(window);</span>
+<span class="hljs-addition">+	var block = jQuery('#content .info-module');</span>
+<span class="hljs-addition">+	var tabset = jQuery('#content .tabset');</span>
+<span class="hljs-addition">+	var header = jQuery('.header');</span>
+ 
+<span class="hljs-deletion">-	jQuery('.tabset').slideAccordion({</span>
+<span class="hljs-deletion">-		opener: 'a.edit',</span>
+<span class="hljs-deletion">-		slider: '&gt;.slide',</span>
+<span class="hljs-deletion">-		animSpeed: 300,</span>
+<span class="hljs-deletion">-		onInit: function(self) {</span>
+<span class="hljs-deletion">-			var btnsNext = self.holder.find('.btn-next');</span>
+<span class="hljs-addition">+	jQuery('.tab-module .tab').each(function() {</span>
+<span class="hljs-addition">+		var tab = jQuery(this);</span>
+<span class="hljs-addition">+		var winHeight;</span>
+ 
+<span class="hljs-deletion">-			btnsNext.on('click', function(e) {</span>
+<span class="hljs-deletion">-				e.preventDefault();</span>
+<span class="hljs-deletion">-				var item = jQuery(this).closest('.item');</span>
+<span class="hljs-deletion">-				var nextItem = item.next();</span>
+<span class="hljs-addition">+		function resizeHandler() {</span>
+<span class="hljs-addition">+			winHeight = getWindowHeight();</span>
+ 
+<span class="hljs-deletion">-				self.hideSlides();</span>
+<span class="hljs-deletion">-				self.showItem(nextItem);</span>
+<span class="hljs-addition">+			tab.css({</span>
+<span class="hljs-addition">+				minHeight: winHeight - block.outerHeight() - tabset.outerHeight() - header.outerHeight() - 23</span>
+ 			});
+<span class="hljs-deletion">-		},</span>
+<span class="hljs-deletion">-		onShow: function(self, slide) {</span>
+<span class="hljs-deletion">-			var item = slide.closest('.item');</span>
+<span class="hljs-deletion">-			self.items.removeClass(filledClass);</span>
+<span class="hljs-deletion">-			item.prevAll().addClass(filledClass);</span>
+<span class="hljs-addition">+		}</span>
+ 
+<span class="hljs-deletion">-			if (self.items.index(item) &gt;= 3) tabModule.removeClass(disabledClass);</span>
+<span class="hljs-deletion">-			else tabModule.addClass(disabledClass);</span>
+<span class="hljs-deletion">-			if (self.items.index(item) &gt;= 2) noteBox.hide();</span>
+<span class="hljs-deletion">-			else noteBox.show();</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-			self.items.each(function() {</span>
+<span class="hljs-deletion">-				var currItem = jQuery(this);</span>
+<span class="hljs-deletion">-				var dataContent = currItem.data('content');</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-				if (dataContent &amp;&amp; currItem.hasClass(filledClass)) {</span>
+<span class="hljs-deletion">-					jQuery('[data-id=' + dataContent + ']').show();</span>
+<span class="hljs-deletion">-				} else {</span>
+<span class="hljs-deletion">-					jQuery('[data-id=' + dataContent + ']').hide();</span>
+<span class="hljs-deletion">-				}</span>
+<span class="hljs-deletion">-			});</span>
+<span class="hljs-deletion">-		}</span>
+<span class="hljs-addition">+		win.on('load resize orientationchange refreshTabs', resizeHandler);</span>
+ 	});
+<span class="hljs-deletion">-}</span>
+ 
+<span class="hljs-deletion">-// custom open close init</span>
+<span class="hljs-deletion">-function initCustomOpenClose() {</span>
+<span class="hljs-deletion">-	jQuery('.js-open-close').each(function() {</span>
+<span class="hljs-deletion">-		var holder = jQuery(this);</span>
+<span class="hljs-deletion">-		var opener = holder.find('.form-item :checkbox');</span>
+<span class="hljs-deletion">-		var slide = holder.find('.radio-group').hide();</span>
+<span class="hljs-deletion">-		var checkboxes = slide.find(':checkbox');</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-		opener.on('change', function() {</span>
+<span class="hljs-deletion">-			var checkbox = jQuery(this);</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-			if (checkbox.prop('checked') === false) {</span>
+<span class="hljs-deletion">-				slide.slideDown();</span>
+<span class="hljs-deletion">-			} else {</span>
+<span class="hljs-deletion">-				slide.slideUp();</span>
+<span class="hljs-deletion">-			}</span>
+<span class="hljs-deletion">-		});</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-		checkboxes.on('change', function(e) {</span>
+<span class="hljs-deletion">-			var activeNum = 0;</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-			checkboxes.each(function() {</span>
+<span class="hljs-deletion">-				if (jQuery(this).prop('checked') === true) {</span>
+<span class="hljs-deletion">-					activeNum++;</span>
+<span class="hljs-deletion">-				}</span>
+<span class="hljs-deletion">-			});</span>
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-			if (activeNum &gt; 3) {</span>
+<span class="hljs-deletion">-				jQuery(this).prop('checked', false);</span>
+<span class="hljs-deletion">-			}</span>
+<span class="hljs-deletion">-		});</span>
+<span class="hljs-deletion">-	});</span>
+<span class="hljs-addition">+	function getWindowHeight() {</span>
+<span class="hljs-addition">+		return typeof window.innerHeight === 'number' ? window.innerHeight : document.documentElement.clientHeight;</span>
+<span class="hljs-addition">+	}</span>
+ }
+ 
+ // ui slider init
+<span class="hljs-chunk">@@ -169,24 +116,28 @@</span>
+ 				sliderValue = ui.value;
+ 				refreshText();
+ 			},
+<span class="hljs-deletion">-			change:function(event, ui) {</span>
+<span class="hljs-addition">+			change: function(event, ui) {</span>
+ 				sliderValue = ui.value;
+ 				refreshText();
+<span class="hljs-addition">+</span>
+ 				jQuery(window).trigger('validateForm');
+ 			}
+ 		});
+ 
+<span class="hljs-deletion">-		function refreshText() {</span>
+<span class="hljs-addition">+		function refreshText(flag) {</span>
+<span class="hljs-addition">+			if (flag) {</span>
+<span class="hljs-addition">+				sliderValue = 0;</span>
+<span class="hljs-addition">+			}</span>
+ 			slider.attr('data-curr-value', sliderValue);
+ 			if (slider.hasClass('money-slider')) {
+<span class="hljs-deletion">-				var value = (sliderText ? sliderText : '') + formatToMoney(Math.max(sliderValue, sliderMin), ',');</span>
+<span class="hljs-addition">+				var value = (sliderText ? sliderText : '') + formatToMoney(sliderValue, ',');</span>
+ 				valueField.val(value);
+ 
+ 				if (resultField.length) {
+ 					resultField.text(value);
+ 				}
+ 			} else {
+<span class="hljs-deletion">-				valueField.val(Math.max(sliderValue, sliderMin) + (sliderText ? (' ' + sliderText) : ''));</span>
+<span class="hljs-addition">+				valueField.val(sliderValue + (sliderText ? (' ' + sliderText) : ''));</span>
+ 			}
+ 
+ 			if (tooltip.length &amp;&amp; values) {
+<span class="hljs-chunk">@@ -206,15 +157,20 @@</span>
+ 			}
+ 		}
+ 
+<span class="hljs-deletion">-		refreshText();</span>
+<span class="hljs-addition">+		refreshText(slider.attr('data-change') ? false : true);</span>
+ 	});
+ 
+<span class="hljs-addition">+	function formatToMoney(number, sep) {</span>
+<span class="hljs-addition">+		return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, sep);</span>
+<span class="hljs-addition">+	}</span>
+<span class="hljs-addition">+</span>
+ 	jQuery('.check-holder').each(function() {
+ 		var holder = jQuery(this);
+ 		var checkbox = holder.find('.value-checkbox');
+ 		var slider = holder.find('.slider');
+ 		var resultField = jQuery(slider.data('result'));
+ 		var parent = resultField.closest('.field-value');
+<span class="hljs-addition">+		var row = holder.find('.validate-field');</span>
+ 
+ 		if (parent.length) parent.hide();
+ 
+<span class="hljs-chunk">@@ -224,6 +180,8 @@</span>
+ 					disabled: false
+ 				});
+ 
+<span class="hljs-addition">+				row.addClass('validate-row');</span>
+<span class="hljs-addition">+</span>
+ 				if (parent.length) parent.show();
+ 			} else {
+ 				slider.slider({
+<span class="hljs-chunk">@@ -232,80 +190,152 @@</span>
+ 				}).trigger('slidechange');
+ 
+ 				if (parent.length) parent.hide();
+<span class="hljs-addition">+				row.removeClass('validate-row');</span>
+ 			}
+ 		});
+ 	});
+<span class="hljs-addition">+}</span>
+ 
+<span class="hljs-deletion">-	function formatToMoney(number, sep) {</span>
+<span class="hljs-deletion">-		return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, sep);</span>
+<span class="hljs-deletion">-	}</span>
+<span class="hljs-addition">+// custom open close init</span>
+<span class="hljs-addition">+function initCustomOpenClose() {</span>
+<span class="hljs-addition">+	jQuery('.js-open-close').each(function() {</span>
+<span class="hljs-addition">+		var holder = jQuery(this);</span>
+<span class="hljs-addition">+		var opener = holder.find('.form-item :checkbox');</span>
+<span class="hljs-addition">+		var slide = holder.find('.radio-group').hide();</span>
+<span class="hljs-addition">+		var checkboxes = slide.find(':checkbox');</span>
+ 
+<span class="hljs-deletion">-	jQuery('.validate').each(function() {</span>
+<span class="hljs-deletion">-		var form = jQuery(this);</span>
+<span class="hljs-deletion">-		var sliders = form.find('.ui-slider');</span>
+<span class="hljs-deletion">-		var inputs = form.find('input.required');</span>
+<span class="hljs-deletion">-		var dataContent = form.data('content');</span>
+<span class="hljs-deletion">-		var resultBox = jQuery(form.data('result')).hide();</span>
+<span class="hljs-deletion">-		var successFlag = true;</span>
+<span class="hljs-addition">+		opener.on('change', function() {</span>
+<span class="hljs-addition">+			var checkbox = jQuery(this);</span>
+ 
+<span class="hljs-deletion">-		function validateForm() {</span>
+<span class="hljs-deletion">-			successFlag = true;</span>
+<span class="hljs-addition">+			if (checkbox.prop('checked') === false) {</span>
+<span class="hljs-addition">+				slide.slideDown();</span>
+<span class="hljs-addition">+			} else {</span>
+<span class="hljs-addition">+				slide.slideUp();</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+		});</span>
+ 
+<span class="hljs-deletion">-			inputs.each(checkField);</span>
+<span class="hljs-deletion">-			sliders.each(checkSlider);</span>
+<span class="hljs-addition">+		checkboxes.on('change', function(e) {</span>
+<span class="hljs-addition">+			var activeNum = 0;</span>
+ 
+<span class="hljs-deletion">-			if (successFlag) {</span>
+<span class="hljs-deletion">-				jQuery('[data-id=' + dataContent + ']').show();</span>
+<span class="hljs-deletion">-				resultBox.show();</span>
+<span class="hljs-deletion">-			} else {</span>
+<span class="hljs-deletion">-				jQuery('[data-id=' + dataContent + ']').hide();</span>
+<span class="hljs-deletion">-				resultBox.hide();</span>
+<span class="hljs-addition">+			checkboxes.each(function() {</span>
+<span class="hljs-addition">+				if (jQuery(this).prop('checked') === true) {</span>
+<span class="hljs-addition">+					activeNum++;</span>
+<span class="hljs-addition">+				}</span>
+<span class="hljs-addition">+			});</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			if (activeNum &gt; 3) {</span>
+<span class="hljs-addition">+				jQuery(this).prop('checked', false);</span>
+ 			}
+<span class="hljs-deletion">-		}</span>
+<span class="hljs-addition">+		});</span>
+<span class="hljs-addition">+	});</span>
+<span class="hljs-addition">+}</span>
+ 
+<span class="hljs-deletion">-		function checkField(i, obj) {</span>
+<span class="hljs-deletion">-			var currentParent = jQuery(obj).closest('.validate-row');</span>
+<span class="hljs-addition">+// steps init</span>
+<span class="hljs-addition">+function initSteps() {</span>
+<span class="hljs-addition">+	var tabModule = jQuery('.js-tab-module');</span>
+<span class="hljs-addition">+	var noteBox = jQuery('.js-note');</span>
+ 
+<span class="hljs-deletion">-			setState(!currentParent.find(':radio:checked').length);</span>
+<span class="hljs-deletion">-		}</span>
+<span class="hljs-addition">+	jQuery('.steps-accordion').steps({</span>
+<span class="hljs-addition">+		opener: 'a.opener, a.edit',</span>
+<span class="hljs-addition">+		slider: '&gt;.slide',</span>
+<span class="hljs-addition">+		filledClass: 'filled',</span>
+<span class="hljs-addition">+		animSpeed: 300,</span>
+<span class="hljs-addition">+		onInit: function(self) {</span>
+<span class="hljs-addition">+			self.stepsBehaviour = {</span>
+<span class="hljs-addition">+				step0: {</span>
+<span class="hljs-addition">+					init: function(block) {}</span>
+<span class="hljs-addition">+				},</span>
+<span class="hljs-addition">+				step1: {</span>
+<span class="hljs-addition">+					init: function(block) {</span>
+<span class="hljs-addition">+						var inputs = block.find(self.options.validateRow).find('input:radio, input:checkbox');</span>
+<span class="hljs-addition">+						var sliders = block.find(self.options.validateRow + ' .ui-slider');</span>
+<span class="hljs-addition">+						var section = jQuery('[data-id=' + block.find('form').data('content') + ']');</span>
+ 
+<span class="hljs-deletion">-		function checkSlider(i, obj) {</span>
+<span class="hljs-deletion">-			var currValue = jQuery(obj).attr('data-curr-value');</span>
+<span class="hljs-addition">+						inputs.on('change', function() {</span>
+<span class="hljs-addition">+							jQuery(window).trigger('validateForm');</span>
+<span class="hljs-addition">+						});</span>
+ 
+<span class="hljs-deletion">-			if (currValue) {</span>
+<span class="hljs-deletion">-				setState(+currValue === 0);</span>
+<span class="hljs-addition">+						jQuery(window).on('validateForm', function() {</span>
+<span class="hljs-addition">+							self.validateForm(inputs, sliders);</span>
+<span class="hljs-addition">+							if (self.holder.data('successFlag') === true) {</span>
+<span class="hljs-addition">+								section.show();</span>
+<span class="hljs-addition">+							}</span>
+<span class="hljs-addition">+						});</span>
+<span class="hljs-addition">+					}</span>
+<span class="hljs-addition">+				},</span>
+<span class="hljs-addition">+				step2: {</span>
+<span class="hljs-addition">+					init: function(block) {</span>
+<span class="hljs-addition">+						block.addClass(self.options.completeClass);</span>
+<span class="hljs-addition">+					}</span>
+<span class="hljs-addition">+				}</span>
+<span class="hljs-addition">+			};</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			self.stepsBehaviour.step0.init(self.sliders.eq(0));</span>
+<span class="hljs-addition">+		},</span>
+<span class="hljs-addition">+		onShow: function(self, slide) {</span>
+<span class="hljs-addition">+			var item = slide.closest('.item');</span>
+<span class="hljs-addition">+			self.items.removeClass(self.options.filledClass);</span>
+<span class="hljs-addition">+			item.prevAll().addClass(self.options.filledClass);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			if (self.items.index(item) &gt;= 3) {</span>
+<span class="hljs-addition">+				tabModule.removeClass(self.options.disabledClass);</span>
+ 			}
+<span class="hljs-deletion">-		}</span>
+ 
+<span class="hljs-deletion">-		function setState(error) {</span>
+<span class="hljs-deletion">-			if (error) {</span>
+<span class="hljs-deletion">-				successFlag = false;</span>
+<span class="hljs-addition">+			if (self.items.index(item) &gt;= 2) {</span>
+<span class="hljs-addition">+				noteBox.hide();</span>
+<span class="hljs-addition">+			} else {</span>
+<span class="hljs-addition">+				noteBox.show();</span>
+ 			}
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			self.items.each(function() {</span>
+<span class="hljs-addition">+				var currItem = jQuery(this);</span>
+<span class="hljs-addition">+				var dataContent = currItem.data('content');</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+				if (dataContent &amp;&amp; currItem.hasClass(self.options.filledClass)) {</span>
+<span class="hljs-addition">+					jQuery('[data-id=' + dataContent + ']').show();</span>
+<span class="hljs-addition">+				} else {</span>
+<span class="hljs-addition">+					if (!currItem.hasClass(self.options.completeClass)) {</span>
+<span class="hljs-addition">+						jQuery('[data-id=' + dataContent + ']').hide();</span>
+<span class="hljs-addition">+					}</span>
+<span class="hljs-addition">+				}</span>
+<span class="hljs-addition">+			});</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			if (self.stepsBehaviour['step' + self.currentStep]) {</span>
+<span class="hljs-addition">+				self.stepsBehaviour['step' + self.currentStep].init(slide.closest('.item'));</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			setTimeout(function() {</span>
+<span class="hljs-addition">+				jQuery(window).trigger('refreshTabs');</span>
+<span class="hljs-addition">+			}, 10);</span>
+ 		}
+<span class="hljs-deletion">-</span>
+<span class="hljs-deletion">-		inputs.on('change', validateForm);</span>
+<span class="hljs-deletion">-		jQuery(window).on('validateForm', validateForm);</span>
+ 	});
+ }
+ 
+ /*
+<span class="hljs-deletion">- * jQuery Accordion plugin</span>
+<span class="hljs-addition">+ * jQuery Steps plugin</span>
+  */
+ ;(function($) {
+<span class="hljs-deletion">-	function SlideAccordion(options) {</span>
+<span class="hljs-addition">+	function Steps(options) {</span>
+ 		this.options = $.extend({
+ 			holder: null,
+ 			addClassBeforeAnimation: false,
+<span class="hljs-deletion">-			activeClass: 'active',</span>
+ 			opener: '.opener',
+ 			slider: '.slide',
+<span class="hljs-deletion">-			animSpeed: 300,</span>
+<span class="hljs-deletion">-			collapsible: false,</span>
+<span class="hljs-deletion">-			event: 'click'</span>
+<span class="hljs-addition">+			btnNext: '.btn-next',</span>
+<span class="hljs-addition">+			activeClass: 'active',</span>
+<span class="hljs-addition">+			validateRow: '.validate-row',</span>
+<span class="hljs-addition">+			errorClass: 'error',</span>
+<span class="hljs-addition">+			errorStepClass: 'error-step',</span>
+<span class="hljs-addition">+			successClass: 'success',</span>
+<span class="hljs-addition">+			completeClass: 'complete',</span>
+<span class="hljs-addition">+			disabledClass: 'disabled',</span>
+<span class="hljs-addition">+			requiredCheckboxClass: 'required-checkbox',</span>
+<span class="hljs-addition">+			requiredRadioClass: 'required-radio',</span>
+<span class="hljs-addition">+			animSpeed: 300</span>
+ 		}, options);
+ 		this.init();
+ 	}
+<span class="hljs-deletion">-	SlideAccordion.prototype = {</span>
+<span class="hljs-addition">+	Steps.prototype = {</span>
+ 		init: function() {
+ 			this.findElements();
+ 			this.attachEvents();
+<span class="hljs-chunk">@@ -316,8 +346,8 @@</span>
+ 			this.items = this.holder.children(':has(' + this.options.slider + ')');
+ 			this.openers = this.items.children(this.options.opener);
+ 			this.sliders = this.items.find(this.options.slider);
+<span class="hljs-addition">+			this.currentStep = 0;</span>
+ 
+<span class="hljs-deletion">-</span>
+ 			// set initial styles
+ 			this.sliders.hide();
+ 			this.items.filter('.' + this.options.activeClass).find(this.options.slider).show();
+<span class="hljs-chunk">@@ -325,22 +355,64 @@</span>
+ 		attachEvents: function() {
+ 			var self = this;
+ 
+<span class="hljs-deletion">-			this.eventHandler = function(e) {</span>
+<span class="hljs-deletion">-				e.preventDefault();</span>
+<span class="hljs-addition">+			this.items.each(function() {</span>
+<span class="hljs-addition">+				var item = $(this);</span>
+<span class="hljs-addition">+				var btnsNext = item.find(self.options.btnNext);</span>
+<span class="hljs-addition">+				var form = item.find('form');</span>
+<span class="hljs-addition">+				var resultBox = $(form.data('result'));</span>
+<span class="hljs-addition">+				var dataContent = form.data('content');</span>
+ 
+<span class="hljs-deletion">-				var item = $(this).closest(':has(' + self.options.slider + ')');</span>
+<span class="hljs-deletion">-				if (!self.sliders.is(':animated')) {</span>
+<span class="hljs-deletion">-					if (item.hasClass(self.options.activeClass)) {</span>
+<span class="hljs-deletion">-						if (self.options.collapsible) {</span>
+<span class="hljs-addition">+				if (resultBox.length) resultBox.hide();</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+				btnsNext.on('click', function(e) {</span>
+<span class="hljs-addition">+					e.preventDefault();</span>
+<span class="hljs-addition">+					var nextItem = item.next();</span>
+<span class="hljs-addition">+					var inputs = item.find(self.options.validateRow).find('input:radio, input:checkbox');</span>
+<span class="hljs-addition">+					var sliders = item.find(self.options.validateRow + ' .ui-slider');</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+					self.validateForm(inputs, sliders);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+					if (self.holder.data('successFlag') === true) {</span>
+<span class="hljs-addition">+						self.holder.removeClass(self.options.errorStepClass);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+						if (self.currentStep &lt; self.sliders.length - 1) {</span>
+ 							self.hideSlides();
+<span class="hljs-addition">+							self.showItem(nextItem);</span>
+<span class="hljs-addition">+							item.addClass(self.options.completeClass);</span>
+<span class="hljs-addition">+							self.currentStep++;</span>
+ 						}
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+						if (dataContent) {</span>
+<span class="hljs-addition">+							$('[data-id=' + dataContent + ']').show();</span>
+<span class="hljs-addition">+						}</span>
+<span class="hljs-addition">+						if (resultBox.length) {</span>
+<span class="hljs-addition">+							resultBox.show();</span>
+<span class="hljs-addition">+						}</span>
+ 					} else {
+<span class="hljs-deletion">-						self.showSlide(item);</span>
+<span class="hljs-addition">+						self.holder.addClass(self.options.errorStepClass);</span>
+<span class="hljs-addition">+						item.removeClass(self.options.completeClass);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+						if (dataContent) {</span>
+<span class="hljs-addition">+							$('[data-id=' + dataContent + ']').hide();</span>
+<span class="hljs-addition">+						}</span>
+<span class="hljs-addition">+						if (resultBox.length) {</span>
+<span class="hljs-addition">+							resultBox.hide();</span>
+<span class="hljs-addition">+						}</span>
+ 					}
+<span class="hljs-addition">+				});</span>
+<span class="hljs-addition">+			});</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			this.eventHandler = function(e) {</span>
+<span class="hljs-addition">+				e.preventDefault();</span>
+<span class="hljs-addition">+				var item = $(this).closest(':has(' + self.options.slider + ')');</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+				if (!self.sliders.is(':animated') &amp;&amp; !item.hasClass(self.options.activeClass)) {</span>
+<span class="hljs-addition">+					self.showSlide(item);</span>
+<span class="hljs-addition">+					self.currentStep = self.items.index(item);</span>
+ 				}
+ 			};
+ 
+<span class="hljs-deletion">-			this.openers.on(this.options.event, this.eventHandler);</span>
+<span class="hljs-addition">+			this.openers.on('click', this.eventHandler);</span>
+ 		},
+ 		showSlide: function(slideHolder) {
+ 			var slide = slideHolder.find(this.options.slider);
+<span class="hljs-chunk">@@ -364,6 +436,53 @@</span>
+ 			this.sliders.slideUp(this.options.animSpeed);
+ 			this.makeCallback('onHide', this);
+ 		},
+<span class="hljs-addition">+		validateForm: function(inputs, sliders) {</span>
+<span class="hljs-addition">+			var self = this;</span>
+<span class="hljs-addition">+			this.holder.data('successFlag', true);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			inputs.each(function(i, obj) {</span>
+<span class="hljs-addition">+				self.checkField(i, obj);</span>
+<span class="hljs-addition">+			});</span>
+<span class="hljs-addition">+			sliders.each(function(i, obj) {</span>
+<span class="hljs-addition">+				self.checkSlider(i, obj);</span>
+<span class="hljs-addition">+			});</span>
+<span class="hljs-addition">+		},</span>
+<span class="hljs-addition">+		checkField: function(i, obj) {</span>
+<span class="hljs-addition">+			var self = this;</span>
+<span class="hljs-addition">+			var currentObject = $(obj);</span>
+<span class="hljs-addition">+			var currentParent = currentObject.closest(this.options.validateRow);</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			if (currentParent.hasClass(this.options.requiredCheckboxClass)) {</span>
+<span class="hljs-addition">+				self.setState(currentParent, currentObject, !currentParent.find(':checkbox:checked').length);</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+			if (currentParent.hasClass(this.options.requiredRadioClass)) {</span>
+<span class="hljs-addition">+				self.setState(currentParent, currentObject, !currentParent.find(':radio:checked').length);</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+		},</span>
+<span class="hljs-addition">+		checkSlider: function(i, obj) {</span>
+<span class="hljs-addition">+			var self = this;</span>
+<span class="hljs-addition">+			var currentObject = $(obj);</span>
+<span class="hljs-addition">+			var currentParent = currentObject.closest(this.options.validateRow);</span>
+<span class="hljs-addition">+			var currValue = currentObject.attr('data-curr-value');</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			if (currValue) {</span>
+<span class="hljs-addition">+				self.setState(currentParent, currentObject, +currValue === 0);</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+		},</span>
+<span class="hljs-addition">+		setState: function(hold, field, error) {</span>
+<span class="hljs-addition">+			var self = this;</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+			hold.removeClass(self.options.errorClass).removeClass(self.options.successClass);</span>
+<span class="hljs-addition">+			if (error) {</span>
+<span class="hljs-addition">+				hold.addClass(self.options.errorClass);</span>
+<span class="hljs-addition">+				field.one('focus', function() {</span>
+<span class="hljs-addition">+					hold.removeClass(self.options.errorClass).removeClass(self.options.successClass);</span>
+<span class="hljs-addition">+				});</span>
+<span class="hljs-addition">+				self.holder.data('successFlag', false);</span>
+<span class="hljs-addition">+			} else {</span>
+<span class="hljs-addition">+				hold.addClass(self.options.successClass);</span>
+<span class="hljs-addition">+			}</span>
+<span class="hljs-addition">+		},</span>
+ 		makeCallback: function(name) {
+ 			if (typeof this.options[name] === 'function') {
+ 				var args = Array.prototype.slice.call(arguments, 1);
+<span class="hljs-chunk">@@ -372,19 +491,19 @@</span>
+ 		},
+ 		destroy: function() {
+ 			this.items.removeClass(this.options.activeClass);
+<span class="hljs-deletion">-			this.openers.off(this.options.event, this.eventHandler);</span>
+<span class="hljs-addition">+			this.openers.off('click', this.eventHandler);</span>
+ 			this.sliders.css({
+ 				display: ''
+ 			});
+<span class="hljs-deletion">-			this.holder.removeData('SlideAccordion');</span>
+<span class="hljs-addition">+			this.holder.removeData('Steps');</span>
+ 		}
+ 	};
+ 
+<span class="hljs-deletion">-	$.fn.slideAccordion = function(options) {</span>
+<span class="hljs-addition">+	$.fn.steps = function(options) {</span>
+ 		return this.each(function() {
+ 			var elem = $(this);
+<span class="hljs-deletion">-			if (!elem.data('SlideAccordion')) {</span>
+<span class="hljs-deletion">-				elem.data('SlideAccordion', new SlideAccordion($.extend(options, {</span>
+<span class="hljs-addition">+			if (!elem.data('Steps')) {</span>
+<span class="hljs-addition">+				elem.data('Steps', new Steps($.extend(options, {</span>
+ 					holder: elem
+ 				})));
+ 			}
+<span class="hljs-chunk">@@ -494,6 +613,7 @@</span>
+ 				this.resizeHolder($prevTab.outerHeight());
+ 			}
+ 
+<span class="hljs-addition">+</span>
+ 			setTimeout(function() {
+ 				self.getClassTarget($prevLink).removeClass(self.options.activeClass);</code></pre></div></li></ul><div class="button-holder"></div></body></html>

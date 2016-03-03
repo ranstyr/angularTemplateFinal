@@ -67,7 +67,7 @@
         var calculatePortfolioRisk;
 
         $(window).on('riskSliderUserChange', function (event , risk) {
-            console.log ("value / label" + risk);
+            //console.log ("value / label" + risk);
             getPortfoliofromRisk(risk)
 
         });
@@ -137,7 +137,6 @@
 */
                 $http.get(url).then(success , failed );
 
-
                 function success(response) {
 
                     var data = {};
@@ -147,10 +146,8 @@
                         $localStorage.attributes = data;
 
                         BEData = data;
-                        calculateBarData();
-                        calculateLineData();
-                        calculateLevel3Pie();
-                        calculateLevel4Pie();
+
+                        CalculateAllResult();
                         deferred.resolve(data);
 
                         $rootScope.$broadcast('angularDataChanged', queryParametres);
@@ -233,10 +230,7 @@
                         $localStorage.attributes = data;
 
                         BEData = data;
-                        calculateBarData();
-                        calculateLineData();
-                        calculateLevel3Pie();
-                        calculateLevel4Pie();
+                        CalculateAllResult();
                         deferred.resolve(data);
 
                         $rootScope.$broadcast('angularDataChanged', queryParams);
@@ -284,10 +278,7 @@
                     $localStorage.attributes = data;
 
                     BEData = data;
-                    calculateBarData();
-                    calculateLineData();
-                    calculateLevel3Pie();
-                    calculateLevel4Pie();
+                    CalculateAllResult();
                     deferred.resolve(data);
 
                     $rootScope.$broadcast('angularDataChanged', queryParametres);
@@ -409,7 +400,7 @@
                     valueArray.push(currentValue.revenues);
                 })
 
-                console.log("valueArray =  " + valueArray);
+                //console.log("valueArray =  " + valueArray);
 
                 valueArray.sort(function (a, b) {
                     return a - b;
@@ -446,7 +437,7 @@
                 }
                 $localStorage.barChartRevenuesData = valueArray;
                 barChartRevenuesData = valueArray;
-                console.log("barChartRevenuesData = " , valueArray);
+                //console.log("barChartRevenuesData = " , valueArray);
                 return valueArray;
             }
 
@@ -598,12 +589,12 @@
 
         function calculateFinalFactor() {
             //return data factor according to matrix
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+/*            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log("final factor" , matrix[matrixFirstParams][matrixSecondParams]);
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");*/
 
             return matrix[matrixFirstParams][matrixSecondParams];
         }
@@ -642,7 +633,7 @@
             }
 
             timeFactor = Math.min(CalculatedAge, CalculatedTargetTime);
-            console.log('timeFactor = ' + timeFactor);
+            //console.log('timeFactor = ' + timeFactor);
 
         }
 
@@ -713,7 +704,7 @@
                         break;
                 }
             }
-            console.log('matrixSecondParams = ' + matrixSecondParams);
+            //console.log('matrixSecondParams = ' + matrixSecondParams);
         }
 
         function calculateMatrixFirstParams() {
@@ -741,8 +732,21 @@
                 CalculatedAge = 9;
                 console.log("!!!!!!!!!!!!!!!!error at calculateMatrixFirstParams!!!!!!!!!!!");
             };
-            console.log('matrixFirstParams = ' + matrixFirstParams);
+           // console.log('matrixFirstParams = ' + matrixFirstParams);
 
+        }
+
+        function parseJSONdata(){
+
+        }
+
+        function CalculateAllResult()
+        {
+
+            calculateBarData();
+            calculateLineData();
+            calculateLevel3Pie();
+            calculateLevel4Pie();
         }
 
     }

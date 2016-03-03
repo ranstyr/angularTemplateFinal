@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SmartInvestor.com</title>
+	<link media="all" rel="stylesheet" href="css/header.css">
+	<link media="all" rel="stylesheet" href="css/info-module.css">
+	<link media="all" rel="stylesheet" href="css/sidebar.css">
+	<link media="all" rel="stylesheet" href="css/tab-module.css">
+</head>
+<body>
+	<div id="wrapper">
+		<header class="header">
+			<a href="#" class="logo"><span class="visual"><img src="images/logo.svg" alt="Smart Investor"></span> Smart Investor</a>
+			<div class="right">
+				<form action="#" class="lang-form">
+					<select class="lang">
+						<option data-image="images/flag-1.svg">1</option>
+						<option data-image="images/flag-1.svg">2</option>
+						<option data-image="images/flag-1.svg">3</option>
+					</select>
+				</form>
+				<a href="#" class="link">Sign in</a>
+			</div>
+		</header>
+		<header class="header" style="position:absolute;top:-9999px;">
+			<a href="#" class="logo"><span class="visual"><img src="images/logo.svg" alt="Smart Investor"></span> Smart Investor</a>
+			<div class="right">
+				<form action="#" class="lang-form">
+					<select class="lang">
+						<option data-image="images/flag-1.svg">1</option>
+						<option data-image="images/flag-1.svg">2</option>
+						<option data-image="images/flag-1.svg">3</option>
+					</select>
+				</form>
+				<div class="dropdown">
+					<a href="#" class="opener"><i class="icon-bell"></i></a>
+					<div class="drop">
+						<div class="drop-holder">
+							<strong class="title">Notifications</strong>
+							<div class="message">
+								<i class="ico icon-lamp"></i>
+								<a href="#" class="close"><i class="icon-close"></i></a>
+								<strong class="heading">Advisory Tip</strong>
+								<p>There has been a pitfall in the food sector last quarter, perhaps you would like to readjust your portfolio to a more profiting sector?</p>
+								<span class="time"><i class="icon-clock"></i> 03.01.2016</span>
+							</div>
+							<div class="message">
+								<i class="ico icon-christmas"></i>
+								<a href="#" class="close"><i class="icon-close"></i></a>
+								<strong class="heading">Merry Christmas</strong>
+								<p>Holiday blessings and a happy new year!</p>
+								<span class="time"><i class="icon-clock"></i> 24.12.2015</span>
+							</div>
+							<div class="message">
+								<i class="ico icon-libra"></i>
+								<a href="#" class="close"><i class="icon-close"></i></a>
+								<strong class="heading">Rebalancing Success</strong>
+								<p>Your portfolio has been rebalanced for the new quarter.</p>
+								<span class="time"><i class="icon-clock"></i> 05.10.2015</span>
+							</div>
+							<div class="line">
+								<a href="#" class="left">See All</a>
+								<a href="#" class="right">Mark All as Read</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown menu">
+					<a href="#" class="opener">Hello <span>Eric Marsh</span></a>
+					<div class="drop">
+						<div class="drop-holder">
+							<ul>
+								<li><a href="#"><i class="icon-gear"></i> Account Settings</a></li>
+								<li><a href="#"><i class="icon-help"></i> Help &amp; Support</a></li>
+								<li><a href="#"><i class="icon-doc"></i> Disclaimer</a></li>
+								<li><a href="#"><i class="icon-switch"></i> Sign Out</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main id="main">
+			<aside id="sidebar">
+				<strong class="title">Let’s get started:</strong>
+				<div class="tabset steps-accordion">
+					<div class="item active" data-content="step-content-1">
+						<a href="#" class="opener">Account Goal</a>
+						<a href="#" class="edit"><i class="icon-edit"></i></a>
+						<div class="slide">
+							<div class="holder">
+								<form action="#" class="info-form">
+									<div class="form-item validate-row">
+										<label>Age
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor. Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider">
+											<div class="slider" data-min="18" data-max="70" data-value="0" data-step="1">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<input type="text" class="value" value="0" disabled="disabled">
+										</div>
+									</div>
+									<div class="form-item validate-row">
+										<label>Target Time
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider">
+											<div class="slider" data-min="1" data-max="62" data-value="0" data-step="1">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<label class="years">
+												<input type="text" class="value" value="0" disabled="disabled">
+												<span>years</span>
+											</label>
+										</div>
+									</div>
+								</form>
+								<a href="#" class="btn-next">Next Step ›</a>
+							</div>
+						</div>
+					</div>
+					<div class="item" data-content="step-content-2">
+						<a href="#" class="opener">Deposits</a>
+						<a href="#" class="edit"><i class="icon-edit"></i></a>
+						<div class="slide">
+							<div class="holder">
+								<form action="#" class="info-form">
+									<div class="form-item validate-row">
+										<label>Initial Deposit
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider">
+											<div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$" data-result="#money-field-1">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<input type="text" class="value" value="0" disabled="disabled">
+										</div>
+									</div>
+									<div class="form-item check-holder">
+										<label><input type="checkbox" class="value-checkbox"><span class="fake-checkbox"><i class="icon-check"></i></span>Monthly Deposit
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider validate-field">
+											<div class="slider money-slider" data-disabled="true" data-min="500" data-max="5000" data-value="0" data-step="100" data-text="$" data-result="#money-field-2">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<input type="text" class="value" value="0" disabled="disabled">
+										</div>
+									</div>
+								</form>
+								<a href="#" class="btn-next">Next Step ›</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<a href="#" class="opener">Risk Appetite</a>
+						<a href="#" class="edit"><i class="icon-edit"></i></a>
+						<div class="slide">
+							<div class="holder">
+								<form action="#" class="info-form" data-content="step-content-3" data-result="#result-box">
+									<div class="form-item validate-row">
+										<label>What is your annual income?
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider">
+											<div class="slider money-slider" data-min="15000" data-max="500000" data-value="0" data-step="1000" data-text="$">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<input type="text" class="value" value="0" disabled="disabled">
+										</div>
+									</div>
+									<div class="form-item validate-row">
+										<label>What is your liquid assets net worth?
+											<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+										</label>
+										<div class="row ui-slider">
+											<div class="slider money-slider" data-min="5000" data-max="1000000" data-value="0" data-step="5000" data-text="$">
+												<div class="bar"></div>
+												<div class="handler ui-slider-handle"></div>
+											</div>
+											<input type="text" class="value" value="0" disabled="disabled">
+										</div>
+									</div>
+									<div class="form-item">
+										<label>What is your liquid assets net worth?</label>
+										<div class="radio-group validate-row required-radio">
+											<label class="radio">
+												<input type="radio" name="name-1">
+												<span class="custom-radio">
+													<i class="icon-gain"></i>
+													<span><em>Maximizing Gains</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="radio" name="name-1">
+												<span class="custom-radio">
+													<i class="icon-flower"></i>
+													<span><em>Minimizing Loss</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="radio" name="name-1">
+												<span class="custom-radio">
+													<i class="icon-libra"></i>
+													<span><em>Both Equally</em></span>
+												</span>
+											</label>
+										</div>
+									</div>
+								</form>
+								<a href="#" class="btn-next">Next Step ›</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<a href="#" class="opener">Prefered Sectors</a>
+						<a href="#" class="edit"><i class="icon-edit"></i></a>
+						<div class="slide">
+							<div class="holder">
+								<form action="#" class="info-form">
+									<span class="text">You may choose to follow the advisor’s settings or select up to 3 sectors you find the most promising. You can change this at any time.</span>
+									<div class="js-open-close">
+										<div class="form-item">
+											<label><input type="checkbox" checked="checked"><span class="fake-checkbox"><i class="icon-check"></i></span>Use advisor’s picks
+												<span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span>
+											</label>
+										</div>
+										<div class="radio-group">
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-tech"></i>
+													<span><em>Technology</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-health"></i>
+													<span><em>Healthcare</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-energy"></i>
+													<span><em>Energy &amp; Resources</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-estate"></i>
+													<span><em>Real Estate</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-retail"></i>
+													<span><em>Retail Spending</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-food"></i>
+													<span><em>Food</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-travel"></i>
+													<span><em>Travel &amp; Entertainment</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-finance"></i>
+													<span><em>Financial Services</em></span>
+												</span>
+											</label>
+											<label class="radio">
+												<input type="checkbox">
+												<span class="custom-radio">
+													<i class="icon-misc"></i>
+													<span><em>Misc.</em></span>
+												</span>
+											</label>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<div id="content">
+				<div class="note-holder">
+					<span class="note js-note">Fill out the questions to find the best-suited investment plan for your portfolio</span>
+				</div>
+				<div class="info-module step-content" data-id="step-content-1">
+					<div class="text">
+						<h1><i class="icon-bag"></i> My Investment Fund</h1>
+						<p>This section will outline your goal and the possible time to get there</p>
+					</div>
+					<div class="risk-box step-content" id="result-box">
+						<div class="risk-meter">
+							<img src="images/ico-meter.png" alt="image description">
+							<div class="frame">
+								<em>Risk Level <span class="tooltip"><i class="icon-info"></i><span class="t-slide">Lorem ipsum dolor.</span></span></em>
+								<span id="field"><strong>7</strong> - Very High</span>
+							</div>
+						</div>
+						<div class="ui-slider">
+							<div class="slider slider alt"
+								data-min="1"
+								data-max="10"
+								data-value="4"
+								data-step="1"
+								data-field="#field"
+								data-change="true"
+								data-values="1 - Very low, 2 - Low, 3- Conservative, 4 - Moderate, 5 - Medium, 6 - Mid-High, 7 - High, 8 - Very high, 9 - Very high, 10 - Very high">
+								<div class="bar"></div>
+								<div class="handler ui-slider-handle"></div>
+								<div class="label" style="left:-18px;">4 - Advanced</div>
+								<div class="left">Low</div>
+								<div class="right">High</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="cell">
+							<em>Deposits</em>
+							<span>Initial: <span id="money-field-1">$15,000</span></span>
+							<span class="field-value">Monthly: <span id="money-field-2">$1,200</span></span>
+						</div>
+					</div>
+				</div>
+				<!-- box -->
+				<div class="tab-module js-tab-module step-content disabled" data-id="step-content-3">
+					<ul class="tabset">
+						<li><a href="#tab-1" class="active"><i class="icon-details"></i> Portfolio Details</a></li>
+						<li><a href="#tab-2"><i class="icon-projection"></i> Projection</a></li>
+						<li><a href="#tab-3"><i class="icon-performance"></i> Past Performance</a></li>
+					</ul>
+					<div class="tab" id="tab-1">
+						<span class="title">Your portfolio will balance your assets according to risk appetite</span>
+						<div class="step-3-graph">
+							<div class="round-graph">
+								<div class="visual">
+									<img src="images/placeholder-1.jpg" alt="image description">
+								</div>
+								<div class="frame">
+									<div class="table-holder">
+										<table class="legend">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Name</th>
+													<th>Ticker</th>
+													<th>Weight</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><span class="color" style="background:#9577a4;"></span></td>
+													<td>UBS ETRACS 2xMonthly Lvg S&amp;P MLP ETN</td>
+													<td>MLPV</td>
+													<td>12.78%</td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#9577a4;"></span></td>
+													<td>Direxion Daily Russia Bull 3X ETF</td>
+													<td>RUSL</td>
+													<td>12.10% </td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#7e678b;"></span></td>
+													<td>VelocityShares 3x Long Natural Gas ETN</td>
+													<td>UGAZ</td>
+													<td>11.42%</td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#675371;"></span></td>
+													<td>First Trust ISE-Revere Natural Gas ETF</td>
+													<td>FCG</td>
+													<td>11.22% </td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#86a33f;"></span></td>
+													<td>ProShares Ultra Bloomberg Crude Oil</td>
+													<td>UCO</td>
+													<td>9.31%</td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#86a33f;"></span></td>
+													<td>ProShares Ultra Oil &amp; Gas</td>
+													<td>DIG</td>
+													<td>8.71% </td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#758938;"></span></td>
+													<td>ProShares Ultra Oil &amp; Gas</td>
+													<td>DIG</td>
+													<td>8%</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="save-block">
+								<a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
+							</div>
+						</div>
+						<div class="step-4-graph">
+							<div class="round-graph">
+								<div class="visual">
+									<img src="images/placeholder-4.jpg" alt="image description">
+								</div>
+								<div class="frame">
+									<div class="table-holder">
+										<table class="legend">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Name</th>
+													<th>Weight</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><span class="color" style="background:#9b7cab;"></span></td>
+													<td>UBSStocks</td>
+													<td>72%</td>
+												</tr>
+												<tr>
+													<td><span class="color" style="background:#8ba941;"></span></td>
+													<td>Bonds</td>
+													<td>28%</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab" id="tab-2">
+						<span class="title">According to the asset allocation, you may assume this behaviour over time</span>
+						<p>The projection is based on previous market behavior with this portfolio to conclude probable outcomes. <br>Note that past performance is not a sure indication of future revenue so it does not guarantee returns.</p>
+						<div class="graph">
+							<img src="images/placeholder-3.jpg" alt="image description">
+						</div>
+						<div class="save-block">
+							<a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
+						</div>
+					</div>
+					<div class="tab" id="tab-3">
+						<span class="title">Your asset allocation can be tested to show past behaviour</span>
+						<p>This is not indicative of future results and is based on simulated date over the past 20 years</p>
+						<div class="graph">
+							<img src="images/placeholder-2.jpg" alt="image description">
+						</div>
+						<div class="save-block">
+							<a href="#">Save for Later</a> or <a href="#" class="btn">Use Suggested Portfolio <i class="icon-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
+	<script type="text/javascript">window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js" defer><\/script>')</script>
+	<script type="text/javascript" src="js/jquery.main.js" defer></script>
+</body>
+</html>
